@@ -1,0 +1,73 @@
+.InfoBannerStyleImgstyleHov {
+    display: none;
+    height: 60px;
+    object-fit: cover;
+}
+
+.InfoBannerStyleImgstyle {
+    height: 60px;
+    object-fit: cover;
+}
+
+.InfoBannerStyleAfterHover {
+    background-color: white;
+    transition: 0.5s;
+}
+
+.InfoBannerStyleAfterHover:hover {
+    background-color: #4472C4;
+}
+
+.InfoBannerStyleInnerdivHeight {
+    height: 400px;
+    overflow: hidden;
+
+}
+
+.InfoBannerTitileeHov {
+    white-space: wrap;
+    /* Prevents the text from wrapping to the next line */
+    overflow: hidden;
+    /* Hides the overflowed content */
+    text-overflow: ellipsis;
+}
+
+
+.InfoBannerTitileeHov,
+.infoBannerAfterHovI i,
+.InfoBannerStyleImgstyleHov,
+.InfoBannerStyleImgstyle {
+    transition: 0.5s;
+}
+
+.infoBannerAfterHov {
+    border-bottom: 1px solid black;
+    width: fit-content;
+
+}
+
+.InfoBannerTitileeHov {
+    color: black;
+}
+
+.InfoBannerStyleAfterHover:hover .InfoBannerTitileeHov {
+    color: white;
+}
+
+.InfoBannerStyleAfterHover:hover .infoBannerAfterHov {
+    color: white;
+    border-bottom: 1px solid rgb(255, 255, 255);
+
+}
+
+.InfoBannerStyleAfterHover:hover .InfoBannerStyleImgstyleHov {
+    display: block;
+}
+
+.InfoBannerStyleAfterHover:hover .InfoBannerStyleImgstyle {
+    display: none;
+}
+
+.InfoBannerStyleAfterHover:hover .infoBannerAfterHovI i {
+    color: white;
+}

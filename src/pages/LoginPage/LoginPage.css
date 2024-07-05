@@ -1,0 +1,39 @@
+.LoginPageBack {
+    background-image: url(/public/Images/loginBackgorund.jpg);
+    object-fit: cover;
+    width: 100%;
+    padding: 20px;
+    background-size: cover;
+
+}
+
+.LoginPageBackDiSBox {
+    height: auto;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    max-width: 400px;
+}
+
+.LoginPageBackDiSBox p {
+    color: rgb(50, 48, 48);
+    font-size: 16px;
+    font-family: serif;
+}
+
+.LoginPageMainSec {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+.LoginPageInputs {
+    display: flex;
+}
+
+.LoginButtonComp {
+    background-color: red;
+    color: white;
+    border-radius: 6px;
+    height: 30px;
+}
