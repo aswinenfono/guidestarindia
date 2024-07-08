@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { m } from 'framer-motion'
 import { fadeIn } from '../../../Functions/GlobalAnimations'
 import { SectorData } from './NposSector'
-import { ImageComp } from '../../MainComponents/ImageCompo/ImageComp'
+import { ImageComp } from '../../ImageCompo/ImageComp'
 import "./NposSectors.css"
 const NposSectors = () => {
     return (

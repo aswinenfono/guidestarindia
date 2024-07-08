@@ -1,14 +1,14 @@
 import React from 'react'
 import "./IntroSec.css"
-import HeaderCompo from '../../MainComponents/HeaderComp/HeaderCompo'
+import HeaderCompo from '../../HeaderComp/HeaderCompo'
 import { data } from './IntroData'
-import { ParagraphComp } from '../../MainComponents/ParagraphComp/ParagraphComp'
-import { ImageComp } from '../../MainComponents/ImageCompo/ImageComp'
+import { ParagraphComp } from '../../ParagraphComp/ParagraphComp'
+import { ImageComp } from '../../ImageCompo/ImageComp'
 // import { InputCompo } from '../InputCompo/InputCompo'
 // import ButtonComp from '../ButtonComp/ButtonComp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import ButtonComp from '../../MainComponents/ButtonComp/ButtonComp'
+import ButtonComp from '../../ButtonComp/ButtonComp'
 import { Col, Container, Row } from 'react-bootstrap'
 export const IntroSec = () => {
 
@@ -16,7 +16,7 @@ export const IntroSec = () => {
         <>
             {/* <ButtonComp Data={{ name: "search", className: "IntroSearchButton", text: "search" }} /> */}
             <Container>
-                <Row className=' max-sm:h-auto max-sm:p-[10px] h-[60vh] justify-between items-center gap-4'>
+                <Row className='max-md:h-auto max-lg:h-auto max-sm:h-auto sm:p-[10px] h-[60vh] justify-between items-center gap-4'>
                     <Col lg={8} className='flex flex-col gap-6'>
                         <HeaderCompo Data={{ className: "IntroSecHeader", text: data?.mainHeadding, tagType: 'h1' }} />
                         <ParagraphComp Data={{ className: "IntroSecParagraph", text: data?.subHeadding }} />
@@ -40,7 +40,7 @@ export const IntroSec = () => {
                         </div>
                     </Col>
 
-                    <Col className='introimgalign max-sm:h-auto max-sm:w-[100%] max-sm:justify-center  w-[35%] flex h-[100%] items-center'>
+                    <Col className='introimgalign max-sm:h-auto max-sm:w-[100%] max-sm:justify-center max-lg:justify-center w-[35%] flex h-[100%] items-center'>
                         <ImageComp Data={{ source: data?.MainSideImg, className: "IntroSecMainSideImg" }} />
                     </Col>
                 </Row>

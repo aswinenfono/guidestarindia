@@ -9,7 +9,7 @@ import { PropTypes } from "prop-types";
 
 // Data
 import { ClientData02 } from "./ClientsData";
-import { ParagraphComp } from "../MainComponents/ParagraphComp/ParagraphComp";
+import { ParagraphComp } from "../ParagraphComp/ParagraphComp";
 
 const ClientSwitch = (params, item, i) => {
   switch (params.theme) {

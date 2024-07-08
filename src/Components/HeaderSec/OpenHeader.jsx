@@ -3,7 +3,7 @@ import HeaderCompo from '../HeaderComp/HeaderCompo'
 import { ImageComp } from '../ImageCompo/ImageComp'
 import { Col, Row } from 'react-bootstrap'
 import { m } from "framer-motion";
-import { fadeInDown } from '../../../Functions/GlobalAnimations';
+import { fadeInDown } from '../../Functions/GlobalAnimations';
 const OpenHeader = () => {
     return (
         <>

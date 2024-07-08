@@ -1,14 +1,15 @@
-import FooterComp from '../../Components/MainComponents/FooterComp/FooterComp';
-import HeaderSec from '../../Components/MainComponents/HeaderSec/HeaderSec';
+import FooterComp from '../../Components/FooterComp/FooterComp';
+import HeaderSec from '../../Components/HeaderSec/HeaderSec';
 import './LoginPage.css';
 import * as yup from 'yup';
 
 import { Col, Container, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useLoginMutation } from './QueryFungtion';
-import { ParagraphComp } from '../../Components/MainComponents/ParagraphComp/ParagraphComp';
-import HeaderCompo from '../../Components/MainComponents/HeaderComp/HeaderCompo';
+import { ParagraphComp } from '../../Components/ParagraphComp/ParagraphComp';
+import HeaderCompo from '../../Components/HeaderComp/HeaderCompo';
+import { useMutation } from '@tanstack/react-query';
+import { fetchData } from '../../Store/Login';
 
 const LoginPage = () => {
     const schema = yup.object({
@@ -19,28 +20,38 @@ const LoginPage = () => {
     const { register, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
-
     const loginEndPoint = 'api/method/guidestar.api.user.login';
 
-    const { mutate, isLoading, error, data } = useLoginMutation();
-    console.log(isLoading, error, data)
+    const mutation = useMutation({
+        mutationFn: ({ EndPoint, postData, method }) => {
+            return fetchData(EndPoint, postData, method); // Added return here
+        }
+    });
+
+    console.log("isPending", mutation?.isPending, "isSuccess", mutation.isSuccess)
+
+
     const onSubmit = (formData) => {
-        mutate({ EndPoint: loginEndPoint, postData: formData, method: 'post' });
+        console.log("Form Data>>>>", formData);
+        mutation.mutate({ EndPoint: loginEndPoint, postData: formData, method: 'post' });
     };
+
+
+
 
     return (
         <>
-            <HeaderSec theme={"light"} />
-            <section className='LoginPageBack'>
-                <Container>
+            <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
+                <HeaderSec theme={"light"} />
+                <section className='LoginPageBack'>
                     <Row>
-                        <Col lg={6} className='h-auto flex flex-col items-center max-sm:object-none justify-center'>
+                        <Col lg={6} className='  max-md:hidden h-auto flex flex-col items-center justify-center'>
                             <div className='LoginPageBackDiSBox '>
                                 <ParagraphComp Data={{ text: 'Organization’s full address and contact information Up to three years of Forms 99 0Revenue and expense data for the current fiscal year CEO, Board Chair, and Board of Directors information This does not create a profile for you' }} />
                             </div>
                         </Col>
                         <Col className='h-[100%] flex flex-col  items-center justify-center'>
-                            <div className='LoginPageMainSec gap-y-4'>
+                            <div className='LoginPageMainSec w-[80%] gap-y-4'>
                                 <HeaderCompo Data={{ text: 'Login', className: 'text-4xl text-black font-bold font-serif', tagType: 'h6' }} />
                                 <div className='LoginPageInputSec'>
                                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -71,9 +82,10 @@ const LoginPage = () => {
                             </div>
                         </Col>
                     </Row>
-                </Container>
-            </section>
-            <FooterComp />
+                </section >
+            </Container>
+
+            <FooterComp theme={"light"} />
         </>
     );
 }

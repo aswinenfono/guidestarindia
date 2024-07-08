@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Repositories.css"
-import HeaderCompo from '../../MainComponents/HeaderComp/HeaderCompo'
+import HeaderCompo from '../../HeaderComp/HeaderCompo'
 import { Container } from 'react-bootstrap'
 import { fadeIn } from '../../../Functions/GlobalAnimations'
 import { m } from 'framer-motion'

@@ -3,9 +3,9 @@ import { m } from "framer-motion";
 import { Container } from 'react-bootstrap';
 import ButtonComp from '../ButtonComp/ButtonComp';
 import OpenToggle from './OpenToggle';
-import { fadeIn } from '../../../Functions/GlobalAnimations';
+import { fadeIn } from '../../Functions/GlobalAnimations';
 import { Link } from 'react-router-dom';
-const NavbarSec = () => {
+const NavbarSec = ({ theme }) => {
   const [toggle, setToggle] = useState(false)
 
 
@@ -33,9 +33,10 @@ const NavbarSec = () => {
               <h6 className='NavbarSecHeaderTag'>MEDIA</h6>
             </div>
             <div>
-              <h6 className='NavbarSecHeaderTag'> <Link to={'/login'}>
-                <ButtonComp Data={{ className: 'NavbarSecHeaderButton', text: 'SIGN IN / CREATE ACCOUNT', }} />
-              </Link>
+              <h6 className='NavbarSecHeaderTag'>
+                <Link to={'/login'}>
+                  <ButtonComp Data={{ className: `NavbarSecHeaderButton ${theme === 'light' ? 'bg-[#4472C4]' : 'bg-[#C00000]'} `, text: 'SIGN IN / CREATE ACCOUNT', }} />
+                </Link>
               </h6>
             </div>
           </div>

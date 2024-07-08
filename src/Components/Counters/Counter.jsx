@@ -11,7 +11,7 @@ import { CounterData01 } from "./CounterData";
 
 // css
 import "../../Assets/scss/components/_counter.scss"
-import { ImageComp } from "../MainComponents/ImageCompo/ImageComp";
+import { ImageComp } from "../ImageCompo/ImageComp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 

@@ -1,6 +1,6 @@
 
-const api = "http://guidestarindia.momsuat.com"
+const baseApi = "http://guidestarindia.momsuat.com"
 
 
 
-export { api }
+export { baseApi }

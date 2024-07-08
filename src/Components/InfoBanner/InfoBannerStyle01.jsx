@@ -16,7 +16,7 @@ const InfoBannerStyle01 = (props) => {
                 props.data.map((item, i) => {
                     return (
                         <m.div key={i} className="col" {...{ ...props.animation, transition: { delay: i * props.animationDelay } }}>
-                            <div className="InfoBannerStyleAfterHover justify-between h-[500px] relative flex gap-3 flex-col  box-shadow-small p-10">
+                            <div className="InfoBannerStyleAfterHover justify-between h-[500px] max-lg:h-auto relative flex gap-3 flex-col  box-shadow-small p-10">
                                 <div className='h-auto InfoBannerStyleInnerdivHeight flex gap-3 flex-col'>
                                     <div className='flex '>
                                         <img className=' InfoBannerStyleImgstyle' src={item?.img} alt="" />

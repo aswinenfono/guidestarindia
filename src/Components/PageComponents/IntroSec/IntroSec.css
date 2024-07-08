@@ -132,8 +132,12 @@ textarea:focus {
     color: black;
 }
 
+
 @media only screen and (max-width: 900px) {
     .introimgalign {
         height: auto;
+        justify-content: center;
     }
+
+   
 }

@@ -11,7 +11,7 @@ import { serviceData1 } from './ServicesData'
 
 // css
 import "../../Assets/scss/components/_services.scss"
-import { ParagraphComp } from '../MainComponents/ParagraphComp/ParagraphComp';
+import { ParagraphComp } from '../ParagraphComp/ParagraphComp';
 
 const Services = (props) => {
     return (

@@ -11,8 +11,8 @@ import NposSectors from '../../Components/PageComponents/NposSectors/NposSectors
 import IssueSec from '../../Components/PageComponents/IssueSec/IssueSec'
 import ChangeMakers from '../../Components/PageComponents/ChangeMakers/ChangeMakers'
 import CollaboratorsSec from '../../Components/PageComponents/CollaboratorsSec/CollaboratorsSec'
-import HeaderSec from '../../Components/MainComponents/HeaderSec/HeaderSec'
-import FooterComp from '../../Components/MainComponents/FooterComp/FooterComp'
+import HeaderSec from '../../Components/HeaderSec/HeaderSec'
+import FooterComp from '../../Components/FooterComp/FooterComp'
 export const MainPage = () => {
     return (
         <>

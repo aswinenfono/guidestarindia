@@ -1,5 +1,4 @@
 import React from 'react'
-import "./DiscoverNpos.css"
 import { Col, Container, Row } from 'react-bootstrap'
 import ProcessStep from "../../ProcessStep/ProcessStep"
 import { fadeIn } from '../../../Functions/GlobalAnimations'
