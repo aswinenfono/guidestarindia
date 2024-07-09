@@ -43,19 +43,19 @@ const HeaderSec = ({ theme }) => {
                                     }
 
                                 </div>
-                                <div className='flex gap-1 w-[auto]'>
-                                    <div>
+                                <Row className='flex w-[auto] row-cols-1 row-cols-lg-2 '>
+                                    <Col lg={7} className='max-lg:justify-end flex'>
                                         <div class="headerSecInputDiv">
                                             <input type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
                                             <span class="search-icon">
                                                 <FontAwesomeIcon id='headerSecInputIcon' icon={faSearch} />
                                             </span>
                                         </div>
-                                    </div>
-                                    <div>
+                                    </Col>
+                                    <Col className='max-lg:justify-end flex' lg={5}>
                                         <ParagraphComp Data={{ text: 'NPO/NGO/ Charity Check', className: 'headerSecFont' }} />
-                                    </div>
-                                </div>
+                                    </Col>
+                                </Row>
                             </div>
                         </Col>
                     </Row>
@@ -69,7 +69,7 @@ const HeaderSec = ({ theme }) => {
                 <>
                     <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
 
-                        <m.div className="px-[30px] py-2" {...fadeIn}>
+                        <m.div className="py-[10px] px-3" {...fadeIn}>
                             <Row className=''>
                                 <Col lg={6} className='HeaderSecTopInner'>
                                     <img src="/images/logo.png" alt="" />
@@ -91,23 +91,22 @@ const HeaderSec = ({ theme }) => {
                                             }
 
                                         </div>
-                                        <div className='flex gap-1 w-[auto]'>
-                                            <div>
+                                        <Row className='flex w-[auto] row-cols-1 row-cols-lg-2 '>
+                                            <Col lg={7} className='max-lg:justify-end flex'>
                                                 <div class="headerSecInputDiv">
                                                     <input type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
                                                     <span class="search-icon">
                                                         <FontAwesomeIcon id='headerSecInputIcon' icon={faSearch} />
                                                     </span>
                                                 </div>
-                                            </div>
-                                            <div>
+                                            </Col>
+                                            <Col className='max-lg:justify-end flex' lg={5}>
                                                 <ParagraphComp Data={{ text: 'NPO/NGO/ Charity Check', className: 'headerSecFontlight' }} />
-                                            </div>
-                                        </div>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 </Col>
                             </Row>
-
                         </m.div>
                     </Container>
                     {IsOpenContent &&

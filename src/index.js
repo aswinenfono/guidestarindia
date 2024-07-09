@@ -3,21 +3,38 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { MaterialDesignContent, SnackbarProvider } from 'notistack'
 import "./Assets/css/icons.css";
 import "./Assets/css/global.css";
 import "./Assets/css/pages.css";
 import "./index.scss";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LazyMotion, domMax } from 'framer-motion';
-const queryClient = new QueryClient();
+import styled from 'styled-components';
 
+const queryClient = new QueryClient();
+const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
+  '&.notistack-MuiContent-success': {
+    backgroundColor: '#2D7738',
+  },
+  '&.notistack-MuiContent-error': {
+    backgroundColor: '#970C0C',
+  },
+}));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <LazyMotion features={domMax}>
     <QueryClientProvider client={queryClient}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <SnackbarProvider
+        Components={{
+          success: StyledMaterialDesignContent,
+          error: StyledMaterialDesignContent,
+        }}
+      >
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </SnackbarProvider>
     </QueryClientProvider>
   </LazyMotion>
 

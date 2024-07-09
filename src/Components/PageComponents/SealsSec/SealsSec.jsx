@@ -11,14 +11,14 @@ export const SealsSec = () => {
     return (
         <>
             <m.div className='SealsSec px-[10%] py-5 text-center ' {...fadeIn}>
-                <HeaderCompo Data={{ tagType: 'h1', className: "SealsSecHeader ", text: Data?.headding }} />
+                <HeaderCompo Data={{ tagType: 'h1', className: "SealsSecHeader max-md:text-4xl", text: Data?.headding }} />
                 <Row className='row-cols-1 gap-y-5 row-cols-lg-4 row-cols-sm-2'>
                     {
                         Data?.MapItems?.map(ele =>
                             <Col className='SealsSecCard'>
                                 <ImageComp Data={{ source: ele?.image, className: "SealsSecCardImg" }} />
-                                <HeaderCompo Data={{ className: 'SealsSecCardHeader', text: ele?.seal, tagType: 'h3' }} />
-                                <ParagraphComp Data={{ text: ele?.discription, className: 'SealsSecCardParagraph' }} />
+                                <HeaderCompo Data={{ className: 'SealsSecCardHeader max-md:text-2xl', text: ele?.seal, tagType: 'h3' }} />
+                                <ParagraphComp Data={{ text: ele?.discription, className: 'SealsSecCardParagraph max-md:text-lg' }} />
                             </Col>
                         )
                     }

@@ -12,8 +12,8 @@ const Repositories = () => {
         <>
 
             <div className='p-[10%] flex flex-col'>
-                <HeaderCompo Data={{ tagType: "h1", text: 'Get involved using India’s most exhaustive repository of NPOs', className: 'RepositoriesHeader text-center text-black' }} />
-                <m.section className="bg-lightgray py-[160px] lg:py-[40px] md:py-[95px] sm:py-[80px] xs:py-[50px]" {...fadeIn}>
+                <HeaderCompo Data={{ tagType: "h1", text: 'Get involved using India’s most exhaustive repository of NPOs', className: 'RepositoriesHeader max-md:text-4xl text-center text-black' }} />
+                <m.section className="bg-lightgray max-md:py-[50px] py-[160px] lg:py-[40px] md:py-[95px] sm:py-[80px] xs:py-[50px]" {...fadeIn}>
                     <Container>
                         <Counter
                             as="h5"

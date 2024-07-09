@@ -78,6 +78,7 @@ textarea:focus {
     height: 50px;
     padding: 10px;
     width: max-content;
+    width: 40%;
     letter-spacing: 2px;
 }
 
@@ -86,15 +87,12 @@ textarea:focus {
     color: white;
     height: 50px;
     padding: 10px;
+    width: 60%;
     width: max-content;
     letter-spacing: 2px;
 
 }
 
-.IntroSecHeaderAlignBoxes {
-    display: flex;
-    gap: 20px;
-}
 
 .IntroSecHeaderAlignInput {
     width: 100%;
@@ -139,5 +137,5 @@ textarea:focus {
         justify-content: center;
     }
 
-   
+
 }

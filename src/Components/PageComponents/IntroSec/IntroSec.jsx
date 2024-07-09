@@ -16,25 +16,27 @@ export const IntroSec = () => {
         <>
             {/* <ButtonComp Data={{ name: "search", className: "IntroSearchButton", text: "search" }} /> */}
             <Container>
-                <Row className='max-md:h-auto max-lg:h-auto max-sm:h-auto sm:p-[10px] h-[60vh] justify-between items-center gap-4'>
+                <Row className='max-md:h-auto max-lg:h-auto max-sm:h-auto sm:p-[10px] h-[60vh]  justify-between items-center gap-4'>
                     <Col lg={8} className='flex flex-col gap-6'>
-                        <HeaderCompo Data={{ className: "IntroSecHeader", text: data?.mainHeadding, tagType: 'h1' }} />
-                        <ParagraphComp Data={{ className: "IntroSecParagraph", text: data?.subHeadding }} />
+                        <HeaderCompo Data={{ className: "IntroSecHeader max-md:text-5xl max-md:leading-[40px]", text: data?.mainHeadding, tagType: 'h1' }} />
+                        <ParagraphComp Data={{ className: "IntroSecParagraph max-md:text-2xl ", text: data?.subHeadding }} />
                         {/* <InputCompo Data={{ className: "IntroSecInput", placeholder: "", placeholder: "" }} /> */}
                         <div className='flex flex-col gap-3'>
-                            <div className='IntroSecHeaderAlignBoxes'>
-                                <div class="IntroSecInputContainer">
-                                    <input type="text" placeholder="Enter organisation name or keyword" className="IntroSecInput" />
-                                    <span class="search-icon">
-                                        <FontAwesomeIcon id='IntroSecInputContainerIcon' icon={faSearch} />
-                                    </span>
-                                </div>
-                                <div className='flex IntroSecSearchAlignButtons '>
+                            <Row className=' row-cols-1 row-cols-lg-2 gap-y-2'>
+                                <Col lg={7} class="">
+                                    <div className='IntroSecInputContainer'>
+                                        <input type="text" placeholder="Enter organisation name or keyword" className="IntroSecInput" />
+                                        <span class="search-icon">
+                                            <FontAwesomeIcon id='IntroSecInputContainerIcon' icon={faSearch} />
+                                        </span>
+                                    </div>
+                                </Col>
+                                <Col lg={5} className='flex gap-2 max-md:justify-start justify-end'>
                                     <ButtonComp Data={{ className: "IntroSecSearchButton", text: 'Search' }} />
                                     <ButtonComp Data={{ className: "IntroSecSearchButton2", text: 'Register for free' }} />
-                                </div>
-                            </div>
-                            <div className='flex justify-end'>
+                                </Col>
+                            </Row>
+                            <div className='flex justify-end max-md:justify-start'>
                                 <a className='IntroSecAtag' href="#/">Why register for more free searches?</a>
                             </div>
                         </div>

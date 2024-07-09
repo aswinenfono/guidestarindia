@@ -28,10 +28,11 @@ const LoginPage = () => {
         }
     });
 
-    console.log("isPending", mutation?.isPending, "isSuccess", mutation.isSuccess)
+    console.log("isPending", mutation?.isPending, "isSuccess", mutation?.isLoading)
 
-
+ 
     const onSubmit = (formData) => {
+        // event.preventDefault()
         console.log("Form Data>>>>", formData);
         mutation.mutate({ EndPoint: loginEndPoint, postData: formData, method: 'post' });
     };
@@ -41,7 +42,7 @@ const LoginPage = () => {
 
     return (
         <>
-            <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
+            <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'> 
                 <HeaderSec theme={"light"} />
                 <section className='LoginPageBack'>
                     <Row>
@@ -83,9 +84,10 @@ const LoginPage = () => {
                         </Col>
                     </Row>
                 </section >
+            <FooterComp theme={"light"} />
+
             </Container>
 
-            <FooterComp theme={"light"} />
         </>
     );
 }
