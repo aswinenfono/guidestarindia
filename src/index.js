@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LazyMotion, domMax } from 'framer-motion';
 import styled from 'styled-components';
 
-const queryClient = new QueryClient();
+
 const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
   '&.notistack-MuiContent-success': {
     backgroundColor: '#2D7738',
@@ -21,6 +21,8 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
     backgroundColor: '#970C0C',
   },
 }));
+
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <LazyMotion features={domMax}>

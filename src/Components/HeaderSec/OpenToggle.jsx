@@ -3,6 +3,7 @@ import { m } from "framer-motion"
 import HeaderCompo from '../HeaderComp/HeaderCompo'
 import { ParagraphComp } from '../ParagraphComp/ParagraphComp'
 import ButtonComp from '../ButtonComp/ButtonComp'
+import { fadeIn } from '../../Functions/GlobalAnimations'
 const OpenToggle = () => {
     const Data = [
         "Discover/ Support NPOs",
@@ -13,7 +14,7 @@ const OpenToggle = () => {
     ]
     return (
         <>
-            <m.div className=' absolute bg-white w-[100%] shadow-sm'>
+            <m.div className=' absolute z-10 bg-white w-[100%] shadow-sm' {...fadeIn}>
                 <HeaderCompo Data={{ tagType: 'h6', className: 'text-black text-[17px] font-bold mb-[0px]', text: 'HOME' }} />
                 <div className='p-[10px] flex flex-col gap-3'>
                     {Data.map(ele =>

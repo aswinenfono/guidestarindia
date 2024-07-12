@@ -1,48 +1,59 @@
+import React from 'react';
 import FooterComp from '../../Components/FooterComp/FooterComp';
 import HeaderSec from '../../Components/HeaderSec/HeaderSec';
 import './LoginPage.css';
 import * as yup from 'yup';
-
 import { Col, Container, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ParagraphComp } from '../../Components/ParagraphComp/ParagraphComp';
 import HeaderCompo from '../../Components/HeaderComp/HeaderCompo';
 import { useMutation } from '@tanstack/react-query';
-import { fetchData } from '../../Store/Login';
+import { enqueueSnackbar } from 'notistack';
+import { userLogin } from '../../Store/login';
 
 const LoginPage = () => {
     const schema = yup.object({
         username: yup.string().required('Username is required'),
         password: yup.string().required('Password is required'),
     });
-
     const { register, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
-    const loginEndPoint = 'api/method/guidestar.api.user.login';
 
-    const mutation = useMutation({
-        mutationFn: ({ EndPoint, postData, method }) => {
-            return fetchData(EndPoint, postData, method); // Added return here
-        }
-    });
-
-    console.log("isPending", mutation?.isPending, "isSuccess", mutation?.isLoading)
-
- 
     const onSubmit = (formData) => {
-        // event.preventDefault()
-        console.log("Form Data>>>>", formData);
-        mutation.mutate({ EndPoint: loginEndPoint, postData: formData, method: 'post' });
+        loginMutate(formData);
     };
 
+    const handleCreateSuccess = () => {
+        enqueueSnackbar('Create success!', { variant: 'success' });
+    };
 
+    const handleCreateError = (error) => {
+        enqueueSnackbar(error.message, { variant: 'error' });
+    };
 
+    const createFarmerMutationOptions = {
+        onSuccess: handleCreateSuccess,
+        onError: handleCreateError,
+    };
+
+    //getting mutation alerts
+
+    const {
+        mutate: loginMutate,
+        isPending: addLoading,
+        data: loginData
+    } = useMutation({
+        mutationFn: userLogin,
+        ...createFarmerMutationOptions,
+
+    });
+    console.log("loginData<<<<", loginData)
 
     return (
         <>
-            <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'> 
+            <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
                 <HeaderSec theme={"light"} />
                 <section className='LoginPageBack'>
                     <Row>
@@ -84,7 +95,7 @@ const LoginPage = () => {
                         </Col>
                     </Row>
                 </section >
-            <FooterComp theme={"light"} />
+                <FooterComp theme={"light"} />
 
             </Container>
 

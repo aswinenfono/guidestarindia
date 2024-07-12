@@ -1,27 +1,22 @@
-import axios from "axios";
-import { baseApi } from "../Config";
-import { enqueueSnackbar } from "notistack";
+import { actionHandler } from "./api";
 
-export const fetchData = async (EndPoint, postData, method) => {
+
+const loginUrl = `/api/method/guidestar.api.user.login`;
+
+export const userLogin = async (payload) => {
     try {
-        const response = await axios[method](`${baseApi}/${EndPoint}`, postData);
-        console.log(response)
-        if (response?.data.status_code === 200 && response?.data?.token) {
-
-            settingToken(response?.data)
-            enqueueSnackbar(response?.data?.message, { variant: 'success' })
-        } else {
-            enqueueSnackbar(response?.data?.message, { variant: 'error' })
+        const { data } = await actionHandler({
+            url: loginUrl,
+            method: 'POST',
+            data: payload,
+        });
+        if (data?.token) {
+            const token = data.token
+            localStorage.setItem("accessToken", token)
         }
-        return response.data; // Ensure you're returning response.data
+        return data;
     } catch (error) {
-        throw error; // Ensure you're throwing the error
+        throw error;
     }
 };
 
-const settingToken = (data) => {
-    const loginData = {
-        token: data?.token
-    }
-    localStorage.setItem("loginData", JSON.stringify(loginData))
-}
