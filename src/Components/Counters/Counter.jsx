@@ -14,6 +14,7 @@ import "../../Assets/scss/components/_counter.scss"
 import { ImageComp } from "../ImageCompo/ImageComp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import ButtonComp from "../ButtonComp/ButtonComp";
 
 const Counter = (props) => {
   useEffect(() => {
@@ -42,7 +43,7 @@ const Counter = (props) => {
           return (
             <m.div
               key={i}
-              className={`${props.theme} ${props.className} relative`}
+              className={`${props.theme} ${props.className} relative shadow-sm`}
               {...{ ...props.animation, transition: { delay: i * props.animationDelay } }}
             >
               <props.as className={`vertical-counter inline-flex overflow-hidden mb-0${item.number.class ? ` ${item.number.class}` : ""}`} >
@@ -78,6 +79,9 @@ const Counter = (props) => {
                   {item.content && item.content}
                 </span>
               </div>
+              <div className="flex justify-center">
+                <ButtonComp Data={{ className: `${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#C00000]' : 'bg-[#004878]'} text-white` }} />
+              </div>
             </m.div>
           );
         })
@@ -85,37 +89,43 @@ const Counter = (props) => {
           return (
             <m.div
               key={i}
-              className={`${props.theme} ${props.className} counter-col flex flex-col gap-6`}
+              className={`${props.theme} ${props.className}  shadow-sm counter-col  gap-6 flex flex-col justify-between py-[10px]`}
               {...{ ...props.animation, transition: { delay: i * props.animationDelay } }}
             >
-              <div className="w-[100%] flex justify-center">
-                <ImageComp Data={{ source: item?.image, className: 'h-[90px] object-cover' }} />
-              </div>
-              {item.number && (
-                <props.as className={` text-center counter-numbers${item.number.class ? ` ${item.number.class}` : ""}`}>
-                  <CountUp start={0} end={item.number.text} duration={props.duration} easing={false}>
-                    {({ countUpRef, start }) => (<m.span ref={countUpRef} whileInView={start} viewport={{ once: true }} />)}
-                  </CountUp>
-                  {props.postfix_sign && <span className="postfix_sign">{props.postfix_sign}</span>}
-                </props.as>
-              )}
-              {(item.title || item.content) && (
-                <div className="counter-content-section">
-                  {item.content && <span className="counter-content">{item.content}</span>}
-                </div>
-              )}
-              {(item?.list?.length > 0) && (
-                <ul className="flex gap-3 flex-col">
+              <div>
 
-                  {item?.list?.map(ele =>
-                    <>
-                      <li className="border-b-2 flex gap-3 items-center">
-                        <FontAwesomeIcon className='IntroSecInputContainerIcon' icon={faCheck} />  {ele}
-                      </li>
-                    </>
-                  )}
-                </ul>
-              )}
+                <div className="w-[100%] flex justify-center">
+                  <ImageComp Data={{ source: item?.image, className: 'h-[90px] object-cover' }} />
+                </div>
+                {item.number && (
+                  <props.as className={` text-center counter-numbers${item.number.class ? ` ${item.number.class}` : ""}`}>
+                    <CountUp start={0} end={item.number.text} duration={props.duration} easing={false}>
+                      {({ countUpRef, start }) => (<m.span ref={countUpRef} whileInView={start} viewport={{ once: true }} />)}
+                    </CountUp>
+                    {props.postfix_sign && <span className="postfix_sign">{props.postfix_sign}</span>}
+                  </props.as>
+                )}
+                {(item.title || item.content) && (
+                  <div className="counter-content-section">
+                    {item.content && <span className="counter-content">{item.content}</span>}
+                  </div>
+                )}
+                {(item?.list?.length > 0) && (
+                  <ul className="flex gap-3 flex-col">
+
+                    {item?.list?.map(ele =>
+                      <>
+                        <li className="border-b-2 flex gap-3 items-center">
+                          <FontAwesomeIcon className='IntroSecInputContainerIcon' icon={faCheck} />  {ele}
+                        </li>
+                      </>
+                    )}
+                  </ul>
+                )}
+              </div>
+              <div className="flex justify-center">
+                <ButtonComp Data={{ className: ` rounded-md px-[10px] ${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#004878]' : 'bg-[#C00000]'} text-white`, text: item?.button }} />
+              </div>
             </m.div>
           );
         })}

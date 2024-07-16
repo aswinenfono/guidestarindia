@@ -50,27 +50,27 @@ const ClientData02 = [
   {
     img: "/images/CertfiedStart2.png",
     UnderImg: "/images/platinum.png",
-    grade: "Platinum"
+    grade: "Gold"
   },
   {
     img: "/images/CertfiedStart3.png",
     UnderImg: "/images/gold.png",
-    grade: "Gold"
+    grade: "Bronze"
   },
   {
     img: "/images/CertfiedStart4.png",
     UnderImg: "/images/silver.png",
-    grade: "Silver"
+    grade: "Bronze"
   },
   {
     img: "/images/CertfiedStart5.png",
     UnderImg: "/images/bronze.png",
-    grade: "Bronze"
+    grade: "Platinum"
   },
   {
     img: "/images/CertfiedStart6.png",
     UnderImg: "/images/bronze.png",
-    grade: "Bronze"
+    grade: "Platinum"
   },
 ];
 

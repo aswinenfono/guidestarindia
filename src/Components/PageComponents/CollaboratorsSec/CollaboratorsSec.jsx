@@ -36,7 +36,7 @@ const CollaboratorsSec = () => {
                         </Col>
                     </Row>
                     <Clients
-                        grid="row-cols-1 row-cols-md-2 row-cols-lg-6 gap-y-5"
+                        grid="row-cols-1 row-cols-md-2 flex justify-center row-cols-lg-6 gap-y-5"
                         theme="client-logo-style-02"
                         data={CollabData}
                         animation={fadeIn}

@@ -18,9 +18,9 @@ export const MainPage = () => {
         <>
             <HeaderSec />
             <IntroSec />
+            <DiscoverNpos />
             <SealsSec />
             <Repositories />
-            <DiscoverNpos />
             <Philanthropy />
             <CertifiedNpos />
             <NposSectors />

@@ -19,7 +19,7 @@ const UserInfoSec = () => {
                         <h2 className="heading-5 font-extrabold text-[#262b35] tracking-[-1px] mb-[15px] infoSecFont">
                             Know how institutions and individuals are using GuideStar India
                         </h2>
-                        <p className="w-[100%] mx-auto lg:w-[95%] sm:w-full">
+                        <p className="w-[100%] font-serif text-black mx-auto lg:w-[95%] sm:w-full">
                             Our NPO information, due diligence and insights are the differentiator for strategic philanthropy, organisation development and ecosystem system building
                         </p>
                     </Col>

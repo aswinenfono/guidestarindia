@@ -1,10 +1,9 @@
 const CollabData = [
-    { img: "/images/philanthropy2.png" },
-    { img: "/images/meta-black-white.webp" },
-    { img: "/images/sage-intacct-logo@2x.webp" },
-    { img: "/images/PayPal-black-white.webp" },
-    { img: "/images/salesforce@2x.webp" },
+    { img: "/images/techsoup-global-logo-vector-3746621461.png" },
+    { img: "/images/Benchmark logo.jpeg" },
+
     { img: "/images/philanthropy1.png" },
+    { img: "/images/philanthropy2.png" },
 ]
 
 

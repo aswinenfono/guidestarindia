@@ -1,23 +1,23 @@
 const ProcessStepData01 = [
     {
         image: "/images/badge.png",
-        title: "Project Research",
-        content: "Lorem ipsum is simply dummy text the printing industry",
+        title: "Search by Certification Level",
+        content: "Identify NPOs with stellar credibility and transparency",
     },
     {
         image: "/images/location.png",
-        title: "Design Sketches",
-        content: "Lorem ipsum is simply dummy text the printing industry",
+        title: "SEARCH BY GEOGRAPHY",
+        content: "Locate NPOs active in every state and district across India",
     },
     {
         image: "/images/social-justice.png",
-        title: "Selected Concept",
-        content: "Lorem ipsum is simply dummy text the printing industry",
+        title: "SEARCH BY CAUSE",
+        content: "Find NPOs for every cause and community you care about",
     },
     {
         image: "/images/rupee (1).png",
-        title: "Client Presentation",
-        content: "Lorem ipsum is simply dummy text the printing industry",
+        title: "SEARCH BY FINANCIALS",
+        content: "Explore NPOs based on their size, tax benefits, and FCRA eligibility",
     },
 ]
 

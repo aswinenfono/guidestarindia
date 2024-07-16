@@ -3,7 +3,6 @@ import { m } from "framer-motion";
 import { Container } from 'react-bootstrap';
 import ButtonComp from '../ButtonComp/ButtonComp';
 import OpenToggle from './OpenToggle';
-import { fadeIn } from '../../Functions/GlobalAnimations';
 import { Link } from 'react-router-dom';
 const NavbarSec = ({ theme }) => {
   const [toggle, setToggle] = useState(false)
@@ -12,7 +11,7 @@ const NavbarSec = ({ theme }) => {
   return (
     <>
       <Container>
-        <m.div {...fadeIn}>
+        <m.div >
           <div className='NavbarSec p-[10px]'>
             <div>
               <h6 className='NavbarSecHeaderTag'>HOME</h6>

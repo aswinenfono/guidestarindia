@@ -19,7 +19,6 @@ export const actionHandler = (payload) => {
         axios(payload)
             .then((response) => {
                 console.log(response)
-
                 if (response.data.status_code >= 200 && response.data.status_code < 300) {
                     resolve(response);
                 } else {

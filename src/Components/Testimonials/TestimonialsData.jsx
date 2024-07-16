@@ -22,127 +22,34 @@ const TestimonialsData01 = [
   },
 ];
 
-const TestimonialsData02 = [
-  {
-    name: "JEREMY SMITH",
-    designation: "CO FOUNDER",
-    content:
-      "Lorem ipsum dolor amet consectetur do eiusmod tempor incididunt labore ut enim ad minim veniam",
-    img: "https://via.placeholder.com/800x580",
-  },
-  {
-    name: "SHOKO MUGIKURA",
-    designation: "CREATIVE HEAD",
-    content:
-      "Lorem ipsum dolor amet consectetur do eiusmod tempor incididunt labore ut enim ad minim veniam",
-    img: "https://via.placeholder.com/800x580",
-  },
-  {
-    name: "HERMAN MILLER",
-    designation: "HR MANAGER",
-    content:
-      "Lorem ipsum dolor amet consectetur do eiusmod tempor incididunt labore ut enim ad minim veniam",
-    img: "https://via.placeholder.com/800x580",
-  },
-  {
-    name: "JEREMY SMITH",
-    designation: "CO FOUNDER",
-    content:
-      "Lorem ipsum dolor amet consectetur do eiusmod tempor incididunt labore ut enim ad minim veniam",
-    img: "https://via.placeholder.com/800x580",
-  },
-  {
-    name: "SHOKO MUGIKURA",
-    designation: "CREATIVE HEAD",
-    content:
-      "Lorem ipsum dolor amet consectetur do eiusmod tempor incididunt labore ut enim ad minim veniam",
-    img: "https://via.placeholder.com/800x580",
-  },
-  {
-    name: "HERMAN MILLER",
-    designation: "HR MANAGER",
-    content:
-      "Lorem ipsum dolor amet consectetur do eiusmod tempor incididunt labore ut enim ad minim veniam",
-    img: "https://via.placeholder.com/800x580",
-  },
-];
 
 const TestimonialsData03 = [
   {
-    name: "—Victoria Vrana",
+    name: "—Akhila Sivadas",
     designation: "Senior Program Officer, The Bill & Melinda Gates Foundation",
     content:
-      "Nonprofit profiles help the sector take a leap forward from data and information about charities to powerful knowledge and insight to help us make informed decisions.",
-    img: "/images/victoria verana.jpg",
+      "The entire exercise is exciting. Thank you very much for every point you raised, presented and cautioned everyone is both vital to know and make it part of our everyday practice and process.",
+    img: "/images/UserInfoImg1.png",
   },
   {
     name: "—Victoria Vrana",
     designation: "Senior Program Officer, The Bill & Melinda Gates Foundation",
     content:
-      "Nonprofit profiles help the sector take a leap forward from data and information about charities to powerful knowledge and insight to help us make informed decisions.",
-    img: "/images/victoria verana.jpg",
+      "Wonderfully executed sessions, very insightful and these have given us a lot to rethink the ways of operation and planning the future. Experiencing the filling of the application for certification and overcoming the challenges. Looking forward to using this to further our cause to reach out to a larger funder base. Waiting to do a storming exercise within our management team to work towards collecting relevant information to fulfil the form requirement.",
+    img: "/images/UserInfoImg2.png",
   },
   {
     name: "—Victoria Vrana",
     designation: "Senior Program Officer, The Bill & Melinda Gates Foundation",
     content:
-      "Nonprofit profiles help the sector take a leap forward from data and information about charities to powerful knowledge and insight to help us make informed decisions.",
-    img: "/images/victoria verana.jpg",
+      "Today's session was extremely informative. Even though we have an internal auditor who has put in a lot of checks and balances in our accounting process, this session will really help us in checking if we have missed anything important.",
+    img: "/images/UserInfoImg3.png",
   },
 ];
 
-const TestimonialsData04 = [
-  {
-    name: "Herman Miller",
-    content:
-      "Lorem ipsum dolor amet consectetur do tempor incididunt labore et dolore magna nostrud exercitation ullamco.",
-    img: "https://via.placeholder.com/125x125",
-    rating: 5,
-  },
-  {
-    name: "Jeremy Girard",
-    content:
-      "Lorem ipsum dolor amet consectetur do tempor incididunt labore et dolore magna nostrud exercitation ullamco.",
-    img: "https://via.placeholder.com/125x125",
-    rating: 5,
-  },
-  {
-    name: "Alexander Harvard",
-    content:
-      "Lorem ipsum dolor amet consectetur do tempor incididunt labore et dolore magna nostrud exercitation ullamco.",
-    img: "https://via.placeholder.com/125x125",
-    rating: 5,
-  },
-];
 
-const TestimonialsData05 = [
-  {
-    name: "Herman Miller",
-    content:
-      "Simply superb resort. Management and staff deserve special appreciation and thanks for hospitality.",
-    img: "https://via.placeholder.com/125x125",
-    rating: 5,
-  },
-  {
-    name: "Loretta Smith",
-    content:
-      "We are back home now and feel that it is only right to write to you to express our warmest gratitude.",
-    img: "https://via.placeholder.com/125x125",
-    rating: 5,
-  },
-  {
-    name: "Jeremy Girard",
-    content:
-      "Wonderful place to live for holidays. Can’t believe can have such beautiful environment to spend peaceful.",
-    img: "https://via.placeholder.com/125x125",
-    rating: 5,
-  },
-];
 
 export {
   TestimonialsData01,
-  TestimonialsData02,
   TestimonialsData03,
-  TestimonialsData04,
-  TestimonialsData05,
 };

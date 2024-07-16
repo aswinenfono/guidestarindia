@@ -46,11 +46,11 @@ const renderSwitch = (props, item, i) => {
         case "testimonials-style-03":
             return (
                 <div className={`${props.theme}`}>
-                    <div className="testimonials-bubble py-8 px-12 lg:px-8 relative bg-white mb-[35px] rounded">
-                        {item.content && <p className="mb-0">{item.content}</p>}
+                    <div className="testimonials-bubble py-8 px-12 lg:px-8 flex items-center relative min-h-[420px] bg-white mb-[35px] rounded">
+                        {item.content && <p className="mb-0 text-xl font-serif text-black">{item.content}</p>}
                     </div>
                     <div className="px-[20px] flex items-center">
-                        {item.img && <img width="" height="" className="rounded-circle w-[100px] h-[100px] object-cover mr-[19px]" src={item.img} alt="" />}
+                        {item.img && <img width="" height="" className=" w-[100px] max-h-[80px] object-cover mr-[19px]" src={item.img} alt="" />}
                         <div className="inline-block align-middle">
                             {item.name && <span className="infoSecFont text-md leading-[24px] text-black block">{item.name}</span>}
                             {item.designation && <span className="block text-sm">{item.designation}</span>}

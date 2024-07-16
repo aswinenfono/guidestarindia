@@ -15,7 +15,7 @@ export const IntroSec = () => {
     return (
         <>
             {/* <ButtonComp Data={{ name: "search", className: "IntroSearchButton", text: "search" }} /> */}
-            <Container>
+            <Container >
                 <Row className='max-md:h-auto max-lg:h-auto max-sm:h-auto sm:p-[10px] h-[60vh]  justify-between items-center gap-4'>
                     <Col lg={8} className='flex flex-col gap-6'>
                         <HeaderCompo Data={{ className: "IntroSecHeader max-md:text-5xl max-md:leading-[40px]", text: data?.mainHeadding, tagType: 'h1' }} />

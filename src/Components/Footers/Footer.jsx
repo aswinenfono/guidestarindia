@@ -90,7 +90,7 @@ export const Footer = (props) => {
         [])
 
     return (
-        <footer className={` bg-[#ede7e7] ${props.theme}${props.className ? ` ${props.className}` : ""}`} style={props.style}>
+        <footer className={` bg-[#f7f7f7] ${props.theme}${props.className ? ` ${props.className}` : ""}`} style={props.style}>
             {props.children}
         </footer>
     )

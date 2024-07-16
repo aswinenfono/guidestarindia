@@ -22,9 +22,8 @@
 }
 
 .IntroSecMainSideImg {
-    height: 250px;
     object-fit: cover;
-    overflow: hidden;
+    width: auto;
 
 }
 
@@ -41,7 +40,7 @@
     padding-left: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    border: 2px solid #ed1c24;
+    border: 2px solid #004878;
     border-radius: 0.375rem;
     font-size: 1rem;
     width: 100%;
@@ -73,7 +72,7 @@ textarea:focus {
 }
 
 .IntroSecSearchButton {
-    background-color: #4472C4;
+    background-color: #004878;
     color: white;
     height: 50px;
     padding: 10px;

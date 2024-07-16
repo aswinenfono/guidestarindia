@@ -21,7 +21,8 @@
 		display: block;
 		margin-bottom: 0;
 		width: 80%;
-		color: #828282;
+		color: rgba(0, 0, 0, 0.695);
+		font-weight: bold;
 
 		@media (max-width:var(--md)) {
 			width: 100%;

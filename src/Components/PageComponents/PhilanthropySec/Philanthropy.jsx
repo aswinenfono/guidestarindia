@@ -14,7 +14,7 @@ const Philanthropy = () => {
                             <h2 className="heading-5  font-extrabold text-[#353536] -tracking-[1px]">Power your philanthropy</h2>
                         </Col>
                     </Row>
-                    <InfoBannerStyle01 animation={fadeIn} grid="row row-cols-1 row-cols-md-2 row-cols-lg-4 gap-y-5  " className="justify-center" data={infoData} />
+                    <InfoBannerStyle01 animation={fadeIn} grid="row row-cols-1 row-cols-md-2 row-cols-lg-4 gap-y-5" className="justify-center" data={infoData} />
                 </Container>
             </section>
         </>

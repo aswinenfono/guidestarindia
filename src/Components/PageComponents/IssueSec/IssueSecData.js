@@ -1,4 +1,4 @@
-const IssuesData = [
+const IssuesData1 = [
     {
         img: '/images/stories1.jpg',
         name: 'NGOs name',
@@ -22,4 +22,6 @@ const IssuesData = [
         linkTitle: "Read More"
     },
 ]
-export { IssuesData }
+
+
+export { IssuesData1 }

@@ -5,6 +5,7 @@ const CounterData01 = [
         },
         title: "Custom shortcodes",
         content: "SUPPORT NPOS VETTED FOR ADVANCED LEVELS",
+        button: 'Support',
         list: [
             "Donate money",
             "Volunteer",
@@ -20,6 +21,8 @@ const CounterData01 = [
         },
         title: "Completed projects",
         content: "ENGAGE WITH NPOS VERIFIED FOR BASIC LEVEL",
+        button: 'Engage',
+
         list: ["Volunteer",
             "Gift in-kind",
             "Purchase products",
@@ -39,7 +42,8 @@ const CounterData01 = [
             "Purchase products",
             "Celebrate occasions"
         ],
-        image: "/images/count3.png"
+        image: "/images/count3.png",
+        button: 'Discover',
     },
     {
         number: {
@@ -48,8 +52,14 @@ const CounterData01 = [
         title: "Completed projects",
         content: "EXPLORE NPOS FOR YOUR RESEARCH AND OUTREACH"
         ,
-        image: "/images/count4.png"
+        list: [
+            "NPO Outreach",
+            "NPO Research",
+        ],
+        image: "/images/count4.png",
+        button: "Explore"
     },
+
 
 
 ]

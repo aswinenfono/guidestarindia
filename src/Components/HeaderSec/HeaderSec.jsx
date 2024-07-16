@@ -21,7 +21,7 @@ const HeaderSec = ({ theme }) => {
     return (
         <>
             {theme !== "light" ? <Container>
-                <m.div className="py-[10px]" {...fadeIn}>
+                <m.div className="py-[10px]" >
                     <Row className=''>
                         <Col lg={6} className='HeaderSecTopInner'>
                             <img src="/images/logo.png" alt="" />
@@ -69,7 +69,7 @@ const HeaderSec = ({ theme }) => {
                 <>
                     <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
 
-                        <m.div className="py-[10px] px-3" {...fadeIn}>
+                        <m.div className="py-[10px] px-3" >
                             <Row className=''>
                                 <Col lg={6} className='HeaderSecTopInner'>
                                     <img src="/images/logo.png" alt="" />
@@ -80,11 +80,11 @@ const HeaderSec = ({ theme }) => {
                                         <div className='flex gap-3 items-center' >
                                             <ParagraphComp Data={{ text: 'GuideStar India at a glance', className: 'headerSecFont2light' }} />
                                             {!IsOpenContent ?
-                                                <m.div {...fadeIn}>
+                                                <m.div >
                                                     <FontAwesomeIcon onClick={OpenContent} id='headerSecInputIcon' icon={faChevronDown} />
                                                 </m.div>
                                                 :
-                                                <m.div {...fadeIn}>
+                                                <m.div >
                                                     <FontAwesomeIcon onClick={OpenContent} id='headerSecInputIcon' icon={faXmark} />
                                                 </m.div>
 

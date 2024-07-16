@@ -2,12 +2,11 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import HeaderCompo from '../HeaderComp/HeaderCompo'
 import { m } from "framer-motion";
-import { fadeIn } from '../../Functions/GlobalAnimations';
 const HeaderLiveNpos = ({ theme }) => {
     if (theme !== "light") {
         return (
             <>
-                <m.div className='bg-[#004878] h-auto items-center p-2' {...fadeIn}>
+                <m.div className='bg-[#004878] h-auto items-center p-2' >
                     <Container >
                         <Row>
                             <Col lg={3} className='flex gap-1'>
@@ -26,7 +25,7 @@ const HeaderLiveNpos = ({ theme }) => {
     } else {
         return (
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
-                <m.div className='bg-[#4472C4] h-auto items-center p-2' {...fadeIn}>
+                <m.div className='bg-[#4472C4] h-auto items-center p-2' >
                     <Row>
                         <Col className='flex gap-1 h-auto'>
                             <div className="flex items-start">
