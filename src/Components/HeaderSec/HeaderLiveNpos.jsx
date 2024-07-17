@@ -26,7 +26,7 @@ const HeaderLiveNpos = ({ theme }) => {
         return (
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
                 <m.div className='bg-[#4472C4] h-auto items-center p-2' >
-                    <Row>
+                    <Row className='w-[100%]'>
                         <Col className='flex gap-1 h-auto'>
                             <div className="flex items-start">
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />

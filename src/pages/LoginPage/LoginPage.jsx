@@ -53,8 +53,8 @@ const LoginPage = () => {
 
     return (
         <>
+            <HeaderSec theme={"light"} />
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
-                <HeaderSec theme={"light"} />
                 <section className='LoginPageBack'>
                     <Row>
                         <Col lg={6} className='  max-md:hidden h-auto flex flex-col items-center justify-center'>
@@ -95,9 +95,10 @@ const LoginPage = () => {
                         </Col>
                     </Row>
                 </section >
-                <FooterComp theme={"light"} />
-
             </Container>
+
+            <FooterComp theme={"light"} />
+
 
         </>
     );

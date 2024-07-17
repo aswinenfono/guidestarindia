@@ -2,6 +2,7 @@ import axios from 'axios';
 import { baseApi } from '../Config';
 
 export const actionHandler = (payload) => {
+    console.log(payload)
     // Headers
     axios.defaults.headers['Content-Type'] = 'application/json';
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*';

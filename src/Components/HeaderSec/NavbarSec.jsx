@@ -10,7 +10,7 @@ const NavbarSec = ({ theme }) => {
 
   return (
     <>
-      <Container>
+      <Container className='max-md:ml-0 '>
         <m.div >
           <div className='NavbarSec p-[10px]'>
             <div>
