@@ -8,11 +8,11 @@ export const actionHandler = (payload) => {
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
 
     // Token for authentication 
-    const accessToken = localStorage.getItem('accessToken');
+    // const accessToken = localStorage.getItem('accessToken');
 
-    if (accessToken) {
-        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-    }
+    // if (accessToken) {
+    //     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    // }
 
     payload.baseURL = baseApi
 

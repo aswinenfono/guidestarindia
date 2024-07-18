@@ -3,7 +3,7 @@ import { actionHandler } from "./api";
 
 const loginUrl = `/api/method/guidestar.api.user.login`;
 
-export const userLogin = async (payload) => {
+export const login = async (payload) => {
     try {
         const { data } = await actionHandler({
             url: loginUrl,

@@ -10,7 +10,7 @@ import { ParagraphComp } from '../../Components/ParagraphComp/ParagraphComp';
 import HeaderCompo from '../../Components/HeaderComp/HeaderCompo';
 import { useMutation } from '@tanstack/react-query';
 import { enqueueSnackbar } from 'notistack';
-import { userLogin } from '../../Store/login';
+import { login } from '../../Store/login';
 
 const LoginPage = () => {
     const schema = yup.object({
@@ -45,7 +45,7 @@ const LoginPage = () => {
         // isPending: addLoading,
         data: loginData
     } = useMutation({
-        mutationFn: userLogin,
+        mutationFn: login,
         ...createFarmerMutationOptions,
 
     });
@@ -96,7 +96,6 @@ const LoginPage = () => {
                     </Row>
                 </section >
             </Container>
-
             <FooterComp theme={"light"} />
 
 
