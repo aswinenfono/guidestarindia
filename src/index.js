@@ -20,6 +20,7 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
   '&.notistack-MuiContent-error': {
     backgroundColor: '#970C0C',
   },
+  
 }));
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ root.render(
         Components={{
           success: StyledMaterialDesignContent,
           error: StyledMaterialDesignContent,
+          warning: StyledMaterialDesignContent
         }}
       >
         <React.StrictMode>

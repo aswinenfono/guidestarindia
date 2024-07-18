@@ -16,7 +16,7 @@ const OpenToggle = ({ theme }) => {
     ]
     return (
         <>
-            <m.div className=' absolute z-10 bg-white w-[100%] shadow-sm' {...fadeIn}>
+            <m.div className=' absolute z-10 bg-white w-[100%] h-[auto] p-[5px] shadow-sm' {...fadeIn}>
                 <HeaderCompo Data={{ tagType: 'h6', className: 'text-black text-[17px] font-bold mb-[0px]', text: 'HOME' }} />
                 <div className='p-[10px] flex flex-col gap-3'>
                     {Data.map(ele =>

@@ -14,23 +14,33 @@ import { login } from '../../Store/login1';
 
 const LoginPage = () => {
     const schema = yup.object({
-        username: yup.string().required('Username is required'),
-        password: yup.string().required('Password is required'),
+        username: yup.string(),
+        password: yup.string()
     });
     const { register, handleSubmit } = useForm({
         resolver: yupResolver(schema),
     });
-
     const onSubmit = (formData) => {
-        loginMutate(formData);
+        const checkFields = !formData.username || !formData.password
+        if (!checkFields) {
+            loginMutate(formData);
+        } else {
+            enqueueSnackbar('Please fill out the form completely', { variant: 'warning' });
+        }
     };
 
     const handleCreateSuccess = () => {
-        enqueueSnackbar('Create success!', { variant: 'success' });
+        enqueueSnackbar('Login success!', { variant: 'success' });
     };
 
     const handleCreateError = (error) => {
-        enqueueSnackbar(error.message, { variant: 'error' });
+        if (error?.response?.data.status_code >= 500) {
+            enqueueSnackbar(error?.response?.data?.status_message, { variant: 'error' });
+
+        } else {
+            enqueueSnackbar(error?.response?.data?.message || error?.message, { variant: 'error' });
+
+        }
     };
 
     const createFarmerMutationOptions = {
@@ -71,7 +81,6 @@ const LoginPage = () => {
                                             <div className='flex flex-col'>
                                                 <label htmlFor="username">User name or email *</label>
                                                 <input
-                                                    required={true}
                                                     className='border-2 h-[40px] rounded-lg px-3'
                                                     type="text"
                                                     {...register("username")}
@@ -80,7 +89,6 @@ const LoginPage = () => {
                                             <div className='flex flex-col'>
                                                 <label htmlFor="password">Password *</label>
                                                 <input
-                                                    required={true}
                                                     className='border-2 h-[40px] rounded-lg px-3'
                                                     type="password"
                                                     {...register("password")}
