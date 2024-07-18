@@ -8,7 +8,7 @@ const HeaderLiveNpos = ({ theme }) => {
             <>
                 <m.div className='bg-[#004878] h-auto items-center p-2' >
                     <Container >
-                        <Row>
+                        <Row className='w-[100%]'>
                             <Col lg={3} className='flex gap-1'>
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2', text: 'Live NPOs' }} />
@@ -26,7 +26,7 @@ const HeaderLiveNpos = ({ theme }) => {
         return (
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
                 <m.div className='bg-[#4472C4] h-auto items-center p-2' >
-                    <Row>
+                    <Row className='w-[100%]'>
                         <Col lg={3} className='flex gap-1'>
                             <div className="flex items-start">
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />

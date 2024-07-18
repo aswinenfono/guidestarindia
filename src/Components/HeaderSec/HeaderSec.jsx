@@ -92,15 +92,13 @@ const HeaderSec = ({ theme }) => {
 
                                         </div>
                                         <Row className='flex w-[auto] row-cols-1 row-cols-lg-2 '>
-                                            <Col lg={7} className='max-lg:justify-end flex'>
+                                            <Col lg={12} className='max-lg:justify-end max-sm:flex-col flex'>
                                                 <div class="headerSecInputDiv">
                                                     <input type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
                                                     <span class="search-icon">
                                                         <FontAwesomeIcon id='headerSecInputIcon' icon={faSearch} />
                                                     </span>
                                                 </div>
-                                            </Col>
-                                            <Col className='max-lg:justify-end flex' lg={5}>
                                                 <ParagraphComp Data={{ text: 'NPO/NGO/ Charity Check', className: 'headerSecFontlight' }} />
                                             </Col>
                                         </Row>
