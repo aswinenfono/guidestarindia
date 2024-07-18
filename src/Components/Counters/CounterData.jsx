@@ -13,7 +13,7 @@ const CounterData01 = [
             "Purchase products",
             "Celebrate occasions"
         ],
-        image: "/images/count1.png"
+        image: "./images/count1.png"
     },
     {
         number: {
@@ -29,7 +29,7 @@ const CounterData01 = [
             "Celebrate occasions"
 
         ],
-        image: "/images/count2.png"
+        image: "./images/count2.png"
     },
     {
         number: {
@@ -42,7 +42,7 @@ const CounterData01 = [
             "Purchase products",
             "Celebrate occasions"
         ],
-        image: "/images/count3.png",
+        image: "./images/count3.png",
         button: 'Discover',
     },
     {
@@ -56,7 +56,7 @@ const CounterData01 = [
             "NPO Outreach",
             "NPO Research",
         ],
-        image: "/images/count4.png",
+        image: "./images/count4.png",
         button: "Explore"
     },
 

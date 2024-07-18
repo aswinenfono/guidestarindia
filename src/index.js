@@ -20,7 +20,7 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
   '&.notistack-MuiContent-error': {
     backgroundColor: '#970C0C',
   },
-  
+
 }));
 
 const queryClient = new QueryClient();

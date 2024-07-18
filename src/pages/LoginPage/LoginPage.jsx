@@ -14,8 +14,8 @@ import { login } from '../../Store/login1';
 
 const LoginPage = () => {
     const schema = yup.object({
-        username: yup.string(),
-        password: yup.string()
+        username: yup.string().required("username is required"),
+        password: yup.string().required("password is required")
     });
     const { register, handleSubmit } = useForm({
         resolver: yupResolver(schema),
@@ -81,6 +81,7 @@ const LoginPage = () => {
                                             <div className='flex flex-col'>
                                                 <label htmlFor="username">User name or email *</label>
                                                 <input
+                                                    required
                                                     className='border-2 h-[40px] rounded-lg px-3'
                                                     type="text"
                                                     {...register("username")}
@@ -89,6 +90,7 @@ const LoginPage = () => {
                                             <div className='flex flex-col'>
                                                 <label htmlFor="password">Password *</label>
                                                 <input
+                                                    required
                                                     className='border-2 h-[40px] rounded-lg px-3'
                                                     type="password"
                                                     {...register("password")}

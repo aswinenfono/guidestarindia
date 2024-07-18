@@ -24,7 +24,7 @@ const HeaderSec = ({ theme }) => {
                 <m.div className="py-[10px]" >
                     <Row className=''>
                         <Col lg={6} className='HeaderSecTopInner'>
-                            <img src="/images/logo.png" alt="" />
+                            <img src="./images/logo.png" alt="" />
                         </Col>
                         <Col className='HeaderSecTopInner2'>
 
@@ -72,7 +72,7 @@ const HeaderSec = ({ theme }) => {
                         <m.div className="py-[10px] px-3" >
                             <Row className=''>
                                 <Col lg={5} className='HeaderSecTopInner'>
-                                    <img src="/images/logo.png" alt="" />
+                                    <img src="./images/logo.png" alt="" />
                                 </Col>
                                 <Col className='HeaderSecTopInner2'>
 
