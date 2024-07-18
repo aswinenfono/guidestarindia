@@ -26,12 +26,14 @@ const HeaderLiveNpos = ({ theme }) => {
         return (
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
                 <m.div className='bg-[#4472C4] h-auto items-center p-2' >
-                    <Row className='w-[100%]'>
-                        <Col className='flex gap-1 h-auto'>
+                    <Row>
+                        <Col lg={3} className='flex gap-1'>
                             <div className="flex items-start">
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2Light', text: 'Live NPOs' }} />
                             </div>
+                        </Col>
+                        <Col>
                             <div className="flex flex-1 justify-center">
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3light', text: `India's most exhaustive information repository of Not-for-Profit Organization (NPOs/NGOs)` }} />
                             </div>

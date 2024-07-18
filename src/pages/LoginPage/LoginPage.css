@@ -2,7 +2,6 @@
     background-image: url(/public/Images/loginBackgorund.jpg);
     object-fit: cover;
     width: 100%;
-    padding: 20px;
     background-size: cover;
 
 }
@@ -24,7 +23,6 @@
 .LoginPageMainSec {
     width: 100%;
     background-color: white;
-    padding: 20px;
 }
 
 .LoginPageInputs {

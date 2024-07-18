@@ -55,7 +55,7 @@ const LoginPage = () => {
         <>
             <HeaderSec theme={"light"} />
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
-                <section className='LoginPageBack'>
+                <section className='LoginPageBack p-[20px] max-md:p-[10px]'>
                     <Row>
                         <Col lg={6} className='  max-md:hidden h-auto flex flex-col items-center justify-center'>
                             <div className='LoginPageBackDiSBox '>
@@ -63,7 +63,7 @@ const LoginPage = () => {
                             </div>
                         </Col>
                         <Col className='h-[100%] flex flex-col  items-center justify-center'>
-                            <div className='LoginPageMainSec w-[80%] gap-y-4'>
+                            <div className='LoginPageMainSec p-[20px] max-md:p-[10px] max-md:w-[100%] w-[80%] gap-y-4'>
                                 <HeaderCompo Data={{ text: 'Login', className: 'text-4xl text-black font-bold font-serif', tagType: 'h6' }} />
                                 <div className='LoginPageInputSec'>
                                     <form onSubmit={handleSubmit(onSubmit)}>
