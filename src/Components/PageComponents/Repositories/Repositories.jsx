@@ -11,7 +11,7 @@ const Repositories = () => {
     return (
         <>
 
-            <div className='p-[10 flex bg-[#f7f7f7] flex-col'>
+            <div className='p-[10px] flex bg-[#f7f7f7] flex-col'>
                 <HeaderCompo Data={{ tagType: "h1", text: 'Get involved with NPOs to make a difference', className: 'RepositoriesHeader max-md:text-4xl text-center text-black' }} />
                 <m.section className="bg-lightgray max-md:py-[50px] py-[160px] lg:py-[40px] md:py-[95px] sm:py-[80px] xs:py-[50px]" {...fadeIn}>
                     <Container>

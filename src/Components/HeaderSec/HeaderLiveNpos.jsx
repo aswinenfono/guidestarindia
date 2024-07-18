@@ -11,10 +11,10 @@ const HeaderLiveNpos = ({ theme }) => {
                         <Row className='w-[100%]'>
                             <Col lg={3} className='flex gap-1'>
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2', text: 'Live NPOs' }} />
+                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2 text-lg', text: 'Live NPOs' }} />
                             </Col>
                             <Col>
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3', text: `India's most exhaustive information repository of Not-for-Profit Organization (NPOs/NGOs)` }} />
+                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3 max-sm:text-lg max-sm:text-center', text: `India's most exhaustive information repository of Not-for-Profit Organization (NPOs/NGOs)` }} />
                             </Col>
                         </Row>
                     </Container >

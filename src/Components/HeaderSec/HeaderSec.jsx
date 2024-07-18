@@ -9,6 +9,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import OpenHeader from './OpenHeader';
 import HeaderLiveNpos from "../HeaderSec/HeaderLiveNpos"
 import NavbarSec from "../HeaderSec/NavbarSec"
+import { ImageComp } from '../ImageCompo/ImageComp';
 const HeaderSec = ({ theme }) => {
     const [IsOpenContent, setIsOpenContent] = useState(false)
 
@@ -24,7 +25,7 @@ const HeaderSec = ({ theme }) => {
                 <m.div className="py-[10px]" >
                     <Row className=''>
                         <Col lg={6} className='HeaderSecTopInner'>
-                            <img src="./Images/logo.png" alt="" />
+                            <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
                         </Col>
                         <Col className='HeaderSecTopInner2'>
 
@@ -72,7 +73,7 @@ const HeaderSec = ({ theme }) => {
                         <m.div className="py-[10px] px-3" >
                             <Row className=''>
                                 <Col lg={5} className='HeaderSecTopInner'>
-                                    <img src="./Images/logo.png" alt="" />
+                                    <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
                                 </Col>
                                 <Col className='HeaderSecTopInner2'>
 
