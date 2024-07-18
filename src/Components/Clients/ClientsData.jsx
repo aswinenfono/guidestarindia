@@ -43,33 +43,33 @@ const ClientData01 = [
 
 const ClientData02 = [
   {
-    img: "./images/CertfiedStart1.png",
-    UnderImg: "./images/platinum.png",
+    img: "./Images/CertfiedStart1.png",
+    UnderImg: "./Images/platinum.png",
     grade: "Platinum"
   },
   {
-    img: "./images/CertfiedStart2.png",
-    UnderImg: "./images/platinum.png",
+    img: "./Images/CertfiedStart2.png",
+    UnderImg: "./Images/platinum.png",
     grade: "Gold"
   },
   {
-    img: "./images/CertfiedStart3.png",
-    UnderImg: "./images/gold.png",
+    img: "./Images/CertfiedStart3.png",
+    UnderImg: "./Images/gold.png",
     grade: "Bronze"
   },
   {
-    img: "./images/CertfiedStart4.png",
-    UnderImg: "./images/silver.png",
+    img: "./Images/CertfiedStart4.png",
+    UnderImg: "./Images/silver.png",
     grade: "Bronze"
   },
   {
-    img: "./images/CertfiedStart5.png",
-    UnderImg: "./images/bronze.png",
+    img: "./Images/CertfiedStart5.png",
+    UnderImg: "./Images/bronze.png",
     grade: "Platinum"
   },
   {
-    img: "./images/CertfiedStart6.png",
-    UnderImg: "./images/bronze.png",
+    img: "./Images/CertfiedStart6.png",
+    UnderImg: "./Images/bronze.png",
     grade: "Platinum"
   },
 ];

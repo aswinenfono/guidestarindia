@@ -19,7 +19,7 @@ const FooterComp = (props, { theme }) => {
                                     {props.logo && <img loading="lazy" src={props.logo} alt="logo" width="111" height="36" />}
                                 </Link>
                                 <div className='flex flex-col items-center gap-4'>
-                                    <ImageComp Data={{ source: './images/logo.png', className: 'w-[80%] max-w-[100%] object-cover max-h-[100%]' }} />
+                                    <ImageComp Data={{ source: './Images/logo.png', className: 'w-[80%] max-w-[100%] object-cover max-h-[100%]' }} />
                                     <div className='FooterCompIcons flex items-center gap-3 max-md:p-3'>
                                         <i class="fa-regular fa-message"></i>
                                         <i class="fa-brands fa-linkedin"></i>

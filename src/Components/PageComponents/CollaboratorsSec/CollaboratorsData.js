@@ -1,9 +1,9 @@
 const CollabData = [
-    { img: "/images/techsoup-global-logo-vector-3746621461.png" },
-    { img: "/images/Benchmark logo.jpeg" },
+    { img: "/Images/techsoup-global-logo-vector-3746621461.png" },
+    { img: "/Images/Benchmark logo.jpeg" },
 
-    { img: "/images/philanthropy1.png" },
-    { img: "/images/philanthropy2.png" },
+    { img: "/Images/philanthropy1.png" },
+    { img: "/Images/philanthropy2.png" },
 ]
 
 

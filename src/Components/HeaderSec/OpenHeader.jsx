@@ -10,7 +10,7 @@ const OpenHeader = () => {
             <m.div className='py-3 '{...fadeInDown}>
                 <Row className='flex items-center sm:justify-center row-cols-1 row-cols-lg-1 row-cols-md-2' >
                     <Col className='max-sm:flex max-sm:justify-center' lg={1}>
-                        <ImageComp Data={{ source: './images/Npo icon 1.png', className: 'h-[50px]  ' }} />
+                        <ImageComp Data={{ source: './Images/Npo icon 1.png', className: 'h-[50px]  ' }} />
                     </Col>
                     <Col className='max-sm:flex max-sm:justify-center' lg={3}>
                         <ul className='HeaderSecUl'>

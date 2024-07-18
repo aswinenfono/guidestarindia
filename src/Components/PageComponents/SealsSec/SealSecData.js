@@ -3,22 +3,22 @@ const Data = {
     MapItems: [
         {
             seal: "PLATINUM",
-            image: '/images/platinum.png',
+            image: '/Images/platinum.png',
             discription: 'Based on GuideStar India’s seven pillar assessment rubric covering Situation Analysis, Theory of Change, Programme Intervention & Resilience, Infrastructure, Finance & Compliance, Governance & Accountability, Evidence of Impact, Learning & Reflection'
         },
         {
             seal: "GOLD",
-            image: '/images/gold.png',
+            image: '/Images/gold.png',
             discription: 'Based on GuideStar India’s seven pillar assessment rubric covering Situation Analysis, Theory of Change, Programme Intervention & Resilience, Infrastructure, Finance & Compliance, Governance & Accountability, Evidence of Impact, Learning & Reflection'
         },
         {
             seal: "SILVER",
-            image: '/images/silver.png',
+            image: '/Images/silver.png',
             discription: 'Based on GuideStar India’s seven pillar assessment rubric covering Situation Analysis, Theory of Change, Programme Intervention & Resilience, Infrastructure, Finance & Compliance, Governance & Accountability, Evidence of Impact, Learning & Reflection'
         },
         {
             seal: "BRONZE",
-            image: '/images/bronze.png',
+            image: '/Images/bronze.png',
             discription: 'Based on GuideStar India’s seven pillar assessment rubric covering Situation Analysis, Theory of Change, Programme Intervention & Resilience, Infrastructure, Finance & Compliance, Governance & Accountability, Evidence of Impact, Learning & Reflection'
         },
     ]
