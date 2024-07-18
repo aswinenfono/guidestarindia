@@ -4,13 +4,15 @@ import HeaderCompo from '../HeaderComp/HeaderCompo'
 import { ParagraphComp } from '../ParagraphComp/ParagraphComp'
 import ButtonComp from '../ButtonComp/ButtonComp'
 import { fadeIn } from '../../Functions/GlobalAnimations'
-const OpenToggle = () => {
+import { Link } from 'react-router-dom'
+const OpenToggle = ({ theme }) => {
     const Data = [
         "Discover/ Support NPOs",
         "CERTIFIED NPOs LIST",
         "Update your Npo Profile",
         "HELP",
         "MEDIA"
+
     ]
     return (
         <>
@@ -21,7 +23,11 @@ const OpenToggle = () => {
                         <ParagraphComp Data={{ text: ele, className: ' text-black' }} />
                     )}
                     <div>
-                        <ButtonComp Data={{ className: 'NavbarSecHeaderButton', text: 'SIGN IN / CREATE ACCOUNT' }} />
+                        <h6 className='NavbarSecHeaderTag'>
+                            <Link to={'/login'}>
+                                <ButtonComp Data={{ className: `NavbarSecHeaderButton ${theme === 'light' ? 'bg-[#4472C4]' : 'bg-[#C00000]'} `, text: 'SIGN IN / CREATE ACCOUNT', }} />
+                            </Link>
+                        </h6>
                     </div>
                 </div>
             </m.div>

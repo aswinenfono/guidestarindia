@@ -50,7 +50,7 @@ const NavbarSec = ({ theme }) => {
               </div>
             </div>
             {toggle &&
-              <OpenToggle />
+              <OpenToggle theme={theme === "light" ? "light" : ''} />
             }
           </div>
         </m.div>
