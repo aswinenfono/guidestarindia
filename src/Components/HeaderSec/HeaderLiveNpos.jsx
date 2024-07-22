@@ -8,7 +8,7 @@ const HeaderLiveNpos = ({ theme }) => {
             <>
                 <m.div className='bg-[#004878] h-auto items-center p-2' >
                     <Container >
-                        <Row className='w-[100%]'>
+                        <Row className='max-sm:ml-0 w-[100%]'>
                             <Col lg={3} className='flex gap-1'>
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2 text-lg', text: 'Live NPOs' }} />
@@ -26,18 +26,19 @@ const HeaderLiveNpos = ({ theme }) => {
         return (
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
                 <m.div className='bg-[#4472C4] h-auto items-center p-2' >
-                    <Row className='w-[100%]'>
-                        <Col lg={3} className='flex gap-1'>
+                    <Row className='max-sm:ml-0 w-[100%]'>
+                        <Col lg={4} className='flex gap-1'>
                             <div className="flex items-start">
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2Light', text: 'Live NPOs' }} />
                             </div>
                         </Col>
-                        <Col>
-                            <div className="flex flex-1 ">
+                        <Col lg={5}>
+                            <div className="flex flex-1 w-[100%]  justify-center">
                                 <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3light max-sm:text-lg max-sm:text-center', text: `India's most exhaustive information repository of Not-for-Profit Organization (NPOs/NGOs)` }} />
-                            </div>  
+                            </div>
                         </Col>
+                        <Col lg={3}></Col>
                     </Row>
                 </m.div>
             </Container >

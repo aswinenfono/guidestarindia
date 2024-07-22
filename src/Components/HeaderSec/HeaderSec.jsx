@@ -23,11 +23,11 @@ const HeaderSec = ({ theme }) => {
         <>
             {theme !== "light" ? <Container>
                 <m.div className="py-[10px]" >
-                    <Row className='w-[100%]'>
+                    <Row className='w-[100%] max-sm:ml-0'>
                         <Col lg={6} className='HeaderSecTopInner'>
                             <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
                         </Col>
-                        <Col className='HeaderSecTopInner2'>
+                        <Col className='HeaderSecTopInner2 p-0'>
 
                             <div className='h-[auto] flex flex-col items-end'>
                                 <div className='flex  gap-3 items-center' >
@@ -44,7 +44,7 @@ const HeaderSec = ({ theme }) => {
                                     }
 
                                 </div>
-                                <Row className='flex w-[auto] row-cols-1 row-cols-lg-2 '>
+                                <Row className='flex w-[auto] p-0 row-cols-1 max-sm:ml-0 row-cols-lg-2 '>
                                     <Col lg={12} className=' max-sm:w-[100%] max-lg:justify-end max-sm:flex-col flex'>
                                         <div class="headerSecInputDiv max-sm:w-[100%] max-sm:h-[100%]">
                                             <input className='max-sm:w-[100%] w-[300px] h-[30px] max-sm:h-[100%]' type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
@@ -69,7 +69,7 @@ const HeaderSec = ({ theme }) => {
                     <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
 
                         <m.div className="py-[10px] px-3" >
-                            <Row className='w-[100%]'>
+                            <Row className='w-[100%] max-sm:ml-0'>
                                 <Col lg={5} className='HeaderSecTopInner'>
                                     <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
                                 </Col>
@@ -90,7 +90,7 @@ const HeaderSec = ({ theme }) => {
                                             }
 
                                         </div>
-                                        <Row className='flex w-[auto] row-cols-1 row-cols-lg-2 '>
+                                        <Row className=' max-sm:ml-0 flex w-[auto] row-cols-1 row-cols-lg-2 '>
                                             <Col lg={12} className=' max-sm:w-[100%] max-lg:justify-end max-sm:flex-col flex'>
                                                 <div class="headerSecInputDiv max-sm:w-[100%] max-sm:h-[100%]">
                                                     <input className='w-[300px] h-[30px] max-sm:w-[100%] max-sm:h-[100%]' type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />

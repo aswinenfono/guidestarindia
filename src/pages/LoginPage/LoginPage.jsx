@@ -66,13 +66,13 @@ const LoginPage = () => {
             <HeaderSec theme={"light"} />
             <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
                 <section className='LoginPageBack p-[20px] max-md:p-[10px]'>
-                    <Row className='w-[100%]'>
-                        <Col lg={6} className='  max-md:hidden h-auto flex flex-col items-center justify-center'>
+                    <Row className='w-[100%] max-sm:ml-0'>
+                        <Col lg={6} className='max-md:hidden h-auto flex flex-col items-center justify-center'>
                             <div className='LoginPageBackDiSBox '>
                                 <ParagraphComp Data={{ text: 'Organization’s full address and contact information Up to three years of Forms 99 0Revenue and expense data for the current fiscal year CEO, Board Chair, and Board of Directors information This does not create a profile for you' }} />
                             </div>
                         </Col>
-                        <Col className='h-[100%] flex flex-col  items-center justify-center'>
+                        <Col className='h-[100%] flex flex-col items-center justify-center'>
                             <div className='LoginPageMainSec p-[20px] max-md:p-[10px] max-md:w-[100%] w-[80%] gap-y-4'>
                                 <HeaderCompo Data={{ text: 'Login', className: 'text-4xl text-black font-bold font-serif', tagType: 'h6' }} />
                                 <div className='LoginPageInputSec'>
