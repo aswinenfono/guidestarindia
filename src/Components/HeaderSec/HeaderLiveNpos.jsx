@@ -34,9 +34,9 @@ const HeaderLiveNpos = ({ theme }) => {
                             </div>
                         </Col>
                         <Col>
-                            <div className="flex flex-1 justify-center">
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3light', text: `India's most exhaustive information repository of Not-for-Profit Organization (NPOs/NGOs)` }} />
-                            </div>
+                            <div className="flex flex-1 ">
+                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3light max-sm:text-lg max-sm:text-center', text: `India's most exhaustive information repository of Not-for-Profit Organization (NPOs/NGOs)` }} />
+                            </div>  
                         </Col>
                     </Row>
                 </m.div>

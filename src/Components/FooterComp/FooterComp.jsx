@@ -37,7 +37,7 @@ const FooterComp = (props, { theme }) => {
             </Footer>
             <div className={`h-auto ${props?.theme === "light" ? 'bg-[#4472C4]' : 'bg-[#004878]'} gap-4 p-[10px] justify-center flex flex-wrap`}>
                 {FooterUnderData.map(ele =>
-                    <ParagraphComp Data={{ className: 'text-1xl text-white', text: ele }} />
+                    <ParagraphComp Data={{ className: 'text-1xl text-white max-sm:text-lg', text: ele }} />
                 )}
             </div >
             <div className='h-auto bg-white gap-4 p-[10px] justify-center flex flex-wrap'>

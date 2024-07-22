@@ -23,7 +23,7 @@ const InfoBannerStyle01 = (props) => {
                                         <img className='InfoBannerStyleImgstyleHov' src={item?.imgHov} alt="" />
                                     </div>
                                     <span className="InfoBannerTitileeHov text-lg font-bold  block mb-[10px]">{item.title}</span>
-                                    <p className="mb-[25px] font-serif InfoBannerTitileeHov">{item.content}</p>
+                                    <p className="mb-[25px] font-serif  max-sm:text-lg InfoBannerTitileeHov">{item.content}</p>
                                     {item?.update && <p className="mb-[25px] text-amber-800 uppercase font-bold font-serif InfoBannerTitileeHov">{item?.update}</p>}
                                 </div>
                                 <Link aria-label="link" className="infoBannerAfterHov h-10 leading-snug font-serif font-semibold text-sm text-[#333045] hover:text-basecolor uppercase  flex items-center" to={item.btnLink}>{item.btnName}</Link>

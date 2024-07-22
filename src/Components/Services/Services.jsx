@@ -28,11 +28,11 @@ const Services = (props) => {
                                         {(item.icon || item.link) && <Link aria-label="services" to={item.link ? item.link : "#"}><i className={item.icon}></i></Link>}
                                     </div>}
                                 </div>
-                                <div className='service-style justify-between h-[350px] '>
-                                    <div className='h-[230px]'>
+                                <div className='service-style max-sm:h-[250px] justify-between h-[350px] '>
+                                    <div className=' max-sm:h-[160px] h-[230px]'>
                                         {props.theme === "service-style-03" && <span className='verticalline'></span>}
                                         {item.name && <span className="title font-bold  text-black block font-serif mb-[10px]">{item.name}</span>}
-                                        {item.content && <p className='text-black font-serif'>{item.content}</p>}
+                                        {item.content && <p className='text-black font-serif max-sm:text-lg'>{item.content}</p>}
                                     </div>
                                     {(props.theme === "service-style-02" || props.theme === "service-style-05") && <div className='info-service'>
                                         {(item.linkTitle || item.icon) && <Link aria-label="services" to={item.link ? item.link : "#"} className=" ServicesLinkHOver no-underline font-bold text-sm uppercase block">Name

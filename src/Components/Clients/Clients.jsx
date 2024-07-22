@@ -29,7 +29,7 @@ const ClientSwitch = (params, item, i) => {
           <m.div
             className="client-box relative w-full h-full  items-center inline-block " {...{ ...params.animation, transition: { delay: i / 4, duration: 0.8 } }}>
             <div className="h-[100px] flex items-center">
-              <img className="relative w-[auto] max-h-[100%]  object-cover items-center" height="43" src={item.img} alt="clientlogo" />
+              <img className="relative w-[auto] max-h-[100%] max-sm:max-h-[90%]  object-cover items-center" src={item.img} alt="clientlogo" />
             </div>
             {item?.UnderImg &&
               <div className="flex flex-col gap-3">

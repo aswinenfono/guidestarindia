@@ -27,11 +27,11 @@ const CertifiedNpos = () => {
     }, []);
 
     return (
-        <section className="py-[160px] bg-[#f7f7f7] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px] bg-lightgray">
+        <section className="py-[160px] max-sm:py-[70px] bg-[#f7f7f7] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px] bg-lightgray">
             <Container>
                 <Row>
                     <Col className="mb-[6%]">
-                        <h6 className="text-gray-700 text-center text-4xl font-extrabold mb-[25px] sm:mb-[15px]">
+                        <h6 className="text-gray-700 text-center max-sm:text-3xl text-4xl font-extrabold mb-[25px] sm:mb-[15px]">
                             Meet our recently certified NPOs
                         </h6>
                     </Col>

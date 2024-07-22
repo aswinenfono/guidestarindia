@@ -95,7 +95,7 @@ const Counter = (props) => {
               <div>
 
                 <div className="w-[100%] flex justify-center">
-                  <ImageComp Data={{ source: item?.image, className: 'h-[90px] object-cover' }} />
+                  <ImageComp Data={{ source: item?.image, className: 'h-[90px] object-cover max-sm:h-[90px]' }} />
                 </div>
                 {item.number && (
                   <props.as className={` text-center counter-numbers${item.number.class ? ` ${item.number.class}` : ""}`}>
@@ -106,8 +106,8 @@ const Counter = (props) => {
                   </props.as>
                 )}
                 {(item.title || item.content) && (
-                  <div className="counter-content-section">
-                    {item.content && <span className="counter-content">{item.content}</span>}
+                  <div className="counter-content-section  max-sm:mb-5">
+                    {item.content && <span className="counter-content max-sm:text-lg">{item.content}</span>}
                   </div>
                 )}
                 {(item?.list?.length > 0) && (
@@ -115,7 +115,7 @@ const Counter = (props) => {
 
                     {item?.list?.map(ele =>
                       <>
-                        <li className="border-b-2 flex gap-3 items-center">
+                        <li className="border-b-2 flex gap-3 max-sm:text-lg items-center">
                           <FontAwesomeIcon className='IntroSecInputContainerIcon' icon={faCheck} />  {ele}
                         </li>
                       </>

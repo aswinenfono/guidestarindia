@@ -23,14 +23,14 @@ const HeaderSec = ({ theme }) => {
         <>
             {theme !== "light" ? <Container>
                 <m.div className="py-[10px]" >
-                    <Row className=''>
+                    <Row className='w-[100%]'>
                         <Col lg={6} className='HeaderSecTopInner'>
                             <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
                         </Col>
                         <Col className='HeaderSecTopInner2'>
 
                             <div className='h-[auto] flex flex-col items-end'>
-                                <div className='flex gap-3 items-center' >
+                                <div className='flex  gap-3 items-center' >
                                     <ParagraphComp Data={{ text: 'GuideStar India at a glance', className: 'headerSecFont2' }} />
                                     {!IsOpenContent ?
                                         <m.div {...fadeIn}>
@@ -45,15 +45,13 @@ const HeaderSec = ({ theme }) => {
 
                                 </div>
                                 <Row className='flex w-[auto] row-cols-1 row-cols-lg-2 '>
-                                    <Col lg={7} className='max-lg:justify-end flex'>
-                                        <div class="headerSecInputDiv">
-                                            <input type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
+                                    <Col lg={12} className=' max-sm:w-[100%] max-lg:justify-end max-sm:flex-col flex'>
+                                        <div class="headerSecInputDiv max-sm:w-[100%] max-sm:h-[100%]">
+                                            <input className='max-sm:w-[100%] w-[300px] h-[30px] max-sm:h-[100%]' type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
                                             <span class="search-icon">
                                                 <FontAwesomeIcon id='headerSecInputIcon' icon={faSearch} />
                                             </span>
                                         </div>
-                                    </Col>
-                                    <Col className='max-lg:justify-end flex' lg={5}>
                                         <ParagraphComp Data={{ text: 'NPO/NGO/ Charity Check', className: 'headerSecFont' }} />
                                     </Col>
                                 </Row>
@@ -71,7 +69,7 @@ const HeaderSec = ({ theme }) => {
                     <Container className='ml-0 mr-0 w-[100%] max-w-[100%] p-0'>
 
                         <m.div className="py-[10px] px-3" >
-                            <Row className=''>
+                            <Row className='w-[100%]'>
                                 <Col lg={5} className='HeaderSecTopInner'>
                                     <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
                                 </Col>
@@ -93,9 +91,9 @@ const HeaderSec = ({ theme }) => {
 
                                         </div>
                                         <Row className='flex w-[auto] row-cols-1 row-cols-lg-2 '>
-                                            <Col lg={12} className='max-lg:justify-end max-sm:flex-col flex'>
-                                                <div class="headerSecInputDiv">
-                                                    <input type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
+                                            <Col lg={12} className=' max-sm:w-[100%] max-lg:justify-end max-sm:flex-col flex'>
+                                                <div class="headerSecInputDiv max-sm:w-[100%] max-sm:h-[100%]">
+                                                    <input className='w-[300px] h-[30px] max-sm:w-[100%] max-sm:h-[100%]' type="text" placeholder="Enter GSN/IT/PAN/Darpan ID/FCRA No" />
                                                     <span class="search-icon">
                                                         <FontAwesomeIcon id='headerSecInputIcon' icon={faSearch} />
                                                     </span>

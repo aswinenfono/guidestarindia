@@ -106,7 +106,7 @@ const FooterMenu = ({ data, titleClass, className, ...props }) => {
                         {item.title && <span className={`mb-[20px] text-black block font-medium xs:!mb-[10px]${titleClass ? ` ${titleClass}` : ""}`}>{item.title}</span>}
                         <ul>
                             {item.submenu.map((item, i) => {
-                                return ((item.link || item.title) && <li key={i} className="mb-[7px] last:mb-0"><Link aria-label="footer menu link" to={item.link}>{item.title}</Link></li>)
+                                return ((item.link || item.title) && <li key={i} className="mb-[7px] last:mb-0 max-sm:text-lg"><Link aria-label="footer menu link" to={item.link}>{item.title}</Link></li>)
                             })}
                         </ul>
                     </Col>

@@ -7,19 +7,19 @@ import { fadeIn } from "../../..//Functions/GlobalAnimations";
 
 const UserInfoSec = () => {
     return (<>
-        <section className="py-[130px] overflow-hidden bg-gray-100 lg:py-[90px] md:py-[75px] sm:py-[50px]">
+        <section className="py-[130px] max-sm:py-[70px] overflow-hidden bg-gray-100 lg:py-[90px] md:py-[75px] sm:py-[50px]">
             <Container>
                 <Row className="justify-center">
                     <Col
                         lg={10}
                         md={8}
                         sm={9}
-                        className="text-center mb-[100px] md:mb-16"
+                        className="text-center max-sm:mb-[50px] mb-[100px] md:mb-16"
                     >
-                        <h2 className="heading-5 font-extrabold text-[#262b35] tracking-[-1px] mb-[15px] infoSecFont">
+                        <h2 className="heading-5 max-sm:text-3xl font-extrabold text-[#262b35] tracking-[-1px] mb-[15px] infoSecFont">
                             Know how institutions and individuals are using GuideStar India
                         </h2>
-                        <p className="w-[100%] font-serif text-black mx-auto lg:w-[95%] sm:w-full">
+                        <p className="w-[100%] font-serif max-sm:text-lg text-black mx-auto lg:w-[95%] sm:w-full">
                             Our NPO information, due diligence and insights are the differentiator for strategic philanthropy, organisation development and ecosystem system building
                         </p>
                     </Col>
