@@ -93,7 +93,6 @@ const Counter = (props) => {
               {...{ ...props.animation, transition: { delay: i * props.animationDelay } }}
             >
               <div>
-
                 <div className="w-[100%] flex justify-center">
                   <ImageComp Data={{ source: item?.image, className: 'h-[90px] object-cover max-sm:h-[90px]' }} />
                 </div>
@@ -116,7 +115,7 @@ const Counter = (props) => {
                     {item?.list?.map(ele =>
                       <>
                         <li className="border-b-2 flex gap-3 max-sm:text-lg items-center">
-                          <FontAwesomeIcon className='IntroSecInputContainerIcon' icon={faCheck} />  {ele}
+                          <FontAwesomeIcon className='IntroSecInputContainerIcon text-blue-600' icon={faCheck} />  {ele}
                         </li>
                       </>
                     )}
@@ -124,7 +123,7 @@ const Counter = (props) => {
                 )}
               </div>
               <div className="flex justify-center">
-                <ButtonComp Data={{ className: ` rounded-md px-[10px] ${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#004878]' : 'bg-[#C00000]'} text-white`, text: item?.button }} />
+                <ButtonComp Data={{ className: `rounded-lg px-[30px] ${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#004878]' : 'bg-[#C00000]'} text-white`, text: item?.button }} />
               </div>
             </m.div>
           );

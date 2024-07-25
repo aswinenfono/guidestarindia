@@ -15,7 +15,7 @@ const NposSectors = () => {
                             <h6 className="font-extrabold text-black text-center max-sm:text-3xl text-4xl mb-[25px] lg:mb-[15px]">Learn about the NPO Sector in India</h6>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className='row-cols-md-2'>
                         {SectorData.map(ele =>
                             <Col lg={4} className="px-[15px] md:mb-[15px]">
                                 <div className="bg-lightgray p-[40px] flex flex-col gap-4 sm:p-[30px]">

@@ -3,34 +3,41 @@ import { m } from "framer-motion";
 import { Container } from 'react-bootstrap';
 import ButtonComp from '../ButtonComp/ButtonComp';
 import OpenToggle from './OpenToggle';
+import { navBarLinks } from './HeaderSecDatas';
 import { Link } from 'react-router-dom';
 const NavbarSec = ({ theme }) => {
   const [toggle, setToggle] = useState(false)
 
+  const [List, setList] = useState({})
+
+  const handleClick = (which) => {
+    if (List[which]) {
+      setList({ [which]: false })
+    } else {
+      setList({ [which]: true })
+    }
+  }
 
   return (
     <>
       <Container className='max-md:ml-0 '>
         <m.div >
           <div className='NavbarSec p-[10px]'>
-            <div>
-              <h6 className='NavbarSecHeaderTag'>HOME</h6>
-            </div>
-            <div>
-              <h6 className='NavbarSecHeaderTag'>DISCOVER/ SUPPORT NPOS</h6>
-            </div>
-            <div>
-              <h6 className='NavbarSecHeaderTag'>CERTIFIED NPOs LIST</h6>
-            </div>
-            <div>
-              <h6 className='NavbarSecHeaderTag'>UPDATE YOUR NPO PROFILE</h6>
-            </div>
-            <div>
-              <h6 className='NavbarSecHeaderTag'>HELP</h6>
-            </div>
-            <div>
-              <h6 className='NavbarSecHeaderTag'>MEDIA</h6>
-            </div>
+            {navBarLinks?.map(link =>
+              <div className='relative'>
+                <h6 className='NavbarSecHeaderTag' onClick={() => { handleClick(link?.link) }}><Link>{link.link}
+                </Link> </h6>
+                {List[link?.link] && link?.subLinks?.length > 0 &&
+                  <ul className='absolute w-max bg-[#f7f7f7] p-[10px] z-10 rounded-md' >
+                    {link?.subLinks?.map(subLink =>
+                      <li ><Link className='hover:text-blue-600 hover:underline'>{subLink}</Link></li>
+                    )}
+                  </ul>
+                }
+              </div>
+            )}
+
+
             <div>
               <h6 className='NavbarSecHeaderTag'>
                 <Link to={'/login'}>

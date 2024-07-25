@@ -32,8 +32,8 @@ export const IntroSec = () => {
                                     </div>
                                 </Col>
                                 <Col lg={5} className='flex gap-2 max-md:justify-start justify-end'>
-                                    <ButtonComp Data={{ className: "IntroSecSearchButton max-sm:text-xl max-sm:h-[40px]", text: 'Search' }} />
-                                    <ButtonComp Data={{ className: "IntroSecSearchButton2 max-sm:text-xl max-sm:h-[40px]", text: 'Register for free' }} />
+                                    <ButtonComp Data={{ className: "IntroSecSearchButton max-sm:text-xl max-sm:h-[40px] rounded-md", text: 'Search' }} />
+                                    <ButtonComp Data={{ className: "IntroSecSearchButton2 max-sm:text-xl max-sm:h-[40px] rounded-md", text: 'Register for free' }} />
                                 </Col>
                             </Row>
                             <div className='flex justify-end max-md:justify-start '>

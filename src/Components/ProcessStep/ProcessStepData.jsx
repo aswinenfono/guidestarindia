@@ -1,21 +1,25 @@
 const ProcessStepData01 = [
     {
-        image: "/Images/badge.png",
+        image: "/Images/badgeHover.png",
+        imageHover: "/Images/badgeHover.png",
         title: "Search by Certification Level",
         content: "Identify NPOs with stellar credibility and transparency",
     },
     {
         image: "/Images/location.png",
+        imageHover: "/Images/locationHover.png",
         title: "SEARCH BY GEOGRAPHY",
         content: "Locate NPOs active in every state and district across India",
     },
     {
         image: "/Images/social-justice.png",
+        imageHover: "/Images/social-justiceHover.png",
         title: "SEARCH BY CAUSE",
         content: "Find NPOs for every cause and community you care about",
     },
     {
         image: "/Images/rupee (1).png",
+        imageHover: "/Images/count1Hover.png",
         title: "SEARCH BY FINANCIALS",
         content: "Explore NPOs based on their size, tax benefits, and FCRA eligibility",
     },

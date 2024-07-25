@@ -1,5 +1,4 @@
 import React from 'react'
-import "./MainPage.css"
 import { IntroSec } from '../../Components/PageComponents/IntroSec/IntroSec'
 import { SealsSec } from '../../Components/PageComponents/SealsSec/SealsSec'
 import UserInfoSec from '../../Components/PageComponents/UserInfoSec/UserInfoSec'

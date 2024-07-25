@@ -47,7 +47,7 @@ const CounterData01 = [
     },
     {
         number: {
-            text: "20000",
+            text: "200000",
         },
         title: "Completed projects",
         content: "EXPLORE NPOS FOR YOUR RESEARCH AND OUTREACH"

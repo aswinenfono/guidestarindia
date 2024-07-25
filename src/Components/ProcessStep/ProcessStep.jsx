@@ -20,7 +20,10 @@ const ProcessStep = (props) => {
                         <m.div key={i} className={`${props.theme} col process-step`} {...{ ...props.animation, transition: { delay: i * props.animationDelay, ease: [0.33, 1, 0.68, 1], duration: 1 } }}>
                             <div className='process-step-icon-box'>
                                 <span className='process-step-bfr'></span>
-                                {item.image && <div className="process-step-icon"><img className='h-[80px] max-sm:h-[50px]' src={item?.image} alt="" /></div>}
+                                {item.image && <div className="process-step-icon">
+                                    <img className='h-[80px] max-sm:h-[50px] process-step-icon-img' src={item?.image} alt="" />
+                                    {/* <img className='h-[80px] max-sm:h-[50px] process-step-icon-img-hover' src={`${item?.imageHover}`} alt="" /> */}
+                                </div>}
                                 {props.theme !== "process-step-style-01" && <span className="process-step-number"><span>{i + 1}</span></span>}
                                 {(item.title || item.content) && (
                                     <div className="process-step-description">
