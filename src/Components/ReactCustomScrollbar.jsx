@@ -28,11 +28,11 @@ const ReactCustomScrollbar = ({ theme, children, className, ...props }) => {
 
         let el = document.querySelectorAll(".navbar-nav > .nav-item");
 
-        if (typeof(el) != 'undefined' && el != null) {
+        if (typeof (el) != 'undefined' && el != null) {
             el.forEach(item => {
                 let icon = item.querySelector(".fa");
 
-                if ( typeof(icon) != 'undefined' && icon != null ) {
+                if (typeof (icon) != 'undefined' && icon != null) {
                     icon.addEventListener('click', getScrollbarPos);
                 }
             });

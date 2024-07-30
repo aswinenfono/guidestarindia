@@ -74,7 +74,7 @@ const LoginPage = () => {
                         </Col>
                         <Col className='h-[100%] flex flex-col items-center justify-center'>
                             <div className='LoginPageMainSec p-[20px] max-md:p-[10px] max-md:w-[100%] w-[80%] gap-y-4'>
-                                <HeaderCompo Data={{ text: 'Login', className: 'text-4xl text-black font-bold font-serif', tagType: 'h6' }} />
+                                <HeaderCompo text='Login' className='text-4xl text-black font-bold font-serif' tagType='h6' />
                                 <div className='LoginPageInputSec'>
                                     <form onSubmit={handleSubmit(onSubmit)}>
                                         <div className='flex flex-col gap-4'>

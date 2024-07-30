@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HeaderCompo = ({ Data: { tagType, text, className } }) => {
+const HeaderCompo = ({ tagType, text, className }) => {
     if (tagType === "h1") { return (<> {<h1 className={className}>{text}</h1>} </>) } else
         if (tagType === "h2") { return (<> {<h2 className={className}>{text}</h2>} </>) } else
             if (tagType === "h3") { return (<> {<h3 className={className}>{text}</h3>} </>) } else

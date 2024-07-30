@@ -1,5 +1,5 @@
 import React from 'react'
-const ButtonComp = ({ Data: { onClick, name, value, text, className } }) => {
+const ButtonComp = ({ onClick, name, value, text, className }) => {
     return (< button className={className} onClick={(e) => { onClick && onClick(e) }} name={name} value={value} > {text}</button >)
 
 }

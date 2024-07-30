@@ -80,7 +80,7 @@ const Counter = (props) => {
                 </span>
               </div>
               <div className="flex justify-center">
-                <ButtonComp Data={{ className: `${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#C00000]' : 'bg-[#004878]'} text-white` }} />
+                <ButtonComp className={`${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#C00000]' : 'bg-[#004878]'} text-white`} />
               </div>
             </m.div>
           );
@@ -123,7 +123,7 @@ const Counter = (props) => {
                 )}
               </div>
               <div className="flex justify-center">
-                <ButtonComp Data={{ className: `rounded-lg px-[30px] ${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#004878]' : 'bg-[#C00000]'} text-white`, text: item?.button }} />
+                <ButtonComp className={`rounded-lg px-[30px] ${item?.button === 'Engage' || item?.button === 'Explore' ? ' bg-[#004878]' : 'bg-[#C00000]'} text-white`} text={item?.button} />
               </div>
             </m.div>
           );

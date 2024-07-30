@@ -10,14 +10,13 @@ const NavbarSec = ({ theme }) => {
 
   const [List, setList] = useState({})
 
-  const handleClick = (which) => {
-    if (List[which]) {
-      setList({ [which]: false })
-    } else {
-      setList({ [which]: true })
-    }
+  const mouseEnter = (which) => {
+    setList({ [which]: true })
   }
 
+  const mouseLeave = (which) => {
+    setList({ [which]: false })
+  }
   return (
     <>
       <Container className='max-md:ml-0 '>
@@ -25,10 +24,10 @@ const NavbarSec = ({ theme }) => {
           <div className='NavbarSec p-[10px]'>
             {navBarLinks?.map(link =>
               <div className='relative'>
-                <h6 className='NavbarSecHeaderTag' onClick={() => { handleClick(link?.link) }}><Link>{link.link}
+                <h6 className='NavbarSecHeaderTag' onMouseLeave={() => { mouseLeave(link?.link) }} onMouseEnter={() => { mouseEnter(link?.link) }}><Link>{link.link}
                 </Link> </h6>
                 {List[link?.link] && link?.subLinks?.length > 0 &&
-                  <ul className='absolute w-max bg-[#f7f7f7] p-[10px] z-10 rounded-md' >
+                  <ul onMouseLeave={() => { mouseLeave(link?.link) }} onMouseEnter={() => { mouseEnter(link?.link) }} className='absolute w-max mt-[-30px] bg-[#f7f7f7] p-[10px] z-10 rounded-md' >
                     {link?.subLinks?.map(subLink =>
                       <li ><Link className='hover:text-blue-600 hover:underline'>{subLink}</Link></li>
                     )}
@@ -41,7 +40,7 @@ const NavbarSec = ({ theme }) => {
             <div>
               <h6 className='NavbarSecHeaderTag'>
                 <Link to={'/login'}>
-                  <ButtonComp Data={{ className: `NavbarSecHeaderButton ${theme === 'light' ? 'bg-[#4472C4]' : 'bg-[#C00000]'} `, text: 'SIGN IN / CREATE ACCOUNT', }} />
+                  <ButtonComp className={`NavbarSecHeaderButton ${theme === 'light' ? 'bg-[#4472C4]' : 'bg-[#C00000]'} `} text='SIGN IN / CREATE ACCOUNT' />
                 </Link>
               </h6>
             </div>

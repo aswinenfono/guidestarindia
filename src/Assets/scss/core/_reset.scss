@@ -111,7 +111,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:active,
 select:-webkit-autofill:focus,
 select:-webkit-autofill:hover {
-  transition: background-color 5000s;
+  transition: background-color white;
   transition: all 0s 50000s;
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;

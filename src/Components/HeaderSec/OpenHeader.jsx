@@ -35,7 +35,7 @@ const OpenHeader = () => {
 
                     <Col className='max-sm:flex max-sm:justify-center' lg={2}>
                         <div className='flex flex-col gap-3 max-sm:justify-center'>
-                            <HeaderCompo Data={{ tagType: 'h6', text: 'Contact us', className: 'text-lg  text-black mb-0' }} />
+                            <HeaderCompo tagType='h6' text='Contact us' className='text-lg  text-black mb-0' />
                             <div className='flex gap-4 headerSecInputIcons2 items-center '>
                                 <i class="fa-regular fa-message"></i>
                                 <i class="fa-brands fa-linkedin"></i>

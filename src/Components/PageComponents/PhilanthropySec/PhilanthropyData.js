@@ -3,7 +3,7 @@ const infoData = [
         img: "/Images/search1.png",
         imgHov: "/Images/searchhov.png",
         title: "Identify credible NPO partners",
-        content: "Efficiently find organisations that will meet your goals and gain more valuable partnerships with GuideStar India’s Solutions.",
+        content: "Efficiently find organizations that will meet your goals and gain more valuable partnerships with GuideStar India’s Solutions.",
         btnName: "Learn more",
 
     },
@@ -19,7 +19,7 @@ const infoData = [
         img: "/Images/signal1.png",
         imgHov: "/Images/signalhov.png",
         title: "Access API solutions for your programmes",
-        content: "Power your platforms with GuideStar India’s APIs to support your organisational needs .",
+        content: "Power your platforms with GuideStar India’s APIs to support your organizational needs .",
         btnName: "Contact us",
         update: "Coming soon"
 
@@ -28,7 +28,7 @@ const infoData = [
         img: "/Images/file1.png",
         imgHov: "/Images/filehov.png",
         title: "Attract donors with your NPO profile",
-        content: "Claim and update your organisation’s NPO/ NGO profile. Earn a Seal of Transparency to give donors the information and confidence they need to support you. (Good news: No cost for Basic Level.)",
+        content: "Claim and update your organization’s NPO/ NGO profile. Earn a Seal of Transparency to give donors the information and confidence they need to support you. (Good news: No cost for Basic Level.)",
         btnName: "Update now",
 
     }

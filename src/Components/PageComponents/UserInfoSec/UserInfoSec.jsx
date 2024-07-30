@@ -20,7 +20,7 @@ const UserInfoSec = () => {
                             Know how institutions and individuals are using GuideStar India
                         </h2>
                         <p className="w-[100%] font-serif max-sm:text-lg text-black mx-auto lg:w-[95%] sm:w-full">
-                            Our NPO information, due diligence and insights are the differentiator for strategic philanthropy, organisation development and ecosystem system building
+                            Our NPO information, due diligence and insights are the differentiator for strategic philanthropy, organization development and ecosystem system building
                         </p>
                     </Col>
                 </Row>

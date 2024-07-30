@@ -10,11 +10,11 @@ const HeaderLiveNpos = ({ theme }) => {
                     <Container >
                         <Row className='max-sm:ml-0 w-[100%]'>
                             <Col lg={3} className='flex gap-1'>
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2 text-sm', text: 'Live NPOs' }} />
+                                <HeaderCompo tagType='h6' className='HeaderLiveNposHeader' text='12,301' />
+                                <HeaderCompo tagType='h6' className='HeaderLiveNposHeader2 text-sm' text='Live NPOs' />
                             </Col>
                             <Col>
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3 max-sm:text-lg max-sm:text-center', text: `India's most exhaustive information repository of Not for Profit Organisation (NPOs/NGOs)` }} />
+                                <HeaderCompo tagType='h6' className='HeaderLiveNposHeader3 max-sm:text-lg max-sm:text-center' text={`India's most exhaustive information repository of Not for Profit organization (NPOs/NGOs)`} />
                             </Col>
                         </Row>
                     </Container >
@@ -29,13 +29,13 @@ const HeaderLiveNpos = ({ theme }) => {
                     <Row className='max-sm:ml-0 w-[100%]'>
                         <Col lg={4} className='flex gap-1'>
                             <div className="flex items-start">
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader', text: '12,301' }} />
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader2Light', text: 'Live NPOs' }} />
+                                <HeaderCompo tagType='h6' classNam='HeaderLiveNposHeader' text='12,301' />
+                                <HeaderCompo tagType='h6' className='HeaderLiveNposHeader2Light' text='Live NPOs' />
                             </div>
                         </Col>
                         <Col lg={5}>
                             <div className="flex flex-1 w-[100%]  justify-center">
-                                <HeaderCompo Data={{ tagType: 'h6', className: 'HeaderLiveNposHeader3light max-sm:text-lg max-sm:text-center', text: `India's most exhaustive information repository of Not for Profit Organisation (NPOs/NGOs)` }} />
+                                <HeaderCompo tagType='h6' className='HeaderLiveNposHeader3light max-sm:text-lg max-sm:text-center' text={`India's most exhaustive information repository of Not for Profit organization (NPOs/NGOs)`} />
                             </div>
                         </Col>
                         <Col lg={3}></Col>
