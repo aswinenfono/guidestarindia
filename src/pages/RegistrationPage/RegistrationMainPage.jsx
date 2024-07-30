@@ -7,7 +7,7 @@ import RegistrationSecond from './RegistrationSecond'
 
 const RegistrationMainPage = () => {
 
-    const [selectedButton, setSelectedButton] = useState({ 'Discover registration details': true })
+    const [selectedButton, setSelectedButton] = useState({ 'Registration Details': true })
 
     const ButtonName = [
         'Registration Details',
