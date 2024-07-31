@@ -33,7 +33,7 @@ const RegistrationSecond = () => {
     return (
         <>
             {/* organization and pan section */}
-            <div className='w-[80%] flex gap-[10px] '>
+            <div className='w-[80%] flex  gap-[24pt] '>
                 <div className='w-[100%]'>
                     <CustomSelection label='Organization primary Email' />
                     <ParagraphComp Data={{ text: 'Has your IT PAN changed? if yes,kindly indicate the same', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
@@ -114,7 +114,7 @@ const RegistrationSecond = () => {
             </div>
             <div className='border-b-2' />
             {/* previous, organization, designation section */}
-            <div className='w-[80%] flex gap-[10px]' >
+            <div className='w-[80%] flex  gap-[24pt]' >
                 <div className='w-[100%]'>
                     <CustomInput label='Previous Legal Names the or' />
                     <ParagraphComp Data={{ text: 'Name as per registration certificate/ Deed', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
@@ -124,8 +124,8 @@ const RegistrationSecond = () => {
                     <ParagraphComp Data={{ text: 'Enter the correct address starting with http:// for example http://www.guidestar.org', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
                 </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]' >
-                <div className='w-[50%]'>
+            <div className='w-[80%] flex  gap-[24pt]' >
+                <div className='w-[50%] pe-[15pt]'>
                     <CustomInput label='Designation of the person' />
                 </div>
             </div>
@@ -135,24 +135,40 @@ const RegistrationSecond = () => {
             {/* Registered Address Section */}
 
 
-            <div className='w-[80%] flex gap-[10px]' >
+            <div className='w-[80%] flex  gap-[24pt]' >
                 <HeaderCompo tagType='h3' className='text-2xl text-black' text='Registered Address' />
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomSelection label="Address Type" />
-                <CustomSelection label="State" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomSelection label="Address Type" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomSelection label="State" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Unit No./ Room No./ Building name" />
-                <CustomSelection label="District" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Unit No./ Room No./ Building name" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomSelection label="District" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Street Area" />
-                <CustomInput label="Pin code" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Street Area" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomInput label="Pin code" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="City/Town/Taluk/Village" />
-                <CustomInput label="Land Mark" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="City/Town/Taluk/Village" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomInput label="Land Mark" />
+                </div>
             </div>
             <div className='border-b-2' />
 
@@ -170,21 +186,37 @@ const RegistrationSecond = () => {
                     <span className='text-black'>Same as Registered address</span>
                 </label>
             </div >
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomSelection label="Address Type" />
-                <CustomSelection label="State" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomSelection label="Address Type" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomSelection label="State" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Unit No./ Room No./ Building name" />
-                <CustomSelection label="District" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Unit No./ Room No./ Building name" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomSelection label="District" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Street Area" />
-                <CustomInput label="Pin code" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Street Area" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomInput label="Pin code" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="City/Town/Taluk/Village" />
-                <CustomInput label="Land Mark" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="City/Town/Taluk/Village" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomInput label="Land Mark" />
+                </div>
             </div>
             <div className='border-b-2' />
 
@@ -192,8 +224,8 @@ const RegistrationSecond = () => {
             {/* Address Proof Section */}
 
 
-            <div className='w-[80%] flex gap-[10px]'>
-                <div className='w-[50%]'>
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[50%] pe-[15pt]'>
                     <CustomFileInput label="Upload Document" />
                     <ParagraphComp Data={{ text: 'Address Proof', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
                 </div>
@@ -208,16 +240,26 @@ const RegistrationSecond = () => {
             <div>
                 <HeaderCompo className='text-2xl text-black' text='Head of Organization Details' tagType='h3' />
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Head of Organization’s name" />
-                <CustomInput label="Head of organization’s IT PAN" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Head of Organization’s name" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomInput label="Head of organization’s IT PAN" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Head of Organizations Designation" />
-                <CustomSelection label="Head of organization’s Gender" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Head of Organizations Designation" />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomSelection label="Head of organization’s Gender" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Head of organization’s Email Id" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Head of organization’s Email Id" />
+                </div>
                 <div className='w-[100%]'>
                     <CustomInput label="Head of organization’s From" />
                     <ParagraphComp Data={{ text: 'Enter date in DD-MM-YYYY format', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
@@ -237,8 +279,8 @@ const RegistrationSecond = () => {
                 <HeaderCompo className='text-2xl text-black' text='Head of Organization Contact Number' tagType='h3' />
             </div>
             <div className='w-[80%] flex'>
-                <div className='w-[100%]  flex gap-[10px]'>
-                    <div className='w-[100%] gap-[10px] flex flex-col '>
+                <div className='w-[100%]  flex  gap-[24pt]'>
+                    <div className='w-[100%]  gap-[24pt] flex flex-col '>
                         <CustomSelection label="Is the Head of the organization also the founder or Co-Founder ?" />
                         <CustomInput label="Head of organization’s IT PAN" />
                     </div>
@@ -259,21 +301,48 @@ const RegistrationSecond = () => {
             <div>
                 <HeaderCompo className={'text-2xl text-black'} text='Organization’s Contact Person’s Detail' tagType='h' />
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomSelection label="Telephone Number Type" />
-                <CustomSelection label="Telephone Number Type" />
+            <div className='w-[80%] flex gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomSelection label="Telephone Number Type" />
+                </div>
+
+                <div className='w-[100%]'>
+
+                    <CustomSelection label="Telephone Number Type" />
+                </div>
+
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Country Code" />
-                <CustomInput label="Country Code" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+
+                    <CustomInput label="Country Code" />
+                </div>
+
+                <div className='w-[100%]'>
+
+                    <CustomInput label="Country Code" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Area Code" />
-                <CustomInput label="Area Code" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+
+                    <CustomInput label="Area Code" />
+                </div>
+
+                <div className='w-[100%]'>
+
+                    <CustomInput label="Area Code" />
+                </div>
             </div>
-            <div className='w-[80%] flex gap-[10px]'>
-                <CustomInput label="Telephone Number" />
-                <CustomInput label="Mobile Number" />
+            <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomInput label="Telephone Number" />
+                </div>
+
+                <div className='w-[100%]'>
+
+                    <CustomInput label="Mobile Number" />
+                </div>
             </div>
             <label className="flex items-center space-x-2">
                 <InputCompo className='bg-[#004878] text-white w-[20px] h-[20px]' type='checkbox' />
@@ -285,7 +354,7 @@ const RegistrationSecond = () => {
             {/* Brief Description section */}
 
 
-            <div className='w-[100%] gap-3 flex'>
+            <div className='w-[100%] gap-[24pt] flex'>
                 <div className='w-[100%] flex flex-col gap-[30px]'>
                     <CustomSelection label="Year of starting the organization" />
                     <div>
@@ -392,9 +461,10 @@ const RegistrationSecond = () => {
 
             </div>
             <div className='border-b-2' />
+            {/* Your organization is promoted by select all applicable section */}
 
             <div className='w-[100%]'>
-                <div className='w-[50%]'>
+                <div className='w-[50%] pe-[15pt]'>
                     <CustomFileInput label='Upload' />
                     <ParagraphComp Data={{ text: 'One Picture that tells the story of what your organization does', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
                 </div>
@@ -406,7 +476,7 @@ const RegistrationSecond = () => {
             </div>
 
             <div className='w-[60%] flex '>
-                <div className='w-[100%] flex flex-col gap-[10px]'>
+                <div className='w-[100%] flex flex-col  gap-[24pt]'>
                     <label className="flex items-center space-x-2">
                         <InputCompo className='bg-[#004878] text-white w-[20px] h-[20px]' type='checkbox' />
                         <span className='text-black'>Government</span>
@@ -420,7 +490,7 @@ const RegistrationSecond = () => {
                         <span className='text-black'>Political  Organizations</span>
                     </label>
                 </div>
-                <div className='w-[100%] flex flex-col gap-[10px]'>
+                <div className='w-[100%] flex flex-col  gap-[24pt]'>
                     <label className="flex items-center space-x-2">
                         <InputCompo className='bg-[#004878] text-white w-[20px] h-[20px]' type='checkbox' />
                         <span className='text-black'>Professional or Trade Associations</span>
@@ -438,7 +508,7 @@ const RegistrationSecond = () => {
 
             <div className='border-b-2' />
 
-            <div className='w-[50%]'>
+            <div className='w-[50%] pe-[15pt]'>
                 <CustomInput label="How did you get to know about Guide star india" />
             </div>
             <div className='border-b-2' />
@@ -451,7 +521,7 @@ const RegistrationSecond = () => {
                         <span className='text-black'>i Agree</span>
                     </label>
                 </div>
-                <div className='w-[50%]'>
+                <div className='w-[50%] pe-[15pt]'>
                     <CustomSelection label="Status" />
                 </div>
             </div>
@@ -460,11 +530,12 @@ const RegistrationSecond = () => {
             <div className='flex justify-end'>
                 <ButtonComp className='px-[20px] bg-[#004878] rounded-full text-white' text='Save' />
             </div>
+            {/* modal section */}
             <ModalComp modalIsOpen={modalIsOpen} closeModal={closeModal} width={"50%"} >
                 <div >
                     <HeaderCompo tagType='h4' className='text-xl text-black' text='Add Legal registration details' />
                     <div className='w-[100%] flex flex-col gap-[30px]'>
-                        <div className='w-[100%] flex  gap-[10px]'>
+                        <div className='w-[100%] flex   gap-[24pt]'>
                             <div className='w-[100%]'>
                                 <CustomSelection label={'Registration as '} />
                                 <ParagraphComp Data={{ text: 'Has your IT PAN changed? if yes,kindly indicate the same', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
@@ -474,19 +545,19 @@ const RegistrationSecond = () => {
                                 <ParagraphComp Data={{ text: 'If you do not have a number please write NA', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
                             </div>
                         </div>
-                        <div className='w-[100%] flex  gap-[10px]'>
+                        <div className='w-[100%] flex   gap-[24pt]'>
                             <CustomSelection label={'Registration as '} />
                             <CustomInput label={'Registration Act *'} />
                         </div>
-                        <div className='w-[100%] flex  gap-[10px]'>
+                        <div className='w-[100%] flex   gap-[24pt]'>
                             <CustomSelection label={'State of registration of Non Profit entry'} />
                             <CustomSelection label={'Registration Status as a Non Profit Entity *'} />
                         </div>
-                        <div className='w-[100%] flex  gap-[10px]'>
+                        <div className='w-[100%] flex   gap-[24pt]'>
                             <CustomInput type={'date'} label={'Registration Date as a Non Profit Entry *'} />
                             <CustomSelection label={'Registration Authority *'} />
                         </div>
-                        <div className='w-[100%] flex  gap-[10px]'>
+                        <div className='w-[100%] flex   gap-[24pt]'>
                             <CustomInput type={'date'} label={'Registration Valid Till*'} />
                             <CustomFileInput label={'Upload Document'} />
                         </div>

@@ -8,8 +8,8 @@ import CustomTextarea from '../../Components/textareaComp/CustomTextarea'
 
 const RegistrationFirst = () => {
     const [tableDropDowns, setTableDropDowns] = useState()
-    const updateDropDownNames = (name) => {
 
+    const updateDropDownNames = (name) => {
         if (tableDropDowns?.[name]) {
             setTableDropDowns({ [name]: false })
         } else {
@@ -17,32 +17,37 @@ const RegistrationFirst = () => {
         }
     }
 
-    console.log(tableDropDowns)
 
     return (
         <>
-            <div className='flex w-[90%] gap-[10px]'>
-                <CustomSelection
-                    label='Application Number'
-                />
-                <CustomInput label='Organization primary Email' />
+            <div className='flex w-[90%] gap-[24pt]'>
+                <div className='w-[100%]'>
+                    <CustomSelection
+                        label='Application Number'
+                    />
+                </div>
+                <div className='w-[100%]'>
+                    <CustomInput label='Organization primary Email' />
+                </div>
             </div>
-            <div className='flex w-[90%] gap-[10px]'>
+            <div className='flex w-[90%] gap-[24pt]'>
                 <div className='w-[100%]'>
                     < CustomInput label='PAN Number' />
                     <ParagraphComp Data={{ className: 'mt-[8px] text-black text-sm px-[8px]', text: `organization's PAN exactly as per your PAN card all CAPITALS without any spaces or full stop.` }} />
                 </div>
-                < CustomInput label='Confirm Email Address' />
+                <div className='w-[100%] '>
+                    < CustomInput label='Confirm Email Address' />
+                </div>
             </div>
-            <div className='flex w-[90%] gap-[10px]'>
-                <div className='w-[50%]'>
+            <div className='flex w-[90%] gap-[24pt]'>
+                <div className='w-[50%] pe-[12pt]'>
                     < CustomInput label='Name of the organization' />
                     <ParagraphComp Data={{ className: 'mt-[8px] text-black text-sm px-[8px]', text: `Name as Per Registration Certificate/Deed` }} />
                 </div>
             </div>
             <div>
                 <div className='p-[20px] border-2 rounded-t-xl flex items-center justify-between'>
-                    <HeaderCompo  className= 'text-xl text-black mt-0 m-0' tagType= 'h3' text= 'Communication'  />
+                    <HeaderCompo className='text-xl text-black mt-0 m-0' tagType='h3' text='Communication' />
                     <ButtonComp text='Add' className='px-[20px] text-white bg-[#004878] rounded-full py-[5px]' />
                 </div>
                 <table className='border-2 rounded-t-2xl w-[100%]'>
@@ -140,21 +145,21 @@ const RegistrationFirst = () => {
             </div>
 
             <div className='w-[100%] '>
-                <div className='w-[100%] flex'>
-                    <div className='w-[100%] p-[10px] flex gap-[10px] flex-col'>
+                <div className='w-[100%] flex gap-[24pt]'>
+                    <div className='w-[100%]  flex gap-[10px] flex-col'>
                         <CustomInput label='Name of the Person filling the form' />
                         <CustomInput label='Place' />
                         <CustomInput label='Designation of the person' />
                     </div>
                     <div className=' w-[100%] h-auto '>
-                        <div className='w-[100%] p-[10px] h-[100%]'>
+                        <div className='w-[100%] h-[100%]'>
                             <CustomTextarea label="Comment Box" />
                         </div>
                     </div>
                 </div>
             </div>
             <div className='flex justify-end'>
-                <ButtonComp className= 'px-[20px] py-[6px] text-white bg-[#004878] rounded-full ' text= 'Save & Next'  />
+                <ButtonComp type={'submit'} className='px-[20px] py-[6px] text-white bg-[#004878] rounded-full ' text='Save & Next' />
             </div>
 
 

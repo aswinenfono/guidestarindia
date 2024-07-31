@@ -4,6 +4,7 @@ import { ImageComp } from '../../Components/ImageCompo/ImageComp'
 import HeaderCompo from '../../Components/HeaderComp/HeaderCompo'
 import RegistrationFirst from './RegistrationFirst'
 import RegistrationSecond from './RegistrationSecond'
+import RegistrationThird from './RegistrationThird'
 
 const RegistrationMainPage = () => {
 
@@ -49,7 +50,8 @@ const RegistrationMainPage = () => {
                             selectedButton?.['Discover registration details']
                                 ?
                                 <RegistrationSecond />
-                                : ''
+                                :
+                                <RegistrationThird />
 
                     }
 
