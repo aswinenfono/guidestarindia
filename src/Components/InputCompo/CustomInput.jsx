@@ -1,39 +1,53 @@
 import { Box, TextField } from '@mui/material'
 import React from 'react'
-
-const CustomInput = ({ value, onChange, label, type }) => {
+import styled from 'styled-components';
+const CustomTextField = styled(TextField)(({ theme }) => ({
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: 'gray', // Default border color
+        },
+        '&:hover fieldset': {
+            borderColor: 'gray', // Border color when hovering
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: 'gray', // Border color when focused
+        },
+    },
+    '& .MuiInputLabel-root': {
+        color: 'gray', // Default label color
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+        color: 'gray', // Label color when focused
+    },
+}));
+const CustomInput = ({ value, onChange, label, type, name, required, error, disabled }) => {
+    console.log("disabled>>>>", disabled)
     return (
         <>
-            <Box
-                component="form"
-                sx={{
-                    '& > :not(style)': {
-                        width: '100%',
-
-
-
-                    },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField
+            <div className='w-[100%]'>
+                <CustomTextField
+                    className="w-[100%]"
+                    required={required}
+                    disabled={disabled ? true : false}
                     InputProps={{
                         style: {
-                            borderRadius: "8px 8px 00px 00px",
-                            borderColor: '#004878'
+                            borderColor: '#004878',
                         },
                     }}
                     InputLabelProps={{
                         style: {
-                            color: '#004878', // Change this to your desired color
+                            color: '#004878',
                         },
                     }}
-
-                    id="filled-basic" value={value} onChange={onChange} type={type} label={label} variant="filled" />
-            </Box>
-
-
+                    id="outlined-basic"
+                    value={value ? value : ''}
+                    onChange={onChange}
+                    type={type}
+                    label={label}
+                    variant="outlined"
+                    name={name}
+                />
+            </div>
         </>
     )
 }

@@ -1,6 +1,24 @@
 import React from 'react'
 import { Box, styled, TextField } from '@mui/material';
-
+const CustomTextField = styled(TextField)(({ theme }) => ({
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: 'gray', // Default border color
+        },
+        '&:hover fieldset': {
+            borderColor: 'gray', // Border color when hovering
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: 'gray', // Border color when focused
+        },
+    },
+    '& .MuiInputLabel-root': {
+        color: 'gray', // Default label color
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+        color: 'gray', // Label color when focused
+    },
+}));
 const CustomFileInput = ({ value, onChange, label }) => {
     const fileInputRef = React.createRef();
     const handleIconClick = () => {
@@ -31,13 +49,11 @@ const CustomFileInput = ({ value, onChange, label }) => {
                     ref={fileInputRef}
                     type="file"
                     style={{ display: 'none' }}
-                // onChange={handleFileChange}
+                    onChange={onChange}
                 />
-                <TextField
+                <CustomTextField
                     InputProps={{
-
                         style: {
-                            borderRadius: "8px 8px 0 0",
                             borderColor: '#004878',
                             cursor: 'pointer',
                         },
@@ -49,17 +65,16 @@ const CustomFileInput = ({ value, onChange, label }) => {
                         },
                     }}
                     label={
-                        <CustomInputLabel>
-                            <div className='flex gap-[20px]'>
+                        <CustomInputLabel className='w-fit'>
+                            <div className='flex w-fit gap-[20px]'>
                                 <i class="fa-solid fa-paperclip text-xl "></i>
                                 {label}
                             </div>
-
                         </CustomInputLabel>
                     }
-                    id="custom-file-input"
-                    variant="filled"
-                    // value={fileName}
+                    id="outlined-file-input"
+                    variant="outlined"
+                    value={value ? value : ''}
                     onClick={handleIconClick}
                 />
             </Box>

@@ -1,50 +1,51 @@
-import { Box, TextField } from '@mui/material'
-import React from 'react'
+import React from 'react';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/system';
 
-const CustomSelection = (props) => {
+const CustomTextField = styled(TextField)(({ theme }) => ({
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: 'gray', // Default border color
+        },
+        '&:hover fieldset': {
+            borderColor: 'gray', // Border color when hovering
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: 'gray', // Border color when focused
+        },
+    },
+    '& .MuiInputLabel-root': {
+        color: 'gray', // Default label color
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+        color: 'gray', // Label color when focused
+    },
+}));
+
+const CustomSelection = ({ label, name, required, onChange, value, options }) => {
     return (
-        <>
-            <Box
-                component="form"
-                sx={{
-                    '& > :not(style)': {
-                        width: '100%',
-                    },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField
-                    id="filled-select-currency-native"
-                    label={props?.label}
-                    select
-                    SelectProps={{
-                        native: true,
-                        style: {
-                            borderRadius: "8px 8px 00px 00px",
-                        }
-                    }}
+        <CustomTextField
+            className='w-[100%]'
+            id="outlined-select-currency-native"
+            label={label}
+            select
+            required={required}
+            name={name}
+            onChange={onChange}
+            SelectProps={{
+                native: true,
+            }}
+            variant="outlined"
+            value={value}
+        >
+            <option value=""></option>
+            {options?.map((option, index) => (
+                <option key={index + 1} value={option.option}>
+                    {option.option}
+                </option>
+            ))}
+        </CustomTextField>
+    );
+};
 
-                    InputLabelProps={{
-                        style: {
-                            color: '#004878', // Change this to your desired color
-                        },
-                    }}
-                    variant="filled"
-                    value={props?.value
-                    }
-                >
-                    {props?.options?.map((option) => (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </TextField>
-
-            </Box >
-        </>
-
-    )
-}
-
-export default CustomSelection
+export default CustomSelection;

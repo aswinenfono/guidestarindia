@@ -2,7 +2,6 @@ import axios from 'axios';
 import { baseApi } from '../Config';
 
 export const actionHandler = (payload) => {
-    console.log(payload)
     // Headers
     axios.defaults.headers['Content-Type'] = 'application/json';
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
@@ -19,8 +18,8 @@ export const actionHandler = (payload) => {
     return new Promise((resolve, reject) => {
         axios(payload)
             .then((response) => {
-                console.log(response)
-                if (response.data.status_code >= 200 && response.data.status_code < 300) {
+                if (response.data.status_code >= 200 || response.status >= 200 && response.data.status_code < 300 || response.status < 300) {
+                    console.log(response)
                     resolve(response);
                 } else {
                     reject(response);

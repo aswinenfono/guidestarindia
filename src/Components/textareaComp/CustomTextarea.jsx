@@ -5,7 +5,6 @@ const CustomTextarea = (props) => {
     const TextRef = useRef()
     const handleFocus = () => setIsFocused(true);
     const handleBlur = () => setIsFocused(false);
-    console.log(TextRef)
     return (
         <div className="relative w-[100%] h-full ">
             <textarea

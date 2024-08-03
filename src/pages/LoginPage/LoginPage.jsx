@@ -10,7 +10,7 @@ import { ParagraphComp } from '../../Components/ParagraphComp/ParagraphComp';
 import HeaderCompo from '../../Components/HeaderComp/HeaderCompo';
 import { useMutation } from '@tanstack/react-query';
 import { enqueueSnackbar } from 'notistack';
-import { login } from '../../Store/login1';
+import { login } from '../../Store/auth';
 
 const LoginPage = () => {
     const schema = yup.object({
@@ -57,7 +57,6 @@ const LoginPage = () => {
     } = useMutation({
         mutationFn: login,
         ...createFarmerMutationOptions,
-
     });
     console.log("loginData<<<<", loginData)
 

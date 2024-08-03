@@ -87,18 +87,18 @@ const RegistrationSecond = () => {
                             Action
                         </th>
                     </tr>
-                    <tr className='p-[5px]'>
-                        <td className='font-bold text-center text-black flex justify-center'>
+                    <tr className=''>
+                        <td className='font-bold p-[10px] text-center text-black flex justify-center'>
                             <div className='rounded-xl border-2 flex justify-center items-center px-[5px] h-[30px] w-[30px] py-[4px]  bg-[#004878] text-white   '>
                                 <i class="fa-solid fa-check"></i>
                             </div>
                         </td>
-                        <td className='font-bold text-center text-black'>1</td>
-                        <td className='font-bold text-center text-black'>Bold text column</td>
-                        <td className='font-bold text-center text-black'>Bold text column</td>
-                        <td className='font-bold text-center text-black'>Bold text column</td>
-                        <td className='font-bold text-center text-black'>Bold text column</td>
-                        <td className='font-bold text-center justify-center flex text-black'>
+                        <td className='font-bold text-center p-[10px] text-black'>1</td>
+                        <td className='font-bold text-center p-[10px] text-black'>Bold text column</td>
+                        <td className='font-bold text-center p-[10px] text-black'>Bold text column</td>
+                        <td className='font-bold text-center p-[10px] text-black'>Bold text column</td>
+                        <td className='font-bold text-center p-[10px] text-black'>Bold text column</td>
+                        <td className='font-bold text-center p-[10px] justify-center flex text-black'>
                             <div className='flex gap-1 '>
                                 <div className='w-[30px] h-[30px] flex justify-center items-center rounded-full  bg-[#004878]'>
                                     <i class="fa-regular fa-pen-to-square  text-white"></i>
@@ -535,7 +535,7 @@ const RegistrationSecond = () => {
                 <div >
                     <HeaderCompo tagType='h4' className='text-xl text-black' text='Add Legal registration details' />
                     <div className='w-[100%] flex flex-col gap-[30px]'>
-                        <div className='w-[100%] flex   gap-[24pt]'>
+                        <div className='w-[100%] flex  gap-[24pt]'>
                             <div className='w-[100%]'>
                                 <CustomSelection label={'Registration as '} />
                                 <ParagraphComp Data={{ text: 'Has your IT PAN changed? if yes,kindly indicate the same', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
@@ -546,20 +546,37 @@ const RegistrationSecond = () => {
                             </div>
                         </div>
                         <div className='w-[100%] flex   gap-[24pt]'>
-                            <CustomSelection label={'Registration as '} />
-                            <CustomInput label={'Registration Act *'} />
+                            <div className='w-[100%]'>
+                                <CustomSelection label={'Registration as '} />
+                            </div>
+                            <div className='w-[100%]'>
+                                <CustomInput label={'Registration Act *'} />
+                            </div>
+
                         </div>
                         <div className='w-[100%] flex   gap-[24pt]'>
-                            <CustomSelection label={'State of registration of Non Profit entry'} />
-                            <CustomSelection label={'Registration Status as a Non Profit Entity *'} />
+                            <div className='w-[100%]'>
+                                <CustomSelection label={'State of registration of Non Profit entry'} />
+                            </div>
+                            <div className='w-[100%]'>
+                                <CustomSelection label={'Registration Status as a Non Profit Entity *'} />
+                            </div>
                         </div>
-                        <div className='w-[100%] flex   gap-[24pt]'>
-                            <CustomInput type={'date'} label={'Registration Date as a Non Profit Entry *'} />
-                            <CustomSelection label={'Registration Authority *'} />
+                        <div className='w-[100%] flex  gap-[24pt]'>
+                            <div className='w-[100%]'>
+                                <CustomInput type={'date'} label={'Registration Date as a Non Profit Entry *'} />
+                            </div>
+                            <div className='w-[100%]'>
+                                <CustomSelection label={'Registration Authority *'} />
+                            </div>
                         </div>
-                        <div className='w-[100%] flex   gap-[24pt]'>
-                            <CustomInput type={'date'} label={'Registration Valid Till*'} />
-                            <CustomFileInput label={'Upload Document'} />
+                        <div className='w-[100%] flex gap-[24pt]'>
+                            <div className='w-[100%]'>
+                                <CustomInput type={'date'} label={'Registration Valid Till*'} />
+                            </div>
+                            <div className='w-[100%]'>
+                                <CustomFileInput label={'Upload Document'} />
+                            </div>
                         </div>
 
                     </div>
