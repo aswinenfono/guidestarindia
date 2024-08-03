@@ -158,15 +158,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const registrationTabs = [
     {
         tab: 'Initial Registration',
-        subTabs: ['label1']
+        subTabs: ['Page 1']
     },
     {
         tab: 'Discover Registration Details',
-        subTabs: ['label2', 'label3', 'label4']
+        subTabs: ['Page 2', 'Page 3', 'Page 4']
     },
     {
         tab: 'Engage Details',
-        subTabs: ['label5', 'label6']
+        subTabs: ['Page 5', 'Page 6']
     },
 ]
 
@@ -191,11 +191,7 @@ const RegistrationMainPage = () => {
     };
 
     const selectSubTab = (name) => {
-        if (subTabs[name]) {
-            setSubTabs({ [name]: false })
-        } else {
             setSubTabs({ [name]: true })
-        }
     }
     const selectTab = (name) => {
         if (tabs?.[name]) {
@@ -308,7 +304,11 @@ const RegistrationMainPage = () => {
 
                                     )
                                 }
-                                <div className='border-b-2' />
+                                {
+                                    open &&
+                                    <div className='border-b-2' />
+
+                                }
                             </>
 
                         ))}
@@ -320,7 +320,7 @@ const RegistrationMainPage = () => {
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
                     {
-                        tabs?.["Initial Registration"] && subTabs?.["label1"] &&
+                        subTabs?.["Page 1"] &&
 
                         < RegistrationFirst />
                     }
