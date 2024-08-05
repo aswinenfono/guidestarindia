@@ -155,26 +155,27 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 
-const registrationTabs = [
-    {
-        tab: 'Initial Registration',
-        subTabs: ['Page 1']
-    },
-    {
-        tab: 'Discover Registration Details',
-        subTabs: ['Page 2', 'Page 3', 'Page 4']
-    },
-    {
-        tab: 'Engage Details',
-        subTabs: ['Page 5', 'Page 6']
-    },
-]
 
 const RegistrationMainPage = () => {
+    const registrationTabs = [
+        {
+            tab: 'Initial Registration',
+            subTabs: ['Page 1']
+        },
+        {
+            tab: 'Discover Registration Details',
+            subTabs: ['Page 2', 'Page 3', 'Page 4']
+        },
+        {
+            tab: 'Engage Details',
+            subTabs: ['Page 5', 'Page 6']
+        },
+    ]
+
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [subTabs, setSubTabs] = React.useState({
-        'label1': true
+        'Page 1': true
     }
     );
     const [tabs, setTabs] = React.useState({
@@ -191,7 +192,7 @@ const RegistrationMainPage = () => {
     };
 
     const selectSubTab = (name) => {
-            setSubTabs({ [name]: true })
+        setSubTabs({ [name]: true })
     }
     const selectTab = (name) => {
         if (tabs?.[name]) {
@@ -200,7 +201,8 @@ const RegistrationMainPage = () => {
             setTabs({ [name]: true })
         }
     }
-    console.log("tabs>>>", tabs, subTabs)
+
+
     return (
 
         <>
