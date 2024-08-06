@@ -37,7 +37,7 @@ const Services = (props) => {
                                     {(props.theme === "service-style-02" || props.theme === "service-style-05") && <div className='info-service'>
                                         {(item.linkTitle || item.icon) && <Link aria-label="services" to={item.link ? item.link : "#"} className=" ServicesLinkHOver no-underline font-bold text-sm uppercase block">Name
                                             <div className='flex gap-2  items-center'>
-                                                <ParagraphComp Data={{ className: "text-1xl font-bold  mb-0 ", text: item.linkTitle, }} />
+                                                <ParagraphComp className="text-1xl font-bold  mb-0 " text={item.linkTitle} />
                                                 <i className={item.icon}></i>
                                             </div>
                                         </Link>}

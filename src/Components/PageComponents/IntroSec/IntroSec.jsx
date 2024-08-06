@@ -14,13 +14,11 @@ export const IntroSec = () => {
 
     return (
         <>
-            {/* <ButtonComp Data={{ name: "search", className: "IntroSearchButton", text: "search" }} /> */}
             <Container >
                 <Row className='max-md:h-auto max-lg:h-auto max-sm:h-auto sm:p-[10px] h-[60vh]  justify-between items-center gap-4'>
                     <Col lg={8} className='flex flex-col gap-6'>
                         <HeaderCompo className="IntroSecHeader max-md:text-5xl max-sm:leading-[35px] max-sm:text-[26px] max-md:leading-[40px]" text={data?.mainHeadding} tagType='h1' />
-                        <ParagraphComp Data={{ className: "IntroSecParagraph max-sm:text-xl max-md:text-2xl ", text: data?.subHeadding }} />
-                        {/* <InputCompo Data={{ className: "IntroSecInput", placeholder: "", placeholder: "" }} /> */}
+                        <ParagraphComp className="IntroSecParagraph max-sm:text-xl max-md:text-2xl " text={data?.subHeadding} />
                         <div className='flex flex-col gap-3'>
                             <Row className=' row-cols-1 row-cols-lg-2 gap-y-2'>
                                 <Col lg={7} class="">
@@ -43,7 +41,7 @@ export const IntroSec = () => {
                     </Col>
 
                     <Col className='introimgalign max-sm:h-auto max-sm:w-[100%] max-sm:justify-center max-lg:justify-center w-[35%] flex h-[100%] items-center'>
-                        <ImageComp Data={{ source: data?.MainSideImg, className: "IntroSecMainSideImg max-sm:h-[250px]" }} />
+                        <ImageComp source={data?.MainSideImg} className="IntroSecMainSideImg max-sm:h-[250px]" />
                     </Col>
                 </Row>
             </Container>

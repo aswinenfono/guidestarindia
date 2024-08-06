@@ -68,7 +68,7 @@ const LoginPage = () => {
                     <Row className='w-[100%] max-sm:ml-0'>
                         <Col lg={6} className='max-md:hidden h-auto flex flex-col items-center justify-center'>
                             <div className='LoginPageBackDiSBox '>
-                                <ParagraphComp Data={{ text: 'Organization’s full address and contact information Up to three years of Forms 99 0Revenue and expense data for the current fiscal year CEO, Board Chair, and Board of Directors information This does not create a profile for you' }} />
+                                <ParagraphComp text='Organization’s full address and contact information Up to three years of Forms 99 0Revenue and expense data for the current fiscal year CEO, Board Chair, and Board of Directors information This does not create a profile for you' />
                             </div>
                         </Col>
                         <Col className='h-[100%] flex flex-col items-center justify-center'>
@@ -96,7 +96,6 @@ const LoginPage = () => {
                                                 />
                                             </div>
                                             <button className='LoginButtonComp' type='submit'>Login</button>
-                                            {/* <ButtonComp Data={{ onClick: LoginBtnClick, text: "Login", className: 'LoginButtonComp' }} /> */}
                                         </div>
                                     </form>
                                 </div>

@@ -33,7 +33,7 @@ const ClientSwitch = (params, item, i) => {
             </div>
             {item?.UnderImg &&
               <div className="flex flex-col gap-3">
-                <ParagraphComp Data={{ text: item.grade, className: `font-serif font-bold text-1xl uppercase ${item.grade === "Platinum" ? 'text-[#d1d8de]' : item.grade === "Gold" ? 'text-[#fecf27]' : item.grade === "Silver" ? 'text-[#d1d8de]' : item.grade === "Bronze" && 'text-[#eb8638]'}` }} />
+                <ParagraphComp text={item.grade} className={`font-serif font-bold text-1xl uppercase ${item.grade === "Platinum" ? 'text-[#d1d8de]' : item.grade === "Gold" ? 'text-[#fecf27]' : item.grade === "Silver" ? 'text-[#d1d8de]' : item.grade === "Bronze" && 'text-[#eb8638]'}`} />
               </div>
             }
           </m.div>
@@ -52,7 +52,7 @@ const ClientCarouselSwitch = (params, item, i) => {
           </div>
           {item.UnderImg &&
             <div className="flex flex-col gap-3">
-              <ParagraphComp Data={{ text: item.grade, className: `font-serif font-bold text-1xl ${item.grade === "Platinum" ? 'text-[#d1d8de]' : item.grade === "Gold" ? 'text-[#fecf27]' : item.grade === "Silver" ? 'text-[#d1d8de]' : item.grade === "Bronze" && 'text-[#eb8638]'}` }} />
+              <ParagraphComp text={item.grade} className={`font-serif font-bold text-1xl ${item.grade === "Platinum" ? 'text-[#d1d8de]' : item.grade === "Gold" ? 'text-[#fecf27]' : item.grade === "Silver" ? 'text-[#d1d8de]' : item.grade === "Bronze" && 'text-[#eb8638]'}`} />
             </div>
           }
         </SwiperSlide>
@@ -67,7 +67,7 @@ const ClientCarouselSwitch = (params, item, i) => {
             {item.UnderImg &&
 
               <div className="flex flex-col gap-3">
-                <ParagraphComp Data={{ text: item.grade, className: `font-serif font-bold md:text-lg text-xl ${item.grade === "Platinum" ? 'text-[#d1d8de]' : item.grade === "Gold" ? 'text-[#fecf27]' : item.grade === "Silver" ? 'text-[#d1d8de]' : item.grade === "Bronze" && 'text-[#eb8638]'}` }} />
+                <ParagraphComp text={item.grade} className={`font-serif font-bold md:text-lg text-xl ${item.grade === "Platinum" ? 'text-[#d1d8de]' : item.grade === "Gold" ? 'text-[#fecf27]' : item.grade === "Silver" ? 'text-[#d1d8de]' : item.grade === "Bronze" && 'text-[#eb8638]'}`} />
               </div>
             }
           </div>

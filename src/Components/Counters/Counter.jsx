@@ -94,7 +94,7 @@ const Counter = (props) => {
             >
               <div>
                 <div className="w-[100%] flex justify-center">
-                  <ImageComp Data={{ source: item?.image, className: 'h-[90px] object-cover max-sm:h-[90px]' }} />
+                  <ImageComp source={item?.image} className='h-[90px] object-cover max-sm:h-[90px]' />
                 </div>
                 {item.number && (
                   <props.as className={` text-center counter-numbers${item.number.class ? ` ${item.number.class}` : ""}`}>

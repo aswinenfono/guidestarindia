@@ -1,79 +1,10 @@
-// import React, { useState } from 'react'
-// import { Container } from 'react-bootstrap'
-// import { ImageComp } from '../../Components/ImageCompo/ImageComp'
-// import HeaderCompo from '../../Components/HeaderComp/HeaderCompo'
-// import RegistrationFirst from './RegistrationFirst'
-// import RegistrationSecond from './RegistrationSecond'
-// import RegistrationThird from './RegistrationThird'
-
-// const RegistrationMainPage = () => {
-
-//     const [selectedButton, setSelectedButton] = useState({ 'Registration Details': true })
-
-//     const ButtonName = [
-//         'Registration Details',
-//         'Discover registration details',
-//         'Engage Details'
-//     ]
-
-//     const ButtonNameUpdate = (name) => {
-//         if (selectedButton?.[name]) {
-//             setSelectedButton({ [name]: false })
-//         } else {
-//             setSelectedButton({ [name]: true })
-//         }
-//     }
-//     return (
-//         <>
-//             <Container className='py-[20px]'>
-//                 <div className='flex flex-col gap-[30px]'>
-//                     <div>
-//                         <ImageComp Data={{ source: '/Images/logo.png', className: 'max-h-[100%] h-[50px]' }} />
-//                     </div>
-//                     <div>
-//                         <HeaderCompo tagType='h3' className='text-2xl text-black font-semibold tracking-wider' text='New NPO Registration' />
-//                     </div>
-//                     <div className='flex gap-[10px]'>
-//                         {ButtonName.map((btn, index) =>
-//                             <button onClick={() => { ButtonNameUpdate(btn) }} className={`${selectedButton?.[btn] ? "bg-[#004878] text-white " : "border-2 border-[#004878] text-[#004878] "} py-[10px] px-[20px] rounded-full flex gap-[10px] items-center`}>
-//                                 <div className={`${selectedButton?.[btn] ? 'bg-white text-black' : 'bg-[#004878] text-white '} h-[25px] w-[25px] rounded-full  flex items-center justify-center  text-[20px]`}>
-//                                     {index + 1}
-//                                 </div>
-//                                 {btn}
-//                             </button>
-//                         )}
-//                     </div>
-//                     {
-//                         selectedButton?.['Registration Details'] ?
-//                             <RegistrationFirst />
-//                             :
-//                             selectedButton?.['Discover registration details']
-//                                 ?
-//                                 <RegistrationSecond />
-//                                 :
-//                                 <RegistrationThird />
-
-//                     }
-
-//                 </div>
-
-//             </Container>
-
-//         </>
-//     )
-// }
-
-// export default RegistrationMainPage
-
 
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -88,6 +19,8 @@ import CircleIcon from '@mui/icons-material/Circle';
 import HeaderCompo from '../../Components/HeaderComp/HeaderCompo';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import RegistrationFirst from './RegistrationFirst';
+import RegDiscoverPan from './RegDiscoverPan';
+import RegDiscoverLegal from './RegDiscoverLegal';
 const drawerWidth = 340;
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -119,23 +52,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
 }));
 
-const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    }),
-}));
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -174,6 +91,7 @@ const RegistrationMainPage = () => {
 
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [mainForm, setMainForm] = React.useState()
     const [subTabs, setSubTabs] = React.useState({
         'Page 1': true
     }
@@ -202,7 +120,7 @@ const RegistrationMainPage = () => {
         }
     }
 
-
+    console.log("mainForm>>>>", mainForm)
     return (
 
         <>
@@ -215,7 +133,7 @@ const RegistrationMainPage = () => {
                         {open &&
                             <>
                                 <div className='w-[100%] pl-[10px] flex justify-start'>
-                                    <ImageComp Data={{ source: '/Images/logo.png', className: 'h-[37px] mt-[10px]' }} />
+                                    <ImageComp source='/Images/logo.png' className='h-[37px] mt-[10px]' />
                                 </div>
                                 <div className='flex pl-[10px] w-[100%] items-center justify-between'>
                                     <HeaderCompo className='text-[15px] mt-0 mb-0' tagType='h3' text={'New NPO Registration'} />
@@ -322,9 +240,16 @@ const RegistrationMainPage = () => {
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
                     {
-                        subTabs?.["Page 1"] &&
+                        subTabs?.["Page 1"] ?
+                            <RegistrationFirst setMainForm={setMainForm} />
+                            :
+                            subTabs?.['Page 2'] ?
+                                <RegDiscoverPan /> :
+                                subTabs?.['Page 3'] ?
+                                    <RegDiscoverLegal />
+                                    : ''
 
-                        < RegistrationFirst />
+
                     }
                 </Box>
             </Box >

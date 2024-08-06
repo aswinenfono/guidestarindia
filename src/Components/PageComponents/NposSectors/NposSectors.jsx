@@ -20,7 +20,7 @@ const NposSectors = () => {
                             <Col lg={4} className="px-[15px] md:mb-[15px]">
                                 <div className="bg-lightgray p-[40px] flex flex-col gap-4 sm:p-[30px]">
                                     <div className='flex justify-center'>
-                                        <ImageComp Data={{ source: ele?.img, className: "SectorDataImg max-sm:h-[100px]" }} />
+                                        <ImageComp source={ele?.img} className="SectorDataImg max-sm:h-[100px]" />
                                     </div>
                                     <p className='text-1xl max-sm:text-lg text-black font-bold font-serif'> {ele?.content}</p>
                                 </div>

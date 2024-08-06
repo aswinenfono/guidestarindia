@@ -25,13 +25,13 @@ const HeaderSec = ({ theme }) => {
                 <m.div className="py-[10px]" >
                     <Row className='w-[100%] max-sm:ml-0'>
                         <Col lg={6} className='HeaderSecTopInner'>
-                            <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
+                            <ImageComp source='./Images/logo.png' className='h-[50px] max-sm:h-[40px]' />
                         </Col>
                         <Col className='HeaderSecTopInner2 p-0'>
 
                             <div className='h-[auto] flex flex-col items-end'>
                                 <div className='flex  gap-3 items-center' >
-                                    <ParagraphComp Data={{ text: 'GuideStar India at a glance', className: 'headerSecFont2' }} />
+                                    <ParagraphComp text='GuideStar India at a glance' className='headerSecFont2' />
                                     {!IsOpenContent ?
                                         <m.div {...fadeIn}>
                                             <FontAwesomeIcon onClick={OpenContent} id='headerSecInputIcon' icon={faChevronDown} />
@@ -52,7 +52,7 @@ const HeaderSec = ({ theme }) => {
                                                 <FontAwesomeIcon id='headerSecInputIcon' icon={faSearch} />
                                             </span>
                                         </div>
-                                        <ParagraphComp Data={{ text: 'NPO/NGO/ Charity Check', className: 'headerSecFont' }} />
+                                        <ParagraphComp text='NPO/NGO/ Charity Check' className='headerSecFont' />
                                     </Col>
                                 </Row>
                             </div>
@@ -71,13 +71,13 @@ const HeaderSec = ({ theme }) => {
                         <m.div className="py-[10px] px-3" >
                             <Row className='w-[100%] max-sm:ml-0'>
                                 <Col lg={5} className='HeaderSecTopInner'>
-                                    <ImageComp Data={{ source: './Images/logo.png', className: 'h-[50px] max-sm:h-[40px]' }} />
+                                    <ImageComp source='./Images/logo.png' className='h-[50px] max-sm:h-[40px]' />
                                 </Col>
                                 <Col className='HeaderSecTopInner2'>
 
                                     <div className='h-[auto] flex flex-col items-end'>
                                         <div className='flex gap-3 items-center' >
-                                            <ParagraphComp Data={{ text: 'GuideStar India at a glance', className: 'headerSecFont2light' }} />
+                                            <ParagraphComp text='GuideStar India at a glance' className='headerSecFont2light' />
                                             {!IsOpenContent ?
                                                 <m.div >
                                                     <FontAwesomeIcon onClick={OpenContent} id='headerSecInputIcon' icon={faChevronDown} />
@@ -98,7 +98,7 @@ const HeaderSec = ({ theme }) => {
                                                         <FontAwesomeIcon id='headerSecInputIcon' icon={faSearch} />
                                                     </span>
                                                 </div>
-                                                <ParagraphComp Data={{ text: 'NPO/NGO/ Charity Check', className: 'headerSecFontlight' }} />
+                                                <ParagraphComp text='NPO/NGO/ Charity Check' className='headerSecFontlight' />
                                             </Col>
                                         </Row>
                                     </div>

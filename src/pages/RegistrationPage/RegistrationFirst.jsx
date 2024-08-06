@@ -14,7 +14,8 @@ import CustomFileInput from '../../Components/InputCompo/CustomFileInput'
 import { m } from 'framer-motion'
 import { fadeIn, zoomIn } from '../../Functions/GlobalAnimations'
 import { enqueueSnackbar } from 'notistack'
-const RegistrationFirst = () => {
+import { ImageComp } from '../../Components/ImageCompo/ImageComp'
+const RegistrationFirst = ({ setMainForm }) => {
     const [tableDropDowns, setTableDropDowns] = useState()
     const [tableDatas, setTableDatas] = useState()
     const [isCheckedAll, setIsCheckedAll] = useState(false)
@@ -63,19 +64,19 @@ const RegistrationFirst = () => {
 
 
 
-    const { isLoading: fieldLoading, data } = useQuery({
+    const { isLoading: fieldLoading, data: InitialRegQ } = useQuery({
         queryKey: 'Questions',
         queryFn: () => initialLoading(),
     });
 
     useEffect(() => {
-        if (data?.documents) {
-            const filteredValue = data.documents.find(ele => ele?.question_no === 'IRQ-00006')
+        if (InitialRegQ?.documents) {
+            const filteredValue = InitialRegQ.documents.find(ele => ele?.question_no === 'IRQ-00006')
             if (filteredValue) {
                 setTableDatas(filteredValue)
             }
         }
-    }, [data?.documents])
+    }, [InitialRegQ?.documents])
 
     const formik = useFormik({
         initialValues: {
@@ -93,7 +94,7 @@ const RegistrationFirst = () => {
         },
         validationSchema: modelSchema,
         enableReinitialize: true,
-        onSubmit: async (values, { setStatus, setSubmitting }) => {
+        onSubmit: async (values, { setSubmitting }) => {
             try {
                 const tempData = [];
                 const keys = [
@@ -320,70 +321,92 @@ const RegistrationFirst = () => {
     });
 
 
-    if (fieldLoading || subLoading || mainRegistration) { return (<><h3>Loading...</h3></>) }
 
-    return (
-        <>
-            <form className='flex flex-col gap-[30px]' onSubmit={formik.handleSubmit} action="">
-                <div className='flex w-[90%] gap-[24pt]'>
-                    <div className='w-[100%]'>
-                        <CustomInput required
-                            {...formik.getFieldProps('IRQ-00001')}
-                            name='IRQ-00001' label='PAN Number'
-                            error={formik.errors?.['IRQ-00001'] && formik.values?.['IRQ-00001'] ? true : false} />
-                        <ParagraphComp Data={{ className: ' text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00001'] && formik.errors?.['IRQ-00001'] }} />
-                        <ParagraphComp Data={{ className: 'mt-[8px] text-black text-sm px-[8px]', text: `Organization's PAN exactly as per your PAN card all CAPITALS without any spaces or full stop.` }} />
-                    </div>
-                    <div className='w-[100%]'>
-                        <CustomInput required
-                            {...formik.getFieldProps('IRQ-00004')}
-                            name='IRQ-00004' error={formik.errors?.['IRQ-00004'] && formik.values?.['IRQ-00004'] ? true : false}
-                            label='Organization primary Email' />
-                        <ParagraphComp Data={{ className: ' text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00004'] && formik.errors?.['IRQ-00004'] }} />
-                    </div>
+    useEffect(() => {
+        if (formik.isValid && formik.dirty) {
+            setMainForm(formik.values);
+        }
+    }, [formik.values, formik.isValid, formik.dirty]);
+
+
+    // rendering fields in backend data
+
+    const renderQuestions = (number) => {
+
+        const findQuestion = InitialRegQ?.documents.find(Qn => Qn.question_no === number)
+
+        if (!findQuestion) return null
+
+        if (findQuestion.question_no === 'IRQ-00001') {
+            return (
+                <div className='w-[100%]'>
+                    <CustomInput required
+                        {...formik.getFieldProps(findQuestion.question_no)}
+                        name={findQuestion.question_no} label={findQuestion?.question}
+                        error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
                 </div>
-                <div className='flex w-[90%] gap-[24pt]'>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00004') {
+            return (
+                <div className='w-[100%]'>
+                    <CustomInput required
+                        {...formik.getFieldProps(findQuestion.question_no)}
+                        name={findQuestion.question_no} error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
+                        label={findQuestion?.question} />
+                    <ParagraphComp className=' text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
+                </div>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00002') {
+            return (
+                <>
                     <div className='w-[100%]'>
                         <CustomInput required
-                            {...formik.getFieldProps('IRQ-00002')}
-                            error={formik.errors?.['IRQ-00002'] && formik.values?.['IRQ-00002'] ? true : false}
-                            name={'IRQ-00002'}
-                            label='Darpan ID' />
-                        <ParagraphComp Data={{ className: 'text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00002'] && formik.errors?.['IRQ-00002'] }} />
-                        <ParagraphComp Data={{ className: 'mt-[8px] text-black text-sm px-[8px]', text: `If you are not registered on NITI AAYOG DARPAN, please enter NA` }} />
+                            {...formik.getFieldProps(findQuestion.question_no)}
+                            error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
+                            name={findQuestion.question_no}
+                            label={findQuestion?.question} />
+                        <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                        <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
                     </div>
+                </>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00005') {
+            return (
+                <>
                     <div className='w-[100%] '>
-                        <CustomInput name='IRQ-00005'
-                            {...formik.getFieldProps('IRQ-00005')} error={formik.errors?.['IRQ-00005'] && formik.values?.['IRQ-00005'] ? true : false}
-                            label='Confirm Email Address' />
-                        <ParagraphComp Data={{ className: ' text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00005'] && formik.errors?.['IRQ-00005'] }} />
+                        <CustomInput name={findQuestion.question_no}
+                            {...formik.getFieldProps(findQuestion.question_no)} error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
+                            label={findQuestion?.question} />
+                        <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
 
                     </div>
-                </div>
-                <div className='flex w-[90%] gap-[24pt]'>
+                </>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00003') {
+            return (
+                <>
                     <div className='w-[50%] pe-[12pt]'>
                         <CustomInput
                             required
-                            {...formik.getFieldProps('IRQ-00003')}
-                            name="IRQ-00003" label='Name of the organization'
-                            error={formik.errors?.['IRQ-00003'] && formik.values?.['IRQ-00003'] ? true : false}
+                            {...formik.getFieldProps(findQuestion.question_no)}
+                            name={findQuestion.question_no} label={findQuestion?.question}
+                            error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
                         />
-                        <ParagraphComp Data={{ className: 'mt-[8px] text-black text-sm px-[8px]', text: `Name as Per Registration Certificate/Deed` }} />
+                        <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
                     </div>
-                </div>
-                <div>
-                    <div className='p-[20px] border-2 rounded-t-xl flex items-center justify-between'>
-                        <HeaderCompo className='text-xl text-black mt-0 m-0' tagType='h3' text='Communication' />
-                        <div className='flex gap-[20px]'>
-                            {
-                                tableValues.find(ele => ele?.check) &&
-                                <m.div {...zoomIn}>
-                                    <ButtonComp type='button' onClick={DeleteRows} text={<i class="fa-regular fa-trash-can text-white"></i>} className='px-[20px]  text-white bg-[red] rounded-full py-[5px]' />
-                                </m.div>
-                            }
-                            <ButtonComp type='button' onClick={addRow} text='Add' className='px-[20px] text-white bg-[#004878] rounded-full py-[5px]' />
-                        </div>
-                    </div>
+                </>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00006') {
+            return (
+                <>
                     <table className='border-2 rounded-t-2xl w-[100%]'>
                         <tr className='border-b-2 '>
                             <th className='p-[10px]'>
@@ -396,50 +419,48 @@ const RegistrationFirst = () => {
                                         <div className='w-[25px]'> </div>
                                     </>
                                 }
-
                             </th>
                             <th className='p-[10px]'>
                                 No.
                             </th>
-                            <th className='p-[10px]'>
+                            {findQuestion.sub_questions.map(subQ =>
 
-                                <div className='relative'>
-                                    Telephone No. Type <i onClick={() => { updateDropDownNames("Telephone No. Type") }} class="fa-solid fa-arrow-down cursor-pointer"></i>
-                                    {
-                                        tableDropDowns?.["Telephone No. Type"] &&
-                                        <div class=" p-[10px] bg-slate-100 absolute z-[99] w-fit" >
-                                            {tableDatas?.sub_questions?.find(ele => ele.question_no === "SQ-00001")?.options?.map(type =>
-                                                <option className='hover:bg-[#004878] rounded-lg p-[5px] cursor-pointer hover:text-white' onClick={(e) => { onOptionClick(e, 'SQ-00001') }} value={type?.option} >{type?.option}</option>
-                                            )}
-                                        </div>
-                                    }
-                                </div>
-                            </th>
-                            <th className='p-[10px]'>
+                                <>
+                                    <th className='p-[10px]'>
+                                        {subQ.question_no !== 'SQ-00002' &&
+                                            <div className='relative'>
+                                                {subQ.question} {subQ.type === 'Dropdown' && <i onClick={() => { updateDropDownNames(subQ.question_no) }} class="fa-solid fa-arrow-down cursor-pointer"></i>}
+                                                {tableDropDowns?.[subQ.question_no] &&
+                                                    <div class=" p-[10px] bg-slate-100 min-w-[150px] absolute z-[99] w-fit" >
+                                                        {subQ?.options?.map(type =>
+                                                            <option className='hover:bg-[#004878] rounded-lg p-[5px] cursor-pointer hover:text-white' onClick={(e) => { onOptionClick(e, subQ.question_no) }} value={type?.option} >{type?.option}</option>
+                                                        )}
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                        {subQ.question_no === 'SQ-00002' &&
+                                            <div className='relative'>
+                                                Country Code <i onClick={() => { updateDropDownNames("Country Code") }} class="fa-solid fa-arrow-down cursor-pointer"></i>
+                                                {
+                                                    tableDropDowns?.["Country Code"] &&
+                                                    <div class="p-[10px] bg-slate-100 max-h-[150px] overflow-y-scroll min-w-[150px]   absolute z-[99] w-fit" >
+                                                        {allCountries.map(country =>
+                                                            <option className='hover:bg-[#004878] rounded-lg p-[5px] cursor-pointer hover:text-white' onClick={(e) => { onOptionClick(e, 'SQ-00002') }} value={`+${country?.phone}`}>{country?.phone}</option>
+                                                        )}
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </th>
 
-
-                                <div className='relative'>
-                                    Country Code <i onClick={() => { updateDropDownNames("Country Code") }} class="fa-solid fa-arrow-down cursor-pointer"></i>
-                                    {
-                                        tableDropDowns?.["Country Code"] &&
-                                        <div class="p-[10px] bg-slate-100 max-h-[150px] overflow-y-scroll min-w-[150px]   absolute z-[99] w-fit" >
-                                            {allCountries.map(country =>
-                                                <option className='hover:bg-[#004878] rounded-lg p-[5px] cursor-pointer hover:text-white' onClick={(e) => { onOptionClick(e, 'SQ-00002') }} value={`+${country?.phone}`}>{country?.phone}</option>
-                                            )}
-                                        </div>
-                                    }
-                                </div>
-                            </th>
-                            <th className='p-[10px]'>
-                                Area code
-                            </th>
-                            <th className='p-[10px]'>
-                                Telephone No.
-                            </th>
+                                </>
+                            )}
                         </tr>
                         {tableValues.map((values, index) =>
                             <tr key={index} className='border-b-2'>
                                 <td className='p-[10px] '>
+
                                     {tableValues?.length > 1 ?
                                         <m.div {...zoomIn} className='flex items-center'>
                                             <InputCompo checked={values?.check} onClick={(e) => CheckAllFields(e, index)} type='checkbox' className='w-[25px] h-[25px] mr-auto ml-auto mt-auto mb-auto' />
@@ -472,56 +493,131 @@ const RegistrationFirst = () => {
                         )}
 
                     </table>
+                </>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00007') {
+            return (
+                <div className='w-[100%]'>
+                    <CustomInput required
+                        {...formik.getFieldProps(findQuestion.question_no)}
+                        name={findQuestion.question_no} label={findQuestion.question} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                </div>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00009') {
+            return (
+
+                <div className='w-[100%]'>
+                    <CustomInput label={findQuestion.question}
+                        required
+                        {...formik.getFieldProps(findQuestion.question_no)}
+                        name={findQuestion.question_no}
+                    />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                </div>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00008') {
+            return (
+                <div className='w-[100%]'>
+                    <CustomInput
+                        required
+                        {...formik.getFieldProps(findQuestion.question_no)}
+                        name={findQuestion.question_no}
+                        label={findQuestion.question} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                </div>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00010') {
+            return (
+                <div className='w-[100%]'>
+                    <CustomSelection required
+                        {...formik?.getFieldProps(findQuestion.question_no)}
+                        options={InitialRegQ?.documents?.find(ele => ele?.question_no === findQuestion.question_no)?.options}
+                        name={findQuestion.question_no} label={findQuestion.question} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                </div>
+            )
+        }
+        else if (findQuestion.question_no === 'IRQ-00011') {
+            return (
+
+                formik?.values?.['IRQ-00010'] === 'Obtained via call' || formik?.values?.['IRQ-00010'] === 'Obtained via email' ?
+                    <m.div {...fadeIn} className='w-[100%]'>
+                        <CustomFileInput label={findQuestion.question}
+                            required
+                            onChange={attachFile}
+                            value={fileName}
+                        />
+                    </m.div>
+                    : ''
+
+            )
+        }
+
+    }
+
+    // loading questions
+
+    if (fieldLoading || subLoading || mainRegistration) {
+        return (
+            <>
+
+                <div className='flex justify-center'>
+                    <ImageComp className='h-[60px] w-fit ' source='/Images/logo.png' />
+                </div>
+
+            </>)
+    }
+
+
+
+    // set default fields
+
+    return (
+        <>
+            <form className='flex flex-col gap-[30px]' onSubmit={formik.handleSubmit} action="">
+                <div className='flex w-[90%] gap-[24pt]'>
+                    {renderQuestions('IRQ-00001')}
+                    {renderQuestions('IRQ-00004')}
+                </div>
+                <div className='flex w-[90%] gap-[24pt]'>
+                    {renderQuestions('IRQ-00002')}
+                    {renderQuestions('IRQ-00005')}
+                </div>
+                <div className='flex w-[90%] gap-[24pt]'>
+                    {renderQuestions('IRQ-00003')}
+                </div>
+                <div>
+                    <div className='p-[20px] border-2 rounded-t-xl flex items-center justify-between'>
+                        <HeaderCompo className='text-xl text-black mt-0 m-0' tagType='h3' text='Communication' />
+                        <div className='flex gap-[20px]'>
+                            {
+                                tableValues.find(ele => ele?.check) &&
+                                <m.div {...zoomIn}>
+                                    <ButtonComp type='button' onClick={DeleteRows} text={<i class="fa-regular fa-trash-can text-white"></i>} className='px-[20px]  text-white bg-[red] rounded-full py-[5px]' />
+                                </m.div>
+                            }
+                            <ButtonComp type='button' onClick={addRow} text='Add' className='px-[20px] text-white bg-[#004878] rounded-full py-[5px]' />
+                        </div>
+                    </div>
+                    {renderQuestions('IRQ-00006')}
                 </div>
 
                 <div className='w-[100%] '>
                     <div className='w-[100%] flex gap-[24pt]'>
                         <div className='w-[100%]  flex gap-[30px] flex-col'>
-                            <div className='w-[100%]'>
-                                <CustomInput required
-                                    {...formik.getFieldProps('IRQ-00007')}
-                                    name='IRQ-00007' label='Name of the Person filling the form' />
-                                <ParagraphComp Data={{ className: 'text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00007'] && formik.errors?.['IRQ-00007'] }} />
-                            </div>
-                            <div className='w-[100%]'>
-                                <CustomInput label='Place'
-                                    required
-                                    {...formik.getFieldProps('IRQ-00009')}
-                                    name='IRQ-00009'
-                                />
-                                <ParagraphComp Data={{ className: 'text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00009'] && formik.errors?.['IRQ-00009'] }} />
-                            </div>
-                            <div className='w-[100%]'>
-                                <CustomInput
-                                    required
-                                    {...formik.getFieldProps('IRQ-00008')}
-                                    name='IRQ-00008'
-                                    label='Designation of the person' />
-                                <ParagraphComp Data={{ className: 'text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00008'] && formik.errors?.['IRQ-00008'] }} />
-                            </div>
-
+                            {renderQuestions('IRQ-00007')}
+                            {renderQuestions('IRQ-00009')}
+                            {renderQuestions('IRQ-00008')}
                         </div>
                         <div className=' w-[100%] h-auto '>
                             <div className='w-[100%] flex flex-col gap-[30px] h-[100%]'>
-                                <div className='w-[100%]'>
-                                    <CustomSelection required
-                                        {...formik?.getFieldProps('IRQ-00010')}
-                                        options={data?.documents?.find(ele => ele?.question_no === 'IRQ-00010')?.options}
-                                        name='IRQ-00010' label='Name of the Person filling the form' />
-                                    <ParagraphComp Data={{ className: 'text-[red] text-[10px] px-[8px]', text: formik.values?.['IRQ-00010'] && formik.errors?.['IRQ-00010'] }} />
-                                </div>
-                                {
-                                    formik?.values?.['IRQ-00010'] === 'Obtained via call' || formik?.values?.['IRQ-00010'] === 'Obtained via email' ?
-                                        <m.div {...fadeIn} className='w-[100%]'>
-                                            <CustomFileInput label='Consent Obtained proof'
-                                                required
-                                                onChange={attachFile}
-                                                value={fileName}
-                                            />
-                                        </m.div>
-                                        : ''
-                                }
-
+                                {renderQuestions('IRQ-00010')}
+                                {renderQuestions('IRQ-00011')}
                             </div>
                         </div>
                     </div>

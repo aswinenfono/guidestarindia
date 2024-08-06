@@ -19,7 +19,7 @@ const FooterComp = (props, { theme }) => {
                                     {props.logo && <img loading="lazy" src={props.logo} alt="logo" width="111" height="36" />}
                                 </Link>
                                 <div className='flex flex-col items-center gap-4'>
-                                    <ImageComp Data={{ source: './Images/logo.png', className: 'w-[80%] max-w-[100%] object-cover max-h-[100%]' }} />
+                                    <ImageComp source='./Images/logo.png' className='w-[80%] max-w-[100%] object-cover max-h-[100%]' />
                                     <div className='FooterCompIcons flex items-center gap-3 max-md:p-3'>
                                         <i class="fa-regular fa-message"></i>
                                         <i class="fa-brands fa-linkedin"></i>
@@ -37,11 +37,11 @@ const FooterComp = (props, { theme }) => {
             </Footer>
             <div className={`h-auto ${props?.theme === "light" ? 'bg-[#4472C4]' : 'bg-[#004878]'} gap-4 p-[10px] justify-center flex flex-wrap`}>
                 {FooterUnderData.map(ele =>
-                    <ParagraphComp Data={{ className: 'text-1xl text-white max-sm:text-lg', text: ele }} />
+                    <ParagraphComp className={'text-1xl text-white max-sm:text-lg'} text={ele} />
                 )}
             </div >
             <div className='h-auto bg-white gap-4 p-[10px] justify-center flex flex-wrap'>
-                <ParagraphComp Data={{ className: 'text-sm text-black', text: "GuideStar India is a programme of Civil Society Information Services India (CSISI), a public charitable trust registered in India with 80G and FCRA registration. ©2024 CSISI.Support GuideStar India." }} />
+                <ParagraphComp className={'text-sm text-black'} text="GuideStar India is a programme of Civil Society Information Services India (CSISI), a public charitable trust registered in India with 80G and FCRA registration. ©2024 CSISI.Support GuideStar India." />
             </div>
         </>
     )
