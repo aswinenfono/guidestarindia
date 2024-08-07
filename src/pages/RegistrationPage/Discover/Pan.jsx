@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import CustomSelection from '../../Components/SelectionComp/CustomSelection'
-import CustomFileInput from '../../Components/InputCompo/CustomFileInput'
-import HeaderCompo from '../../Components/HeaderComp/HeaderCompo'
-import ButtonComp from '../../Components/ButtonComp/ButtonComp'
-import { ParagraphComp } from '../../Components/ParagraphComp/ParagraphComp'
-import CustomInput from '../../Components/InputCompo/CustomInput'
-import { InputCompo } from '../../Components/InputCompo/InputCompo'
+import CustomSelection from '../../../Components/SelectionComp/CustomSelection'
+import CustomFileInput from '../../../Components/InputCompo/CustomFileInput'
+import HeaderCompo from '../../../Components/HeaderComp/HeaderCompo'
+import ButtonComp from '../../../Components/ButtonComp/ButtonComp'
+import { ParagraphComp } from '../../../Components/ParagraphComp/ParagraphComp'
+import CustomInput from '../../../Components/InputCompo/CustomInput'
+import { InputCompo } from '../../../Components/InputCompo/InputCompo'
 // import CustomTextarea from '../../Components/textareaComp/CustomTextarea'
-import ModalComp from '../../Components/ModalComp'
+import ModalComp from '../../../Components/ModalComp'
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import * as Yup from 'yup';
 import { useFormik } from 'formik'
 import { enqueueSnackbar } from 'notistack'
 import { useQuery } from '@tanstack/react-query'
-import { discoveryInitialQ } from '../../Store/auth'
+import { discoveryInitialQ } from '../../../Store/auth'
 const RegistrationSecond = () => {
     const [tableDropDowns, setTableDropDowns] = useState()
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -179,10 +179,10 @@ const RegistrationSecond = () => {
 
     return (
         <>
-            <form className='flex gap-[30px] flex-col' action="">
+            <form className='flex gap-[30px] w-[100%] flex-col' action="">
 
                 {/* Upload pan section */}
-                <div className='w-[80%] flex  gap-[24pt] '>
+                <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
                         {/* {renderQuestions('DRQ-00001')} */}
                         <CustomFileInput label='Upload PAN Card' />
@@ -196,7 +196,7 @@ const RegistrationSecond = () => {
                     </div>
                 </div>
 
-                <div className='w-[80%] flex  gap-[24pt] '>
+                <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[50%] pe-[13pt]'>
                         {/* {renderQuestions('DRQ-00003')} */}
                         <CustomFileInput label='Upload New PAN Card' />
@@ -209,11 +209,11 @@ const RegistrationSecond = () => {
 
 
                 {/* Address as per PAN section */}
-                <div className='w-[80%] flex mt-[25px] gap-[24pt]' >
+                <div className='w-[100%] flex mt-[25px] gap-[24pt]' >
                     <HeaderCompo tagType='h3' className='text-2xl mb-0 text-black' text='Registered Address' />
                 </div>
 
-                <div className='w-[80%] flex  gap-[24pt] '>
+                <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
                         <CustomSelection required={true} {...formik.getFieldProps('DRQ-00004')} options={discoverInitalData?.documents.find(ele => ele.question_no === 'DRQ-00004').options} label='Address Type' />
                     </div>
@@ -222,7 +222,7 @@ const RegistrationSecond = () => {
                     </div>
                 </div>
 
-                <div className='w-[80%] flex  gap-[24pt] '>
+                <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
                         <CustomInput required={true} {...formik.getFieldProps('DRQ-00005')} label='Unit No./ Room No./ Building name' />
                     </div>
@@ -230,7 +230,7 @@ const RegistrationSecond = () => {
                         <CustomSelection required={true} options={discoverInitalData?.documents.find(ele => ele.question_no === 'DRQ-00009').options} label="District" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt] '>
+                <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
                         <CustomInput required={true} {...formik.getFieldProps('DRQ-00006')} label='Street Area' />
                     </div>
@@ -238,7 +238,7 @@ const RegistrationSecond = () => {
                         <CustomInput required={true} {...formik.getFieldProps('DRQ-00010')} label="Pin code" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt] '>
+                <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
                         <CustomInput required={true} {...formik.getFieldProps('DRQ-00007')} label='City/Town/Taluk/Village' />
                     </div>
@@ -246,18 +246,20 @@ const RegistrationSecond = () => {
                         <CustomInput required={true} {...formik.getFieldProps('DRQ-00011')} label="Land Mark" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt] '>
+                <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
                         <CustomInput required={true} endLabel={<MyLocationIcon />} label='City/Town/Taluk/Village' />
                         <ParagraphComp text='Click the Locate icon to open map and pin location' className='mt-[8px] text-black text-sm px-[8px]' />
                     </div>
 
                 </div>
-
+                <div className='border-b-2' />
                 <div className='flex justify-end'>
-                    <ButtonComp  {...formik.getFieldProps('DRQ-00012')} type={'submit'} className='px-[20px] py-[6px] text-white bg-[#004878] rounded-full ' text='Save & Next' />
+                    <div className='flex gap-[20px]'>
+                        <ButtonComp text={'Save'} className='px-[20px] rounded-full border-1 border-[#004878] text-[#004878] py-[10px]' />
+                        <ButtonComp text={'Save & Next'} className='px-[20px] rounded-full bg-[#004878] text-[white] py-[10px]' />
+                    </div>
                 </div>
-
             </form>
 
 
@@ -328,7 +330,7 @@ const RegistrationSecond = () => {
                 </div>
                 <div className='border-b-2' /> */}
             {/* previous, organization, designation section */}
-            {/* <div className='w-[80%] flex  gap-[24pt]' >
+            {/* <div className='w-[100%] flex  gap-[24pt]' >
                     <div className='w-[100%]'>
                         <CustomInput label='Previous Legal Names the or' />
                         <ParagraphComp Data={{ text: 'Name as per registration certificate/ Deed', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
@@ -338,7 +340,7 @@ const RegistrationSecond = () => {
                         <ParagraphComp Data={{ text: 'Enter the correct address starting with http:// for example http://www.guidestar.org', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]' >
+                <div className='w-[100%] flex  gap-[24pt]' >
                     <div className='w-[50%] pe-[13pt]'>
                         <CustomInput label='Designation of the person' />
                     </div>
@@ -349,10 +351,10 @@ const RegistrationSecond = () => {
             {/* Registered Address Section */}
 
 
-            {/* <div className='w-[80%] flex  gap-[24pt]' >
+            {/* <div className='w-[100%] flex  gap-[24pt]' >
                     <HeaderCompo tagType='h3' className='text-2xl text-black' text='Registered Address' />
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomSelection label="Address Type" />
                     </div>
@@ -360,7 +362,7 @@ const RegistrationSecond = () => {
                         <CustomSelection label="State" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Unit No./ Room No./ Building name" />
                     </div>
@@ -368,7 +370,7 @@ const RegistrationSecond = () => {
                         <CustomSelection label="District" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Street Area" />
                     </div>
@@ -376,7 +378,7 @@ const RegistrationSecond = () => {
                         <CustomInput label="Pin code" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="City/Town/Taluk/Village" />
                     </div>
@@ -400,7 +402,7 @@ const RegistrationSecond = () => {
                         <span className='text-black'>Same as Registered address</span>
                     </label>
                 </div >
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomSelection label="Address Type" />
                     </div>
@@ -408,7 +410,7 @@ const RegistrationSecond = () => {
                         <CustomSelection label="State" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Unit No./ Room No./ Building name" />
                     </div>
@@ -416,7 +418,7 @@ const RegistrationSecond = () => {
                         <CustomSelection label="District" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Street Area" />
                     </div>
@@ -424,7 +426,7 @@ const RegistrationSecond = () => {
                         <CustomInput label="Pin code" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="City/Town/Taluk/Village" />
                     </div>
@@ -438,7 +440,7 @@ const RegistrationSecond = () => {
             {/* Address Proof Section */}
 
 
-            {/* <div className='w-[80%] flex  gap-[24pt]'>
+            {/* <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[50%] pe-[13pt]'>
                         <CustomFileInput label="Upload Document" />
                         <ParagraphComp Data={{ text: 'Address Proof', className: 'mt-[8px] text-black text-sm px-[8px]' }} />
@@ -454,7 +456,7 @@ const RegistrationSecond = () => {
                 <div>
                     <HeaderCompo className='text-2xl text-black' text='Head of Organization Details' tagType='h3' />
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Head of Organization’s name" />
                     </div>
@@ -462,7 +464,7 @@ const RegistrationSecond = () => {
                         <CustomInput label="Head of organization’s IT PAN" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Head of Organizations Designation" />
                     </div>
@@ -470,7 +472,7 @@ const RegistrationSecond = () => {
                         <CustomSelection label="Head of organization’s Gender" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Head of organization’s Email Id" />
                     </div>
@@ -492,7 +494,7 @@ const RegistrationSecond = () => {
                 <div>
                     <HeaderCompo className='text-2xl text-black' text='Head of Organization Contact Number' tagType='h3' />
                 </div>
-                <div className='w-[80%] flex'>
+                <div className='w-[100%] flex'>
                     <div className='w-[100%]  flex  gap-[24pt]'>
                         <div className='w-[100%]  gap-[24pt] flex flex-col '>
                             <CustomSelection label="Is the Head of the organization also the founder or Co-Founder ?" />
@@ -515,7 +517,7 @@ const RegistrationSecond = () => {
                 <div>
                     <HeaderCompo className={'text-2xl text-black'} text='Organization’s Contact Person’s Detail' tagType='h' />
                 </div>
-                <div className='w-[80%] flex gap-[24pt]'>
+                <div className='w-[100%] flex gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomSelection label="Telephone Number Type" />
                     </div>
@@ -526,7 +528,7 @@ const RegistrationSecond = () => {
                     </div>
 
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
 
                         <CustomInput label="Country Code" />
@@ -537,7 +539,7 @@ const RegistrationSecond = () => {
                         <CustomInput label="Country Code" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
 
                         <CustomInput label="Area Code" />
@@ -548,7 +550,7 @@ const RegistrationSecond = () => {
                         <CustomInput label="Area Code" />
                     </div>
                 </div>
-                <div className='w-[80%] flex  gap-[24pt]'>
+                <div className='w-[100%] flex  gap-[24pt]'>
                     <div className='w-[100%]'>
                         <CustomInput label="Telephone Number" />
                     </div>

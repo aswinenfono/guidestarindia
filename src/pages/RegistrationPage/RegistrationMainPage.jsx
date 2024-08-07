@@ -18,9 +18,13 @@ import { ImageComp } from '../../Components/ImageCompo/ImageComp';
 import CircleIcon from '@mui/icons-material/Circle';
 import HeaderCompo from '../../Components/HeaderComp/HeaderCompo';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import RegistrationFirst from './RegistrationFirst';
-import RegDiscoverPan from './RegDiscoverPan';
-import RegDiscoverLegal from './RegDiscoverLegal';
+import Initial from './InitialRegistration/Initial';
+import Pan from './Discover/Pan';
+import LegalRegistration from './Discover/LegalRegistration';
+import HeadOfOrganization from './Discover/HeadOfOrganization';
+import ContactPersonOfOrganization from './Discover/ContactPersonOfOrganization';
+import BriefDescriptionAboutNPO from './Discover/BriefDescriptionAboutNPO';
+import SeeWhatWeDo from './Discover/SeeWhatWeDo';
 const drawerWidth = 340;
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -81,19 +85,19 @@ const RegistrationMainPage = () => {
         },
         {
             tab: 'Discover Registration Details',
-            subTabs: ['Page 2', 'Page 3', 'Page 4']
+            subTabs: ['PAN', 'Legal Registrations', 'Head of Organisation', 'Contact Person of Organization', 'Brief description about NPO', 'See What we do']
         },
         {
             tab: 'Engage Details',
-            subTabs: ['Page 5', 'Page 6']
+            subTabs: ['Page 8', 'Page 9']
         },
     ]
 
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     const [mainForm, setMainForm] = React.useState()
     const [subTabs, setSubTabs] = React.useState({
-        'Page 1': true
+        'PAN': true
     }
     );
     const [tabs, setTabs] = React.useState({
@@ -124,12 +128,11 @@ const RegistrationMainPage = () => {
     return (
 
         <>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', }}>
                 <CssBaseline />
 
-                <Drawer variant="permanent" open={open}>
-
-                    <DrawerHeader className='flex flex-col  gap-2 justify-start items-start'>
+                <Drawer className='z-[12] ' variant="permanent" open={open}>
+                    <DrawerHeader className='flex flex-col   gap-2 justify-start items-start'>
                         {open &&
                             <>
                                 <div className='w-[100%] pl-[10px] flex justify-start'>
@@ -158,9 +161,17 @@ const RegistrationMainPage = () => {
                             <MenuIcon />
                         </IconButton>
                     </DrawerHeader>
-                    <Divider />
-                    <List>
-                        {registrationTabs?.map((text, index) => (
+
+                    <List sx={{
+                        overflowY: 'scroll',
+                        scrollbarWidth: 'none', /* Firefox */
+                        '&::-webkit-scrollbar': {
+                            display: 'none' /* Safari and Chrome */
+                        }
+                    }}>
+
+                        <Divider />
+                        {open && registrationTabs?.map((text, index) => (
                             <>
                                 <div className='w-[100%] flex justify-between items-center'>
                                     <ListItem onClick={() => selectTab(text?.tab)} key={text} disablePadding sx={{
@@ -186,7 +197,7 @@ const RegistrationMainPage = () => {
                                 </div>
 
                                 {
-                                    text?.subTabs.map(ele =>
+                                    open && text?.subTabs.map(ele =>
                                         <div className='p-[10px] w-[100%] '>
                                             <ListItem onClick={() => selectSubTab(ele)} key={text} disablePadding sx={{
                                                 display:
@@ -237,18 +248,29 @@ const RegistrationMainPage = () => {
                     <Divider />
 
                 </Drawer>
-                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                    <DrawerHeader />
+                <Box component="main" sx={{ p: '40px', width: '100%' }}>
                     {
                         subTabs?.["Page 1"] ?
-                            <RegistrationFirst setMainForm={setMainForm} />
+                            <Initial setMainForm={setMainForm} />
                             :
-                            subTabs?.['Page 2'] ?
-                                <RegDiscoverPan /> :
-                                subTabs?.['Page 3'] ?
-                                    <RegDiscoverLegal />
-                                    : ''
-
+                            subTabs?.['PAN'] ?
+                                <Pan />
+                                :
+                                subTabs?.['Legal Registrations'] ?
+                                    <LegalRegistration />
+                                    :
+                                    subTabs?.['Head of Organisation'] ?
+                                        <HeadOfOrganization />
+                                        :
+                                        subTabs?.['Contact Person of Organization'] ?
+                                            <ContactPersonOfOrganization />
+                                            :
+                                            subTabs?.['Brief description about NPO'] ?
+                                                <BriefDescriptionAboutNPO />
+                                                :
+                                                subTabs?.['See What we do'] ?
+                                                    <SeeWhatWeDo />
+                                                    : ''
 
                     }
                 </Box>

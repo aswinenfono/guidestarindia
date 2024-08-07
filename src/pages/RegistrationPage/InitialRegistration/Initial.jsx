@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import CustomInput from '../../Components/InputCompo/CustomInput'
-import CustomSelection from '../../Components/SelectionComp/CustomSelection'
-import { ParagraphComp } from '../../Components/ParagraphComp/ParagraphComp'
-import HeaderCompo from '../../Components/HeaderComp/HeaderCompo'
-import ButtonComp from '../../Components/ButtonComp/ButtonComp'
+import CustomInput from '../../../Components/InputCompo/CustomInput'
+import CustomSelection from '../../../Components/SelectionComp/CustomSelection'
+import { ParagraphComp } from '../../../Components/ParagraphComp/ParagraphComp'
+import HeaderCompo from '../../../Components/HeaderComp/HeaderCompo'
+import ButtonComp from '../../../Components/ButtonComp/ButtonComp'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { initialLoading, initialRegistration, initialSubRegistration } from '../../Store/auth'
-import { InputCompo } from '../../Components/InputCompo/InputCompo'
+import { initialLoading, initialRegistration, initialSubRegistration } from '../../../Store/auth'
+import { InputCompo } from '../../../Components/InputCompo/InputCompo'
 import * as Yup from 'yup';
 import { useFormik } from 'formik'
-import { allCountries } from './RegistrationDatas'
-import CustomFileInput from '../../Components/InputCompo/CustomFileInput'
+import { allCountries } from '../RegistrationDatas'
+import CustomFileInput from '../../../Components/InputCompo/CustomFileInput'
 import { m } from 'framer-motion'
-import { fadeIn, zoomIn } from '../../Functions/GlobalAnimations'
+import { fadeIn, zoomIn } from '../../../Functions/GlobalAnimations'
 import { enqueueSnackbar } from 'notistack'
-import { ImageComp } from '../../Components/ImageCompo/ImageComp'
+import { ImageComp } from '../../../Components/ImageCompo/ImageComp'
 const RegistrationFirst = ({ setMainForm }) => {
     const [tableDropDowns, setTableDropDowns] = useState()
     const [tableDatas, setTableDatas] = useState()
@@ -345,7 +345,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         name={findQuestion.question_no} label={findQuestion?.question}
                         error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false} />
                     <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                    <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
+                    <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
                 </div>
             )
         }
@@ -357,7 +357,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         name={findQuestion.question_no} error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
                         label={findQuestion?.question} />
                     <ParagraphComp className=' text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                    <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
+                    <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
                 </div>
             )
         }
@@ -371,7 +371,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                             name={findQuestion.question_no}
                             label={findQuestion?.question} />
                         <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                        <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
+                        <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
                     </div>
                 </>
             )
@@ -399,7 +399,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                             name={findQuestion.question_no} label={findQuestion?.question}
                             error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
                         />
-                        <ParagraphComp className='mt-[8px] text-black text-sm px-[8px]' text={findQuestion.description} />
+                        <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
                     </div>
                 </>
             )
@@ -407,7 +407,7 @@ const RegistrationFirst = ({ setMainForm }) => {
         else if (findQuestion.question_no === 'IRQ-00006') {
             return (
                 <>
-                    <table className='border-2 rounded-t-2xl w-[100%]'>
+                    <table className='border-2 text-[#667085] rounded-t-2xl w-[100%]'>
                         <tr className='border-b-2 '>
                             <th className='p-[10px]'>
                                 {tableValues.length > 1 ?
@@ -441,9 +441,9 @@ const RegistrationFirst = ({ setMainForm }) => {
                                         }
                                         {subQ.question_no === 'SQ-00002' &&
                                             <div className='relative'>
-                                                Country Code <i onClick={() => { updateDropDownNames("Country Code") }} class="fa-solid fa-arrow-down cursor-pointer"></i>
+                                                Country Code {tableValues?.[tableValues?.length - 1]?.['SQ-00001'] === 'Mobile' && <i onClick={() => { updateDropDownNames(subQ.question_no) }} class="fa-solid fa-arrow-down cursor-pointer"></i>}
                                                 {
-                                                    tableDropDowns?.["Country Code"] &&
+                                                    tableDropDowns?.[subQ.question_no] &&
                                                     <div class="p-[10px] bg-slate-100 max-h-[150px] overflow-y-scroll min-w-[150px]   absolute z-[99] w-fit" >
                                                         {allCountries.map(country =>
                                                             <option className='hover:bg-[#004878] rounded-lg p-[5px] cursor-pointer hover:text-white' onClick={(e) => { onOptionClick(e, 'SQ-00002') }} value={`+${country?.phone}`}>{country?.phone}</option>
@@ -562,16 +562,8 @@ const RegistrationFirst = ({ setMainForm }) => {
 
     // loading questions
 
-    if (fieldLoading || subLoading || mainRegistration) {
-        return (
-            <>
+    if (fieldLoading || subLoading || mainRegistration) return (<><h5>Loading...</h5> </>)
 
-                <div className='flex justify-center'>
-                    <ImageComp className='h-[60px] w-fit ' source='/Images/logo.png' />
-                </div>
-
-            </>)
-    }
 
 
 
@@ -580,15 +572,15 @@ const RegistrationFirst = ({ setMainForm }) => {
     return (
         <>
             <form className='flex flex-col gap-[30px]' onSubmit={formik.handleSubmit} action="">
-                <div className='flex w-[90%] gap-[24pt]'>
+                <div className='flex w-[100%] gap-[24pt]'>
                     {renderQuestions('IRQ-00001')}
                     {renderQuestions('IRQ-00004')}
                 </div>
-                <div className='flex w-[90%] gap-[24pt]'>
+                <div className='flex w-[100%] gap-[24pt]'>
                     {renderQuestions('IRQ-00002')}
                     {renderQuestions('IRQ-00005')}
                 </div>
-                <div className='flex w-[90%] gap-[24pt]'>
+                <div className='flex w-[100%] gap-[24pt]'>
                     {renderQuestions('IRQ-00003')}
                 </div>
                 <div>
@@ -598,10 +590,10 @@ const RegistrationFirst = ({ setMainForm }) => {
                             {
                                 tableValues.find(ele => ele?.check) &&
                                 <m.div {...zoomIn}>
-                                    <ButtonComp type='button' onClick={DeleteRows} text={<i class="fa-regular fa-trash-can text-white"></i>} className='px-[20px]  text-white bg-[red] rounded-full py-[5px]' />
+                                    <ButtonComp type='button' onClick={DeleteRows} text={<i class="fa-regular fa-trash-can text-white"></i>} className='px-[20px] h-[40px] text-white bg-[red] rounded-full py-[5px]' />
                                 </m.div>
                             }
-                            <ButtonComp type='button' onClick={addRow} text='Add' className='px-[20px] text-white bg-[#004878] rounded-full py-[5px]' />
+                            <ButtonComp type='button' onClick={addRow} text='Add' className='px-[20px] h-[40px] text-white bg-[#004878] rounded-full py-[5px]' />
                         </div>
                     </div>
                     {renderQuestions('IRQ-00006')}
@@ -623,7 +615,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                     </div>
                 </div>
                 <div className='flex justify-end'>
-                    <ButtonComp type={'submit'} className='px-[20px] py-[6px] text-white bg-[#004878] rounded-full ' text='Save & Next' />
+                    <ButtonComp type={'submit'} className='px-[20px] py-[6px] h-[40px] text-white bg-[#004878] rounded-full ' text='Save & Next' />
                 </div>
             </form >
 

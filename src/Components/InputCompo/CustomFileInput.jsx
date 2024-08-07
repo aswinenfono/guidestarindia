@@ -7,6 +7,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 const CustomTextField = styled(TextField)(({ theme }) => ({
     '& .MuiOutlinedInput-root': {
         '& fieldset': {
+            borderRadius: '8px',
             borderColor: 'gray', // Default border color
         },
         '&:hover fieldset': {
@@ -31,7 +32,7 @@ const CustomFileInput = ({ value, onChange, label }) => {
     };
 
 
-    
+
 
     return (
         <Box

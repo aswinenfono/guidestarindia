@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const CustomTextField = styled(TextField)(({ theme, type }) => ({
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
+      borderRadius: '8px',
       borderColor: 'gray',
     },
     '&:hover fieldset': {

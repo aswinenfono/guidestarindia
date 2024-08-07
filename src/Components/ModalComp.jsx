@@ -1,3 +1,4 @@
+import zIndex from '@mui/material/styles/zIndex';
 import React from 'react'
 import Modal from 'react-modal';
 const ModalComp = ({ afterOpenModal, closeModal, children, modalIsOpen, width }) => {
@@ -9,6 +10,7 @@ const ModalComp = ({ afterOpenModal, closeModal, children, modalIsOpen, width })
             bottom: 'auto',
             marginRight: '-50%',
             width: width,
+            zIndex: '12022',
             transform: 'translate(-50%, -50%)',
         },
         overlay: {
