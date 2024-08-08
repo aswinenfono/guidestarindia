@@ -344,7 +344,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         {...formik.getFieldProps(findQuestion.question_no)}
                         name={findQuestion.question_no} label={findQuestion?.question}
                         error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
                     <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
                 </div>
             )
@@ -356,7 +356,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         {...formik.getFieldProps(findQuestion.question_no)}
                         name={findQuestion.question_no} error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
                         label={findQuestion?.question} />
-                    <ParagraphComp className=' text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className=' text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
                     <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
                 </div>
             )
@@ -370,7 +370,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                             error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
                             name={findQuestion.question_no}
                             label={findQuestion?.question} />
-                        <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                        <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
                         <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
                     </div>
                 </>
@@ -383,7 +383,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         <CustomInput name={findQuestion.question_no}
                             {...formik.getFieldProps(findQuestion.question_no)} error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
                             label={findQuestion?.question} />
-                        <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                        <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
 
                     </div>
                 </>
@@ -502,7 +502,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                     <CustomInput required
                         {...formik.getFieldProps(findQuestion.question_no)}
                         name={findQuestion.question_no} label={findQuestion.question} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
                 </div>
             )
         }
@@ -515,7 +515,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         {...formik.getFieldProps(findQuestion.question_no)}
                         name={findQuestion.question_no}
                     />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
                 </div>
             )
         }
@@ -527,7 +527,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         {...formik.getFieldProps(findQuestion.question_no)}
                         name={findQuestion.question_no}
                         label={findQuestion.question} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
                 </div>
             )
         }
@@ -538,7 +538,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                         {...formik?.getFieldProps(findQuestion.question_no)}
                         options={InitialRegQ?.documents?.find(ele => ele?.question_no === findQuestion.question_no)?.options}
                         name={findQuestion.question_no} label={findQuestion.question} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px]' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
                 </div>
             )
         }
