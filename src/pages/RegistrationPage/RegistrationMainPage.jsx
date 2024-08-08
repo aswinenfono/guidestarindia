@@ -97,7 +97,7 @@ const RegistrationMainPage = () => {
     const [open, setOpen] = React.useState(true);
     const [mainForm, setMainForm] = React.useState()
     const [subTabs, setSubTabs] = React.useState({
-        'PAN': true
+        'Page 1': true
     }
     );
     const [tabs, setTabs] = React.useState({

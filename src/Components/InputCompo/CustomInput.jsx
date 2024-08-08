@@ -36,11 +36,12 @@ const CustomInput = ({
   error,
   disabled,
   endLabel,
+  className,
 }) => {
   return (
     <div className="w-[100%]">
       <CustomTextField
-        className="w-[100%]"
+        className={`w-[100%] ${className}`}
         required={required}
         disabled={disabled}
         InputProps={{

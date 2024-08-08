@@ -23,26 +23,28 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
     },
 }));
 
-const CustomSelection = ({ label, name, required, onChange, value, options }) => {
+const CustomSelection = ({ label, name, required, disabled, onChange, mappingKey, value, options, className }) => {
     return (
         <CustomTextField
-            className='w-[100%]'
+            className={`w-[100%] ${className}`}
             id="outlined-select-currency-native"
             label={label}
             select
             required={required}
             name={name}
             onChange={onChange}
+
             SelectProps={{
                 native: true,
             }}
             variant="outlined"
             value={value}
+            disabled={disabled}
         >
             <option value=""></option>
             {options?.map((option, index) => (
-                <option key={index + 1} value={option.option}>
-                    {option.option}
+                <option key={index + 1} value={option?.[mappingKey] || option.option}>
+                    {option?.[mappingKey] || option.option}
                 </option>
             ))}
         </CustomTextField>

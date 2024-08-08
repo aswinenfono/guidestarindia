@@ -12,111 +12,64 @@ import { useFormik } from 'formik'
 import { allCountries } from '../RegistrationDatas'
 import CustomFileInput from '../../../Components/InputCompo/CustomFileInput'
 import { m } from 'framer-motion'
-import { fadeIn, zoomIn } from '../../../Functions/GlobalAnimations'
+import { zoomIn } from '../../../Functions/GlobalAnimations'
 import { enqueueSnackbar } from 'notistack'
-import { ImageComp } from '../../../Components/ImageCompo/ImageComp'
 const RegistrationFirst = ({ setMainForm }) => {
-    const [tableDropDowns, setTableDropDowns] = useState()
-    const [tableDatas, setTableDatas] = useState()
     const [isCheckedAll, setIsCheckedAll] = useState(false)
     const [file64, setFile64] = useState()
     const [fileName, setFileName] = useState()
     const [tableValues, setTableValues] = useState([{}])
-
-
-    const modelSchema = Yup.object().shape({
-        'IRQ-00001': Yup.string()
-            .required("PAN number is required")
-            .matches(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Invalid PAN Number. It should be in the format: ABCDE1234F."),
-        'IRQ-00004': Yup.string()
-            .email('Invalid email address')
-            .required('Organization primary Email'),
-        'IRQ-00005': Yup.string()
-            .email('Invalid email address')
-            .required('Confirm Email address')
-            .oneOf([Yup.ref('IRQ-00004'), null], 'Emails must match'),
-        'IRQ-00002': Yup.string()
-            .matches(/^([A-Z]{2}\/\d{4}\/\d{7})$/, "Enter 2 characters for state, four numbers for year and 7 numbers for the actual registration number")
-            .required("Darpan ID is required"),
-        'IRQ-00003': Yup.string()
-            .required("Name of the organisation"),
-        'IRQ-00007': Yup.string()
-            .required("Name of the Person filling the form"),
-        'IRQ-00008': Yup.string()
-            .required("Designation of the person"),
-        'IRQ-00009': Yup.string()
-            .required("Designation of the person"),
-        'IRQ-00010': Yup.string()
-            .required("Designation of the person"),
-    });
-
-
-
-
-    const updateDropDownNames = (name) => {
-        if (tableDropDowns?.[name]) {
-            setTableDropDowns({ [name]: false })
-        } else {
-            setTableDropDowns({ [name]: true })
-        }
-    }
-
-
-
 
     const { isLoading: fieldLoading, data: InitialRegQ } = useQuery({
         queryKey: 'Questions',
         queryFn: () => initialLoading(),
     });
 
-    useEffect(() => {
-        if (InitialRegQ?.documents) {
-            const filteredValue = InitialRegQ.documents.find(ele => ele?.question_no === 'IRQ-00006')
-            if (filteredValue) {
-                setTableDatas(filteredValue)
+    const modelSchema = Yup.object().shape({
+        ...InitialRegQ?.documents?.reduce((schema, fields) => {
+            if (fields.mandatory === 1 && fields.type.toLowerCase() !== 'section') {
+                schema[fields?.question_no] = Yup.string().required(`${fields.question} is required`);
+                // Add any other validation specific to the fields in InitialRegQ.documents
+                if (fields.validation.toLowerCase() === 'email') {
+                    schema[fields?.question_no] = Yup.string()
+                        .email('Invalid email address')
+                        .required(`${fields.question} is required`);
+                } else if (fields.validation.toLowerCase() === 'pan') {
+                    schema[fields?.question_no] = Yup.string()
+                        .required(`${fields.question} is required`).matches(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Invalid PAN Number. It should be in the format: ABCDE1234F.");
+                } else if (fields.validation.toLowerCase() === 'darpan') {
+                    schema[fields?.question_no] = Yup.string()
+                        .required(`${fields.question} is required`).matches(/^([A-Z]{2}\/\d{4}\/\d{7})$/, "Invalid PAN Number. It should be in the format: ABCDE1234F.");
+                }
             }
-        }
-    }, [InitialRegQ?.documents])
+
+            return schema;
+        }, {}),
+    });
 
     const formik = useFormik({
-        initialValues: {
-            'IRQ-00001': '',
-            'IRQ-00002': '',
-            'IRQ-00003': '',
-            'IRQ-00004': '',
-            'IRQ-00005': '',
-            'IRQ-00005': '',
-            'IRQ-00007': '',
-            'IRQ-00008': '',
-            'IRQ-00009': '',
-            'IRQ-00010': '',
-            'IRQ-00011': '',
-        },
+        initialValues: InitialRegQ?.documents?.reduce((values, fields) => {
+            values[fields?.question_no] = '';  // Initializing values for each field dynamically
+            return values;
+        }, {}),
         validationSchema: modelSchema,
         enableReinitialize: true,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const tempData = [];
-                const keys = [
-                    'IRQ-00001', 'IRQ-00002', 'IRQ-00003', 'IRQ-00004',
-                    'IRQ-00005', 'IRQ-00006', 'IRQ-00007', 'IRQ-00008', 'IRQ-00009',
-                    'IRQ-00010', 'IRQ-00011'
-                ];
-
-                for (const key of keys) {
-                    if ((formik.values['IRQ-00010'] === "Obtained via email" || formik.values['IRQ-00010'] === "Obtained via call") && key === 'IRQ-00011') {
-                        tempData.push({
+                const tempData = Object.keys(values).map(key => {
+                    if ((values['IRQ-00010'] === "Obtained via email" || values['IRQ-00010'] === "Obtained via call") && key === 'IRQ-00011') {
+                        return {
                             question_no: key,
                             attach_file: file64,
                             file_name: fileName
-                        });
+                        };
                     } else {
-                        tempData.push({
+                        return {
                             question_no: key,
                             answer: values[key]
-                        });
+                        };
                     }
-                }
+                });
 
                 const structuredData = {
                     args: {
@@ -124,9 +77,8 @@ const RegistrationFirst = ({ setMainForm }) => {
                         initial_registration_answers: tempData
                     }
                 };
-
-                await submitData(structuredData);
-
+                console.log(structuredData)
+                // await submitData(structuredData);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -136,23 +88,20 @@ const RegistrationFirst = ({ setMainForm }) => {
     });
 
 
-
-
-    const onOptionClick = (e, name) => {
-        const value = e?.target?.value
-        let tempData = [...tableValues]
-        tempData[tableValues?.length - 1] = { ...tempData[tableValues?.length - 1], [name]: value }
-        setTableValues(tempData)
-        setTableDropDowns('')
-    }
-
+    // separate Update table values 
 
     const tableValuesUpdate = (e, name, index) => {
         const value = e?.target?.value
         let tempData = [...tableValues]
-        tempData[index] = { ...tempData[index], [name]: value }
+        tempData[index] = {
+            ...tempData[index], [name]: value
+        }
         setTableValues(tempData)
     }
+
+    console.log(tableValues)
+    // Add table rows 
+
     const addRow = () => {
         const nullValues =
             tableValues[tableValues.length - 1]?.['SQ-00001'] ||
@@ -329,236 +278,29 @@ const RegistrationFirst = ({ setMainForm }) => {
     }, [formik.values, formik.isValid, formik.dirty]);
 
 
-    // rendering fields in backend data
 
-    const renderQuestions = (number) => {
-
-        const findQuestion = InitialRegQ?.documents.find(Qn => Qn.question_no === number)
-
-        if (!findQuestion) return null
-
-        if (findQuestion.question_no === 'IRQ-00001') {
-            return (
-                <div className='w-[100%]'>
-                    <CustomInput required
-                        {...formik.getFieldProps(findQuestion.question_no)}
-                        name={findQuestion.question_no} label={findQuestion?.question}
-                        error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                    <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
-                </div>
-            )
+    const evaluateCondition = (value1, condition, value2) => {
+        switch (condition) {
+            case '===':
+                return value1 === value2;
+            case '!==':
+                return value1 !== value2;
+            case '>':
+                return value1 > value2;
+            case '<':
+                return value1 < value2;
+            case '>=':
+                return value1 >= value2;
+            case '<=':
+                return value1 <= value2;
+            // Add more cases as needed
+            default:
+                return false;
         }
-        else if (findQuestion.question_no === 'IRQ-00004') {
-            return (
-                <div className='w-[100%]'>
-                    <CustomInput required
-                        {...formik.getFieldProps(findQuestion.question_no)}
-                        name={findQuestion.question_no} error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
-                        label={findQuestion?.question} />
-                    <ParagraphComp className=' text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                    <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
-                </div>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00002') {
-            return (
-                <>
-                    <div className='w-[100%]'>
-                        <CustomInput required
-                            {...formik.getFieldProps(findQuestion.question_no)}
-                            error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
-                            name={findQuestion.question_no}
-                            label={findQuestion?.question} />
-                        <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                        <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
-                    </div>
-                </>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00005') {
-            return (
-                <>
-                    <div className='w-[100%] '>
-                        <CustomInput name={findQuestion.question_no}
-                            {...formik.getFieldProps(findQuestion.question_no)} error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
-                            label={findQuestion?.question} />
-                        <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
+    };
 
-                    </div>
-                </>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00003') {
-            return (
-                <>
-                    <div className='w-[50%] pe-[12pt]'>
-                        <CustomInput
-                            required
-                            {...formik.getFieldProps(findQuestion.question_no)}
-                            name={findQuestion.question_no} label={findQuestion?.question}
-                            error={formik.errors?.[findQuestion.question_no] && formik.values?.[findQuestion.question_no] ? true : false}
-                        />
-                        <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={findQuestion.description} />
-                    </div>
-                </>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00006') {
-            return (
-                <>
-                    <table className='border-2 text-[#667085] rounded-t-2xl w-[100%]'>
-                        <tr className='border-b-2 '>
-                            <th className='p-[10px]'>
-                                {tableValues.length > 1 ?
-                                    <m.div {...zoomIn} className='flex items-center'>
-                                        <InputCompo checked={isCheckedAll} onClick={(e) => { CheckAllFields(e) }} className='w-[25px] h-[25px] rounded-lg mr-auto ml-auto mt-auto mb-auto' type={'checkbox'} />
-                                    </m.div>
-                                    :
-                                    <>
-                                        <div className='w-[25px]'> </div>
-                                    </>
-                                }
-                            </th>
-                            <th className='p-[10px]'>
-                                No.
-                            </th>
-                            {findQuestion.sub_questions.map(subQ =>
 
-                                <>
-                                    <th className='p-[10px]'>
-                                        {subQ.question_no !== 'SQ-00002' &&
-                                            <div className='relative'>
-                                                {subQ.question} {subQ.type === 'Dropdown' && <i onClick={() => { updateDropDownNames(subQ.question_no) }} class="fa-solid fa-arrow-down cursor-pointer"></i>}
-                                                {tableDropDowns?.[subQ.question_no] &&
-                                                    <div class=" p-[10px] bg-slate-100 min-w-[150px] absolute z-[99] w-fit" >
-                                                        {subQ?.options?.map(type =>
-                                                            <option className='hover:bg-[#004878] rounded-lg p-[5px] cursor-pointer hover:text-white' onClick={(e) => { onOptionClick(e, subQ.question_no) }} value={type?.option} >{type?.option}</option>
-                                                        )}
-                                                    </div>
-                                                }
-                                            </div>
-                                        }
-                                        {subQ.question_no === 'SQ-00002' &&
-                                            <div className='relative'>
-                                                Country Code {tableValues?.[tableValues?.length - 1]?.['SQ-00001'] === 'Mobile' && <i onClick={() => { updateDropDownNames(subQ.question_no) }} class="fa-solid fa-arrow-down cursor-pointer"></i>}
-                                                {
-                                                    tableDropDowns?.[subQ.question_no] &&
-                                                    <div class="p-[10px] bg-slate-100 max-h-[150px] overflow-y-scroll min-w-[150px]   absolute z-[99] w-fit" >
-                                                        {allCountries.map(country =>
-                                                            <option className='hover:bg-[#004878] rounded-lg p-[5px] cursor-pointer hover:text-white' onClick={(e) => { onOptionClick(e, 'SQ-00002') }} value={`+${country?.phone}`}>{country?.phone}</option>
-                                                        )}
-                                                    </div>
-                                                }
-                                            </div>
-                                        }
-                                    </th>
 
-                                </>
-                            )}
-                        </tr>
-                        {tableValues.map((values, index) =>
-                            <tr key={index} className='border-b-2'>
-                                <td className='p-[10px] '>
-
-                                    {tableValues?.length > 1 ?
-                                        <m.div {...zoomIn} className='flex items-center'>
-                                            <InputCompo checked={values?.check} onClick={(e) => CheckAllFields(e, index)} type='checkbox' className='w-[25px] h-[25px] mr-auto ml-auto mt-auto mb-auto' />
-                                        </m.div>
-                                        :
-                                        <>
-                                            <div className='w-[25px]'>
-
-                                            </div>
-                                        </>
-                                    }
-
-                                </td>
-                                <td className='text-start p-[10px]'>
-                                    {index + 1}
-                                </td>
-                                <td className='p-[10px]'>
-                                    <CustomInput onChange={(e) => tableValuesUpdate(e, 'SQ-00001', index)} value={values?.['SQ-00001']} label="Enter" />
-                                </td>
-                                <td className='p-[10px]'>
-                                    <CustomInput disabled={values?.['SQ-00001']?.toLowerCase() === 'Mobile'.toLowerCase() ? false : true} onChange={(e) => tableValuesUpdate(e, 'SQ-00002', index)} value={values?.['SQ-00002']} label="Enter" />
-                                </td>
-                                <td className='p-[10px]'>
-                                    <CustomInput disabled={values?.['SQ-00001']?.toLowerCase() === 'Telephone'.toLowerCase() ? false : true} type='number' onChange={(e) => tableValuesUpdate(e, 'SQ-00003', index)} value={values?.['SQ-00003']} label="Enter" />
-                                </td>
-                                <td className='p-[10px]'>
-                                    <CustomInput type='number' onChange={(e) => tableValuesUpdate(e, 'SQ-00004', index)} value={values?.['SQ-00004']} label="Enter" />
-                                </td>
-                            </tr>
-                        )}
-
-                    </table>
-                </>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00007') {
-            return (
-                <div className='w-[100%]'>
-                    <CustomInput required
-                        {...formik.getFieldProps(findQuestion.question_no)}
-                        name={findQuestion.question_no} label={findQuestion.question} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                </div>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00009') {
-            return (
-
-                <div className='w-[100%]'>
-                    <CustomInput label={findQuestion.question}
-                        required
-                        {...formik.getFieldProps(findQuestion.question_no)}
-                        name={findQuestion.question_no}
-                    />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                </div>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00008') {
-            return (
-                <div className='w-[100%]'>
-                    <CustomInput
-                        required
-                        {...formik.getFieldProps(findQuestion.question_no)}
-                        name={findQuestion.question_no}
-                        label={findQuestion.question} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                </div>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00010') {
-            return (
-                <div className='w-[100%]'>
-                    <CustomSelection required
-                        {...formik?.getFieldProps(findQuestion.question_no)}
-                        options={InitialRegQ?.documents?.find(ele => ele?.question_no === findQuestion.question_no)?.options}
-                        name={findQuestion.question_no} label={findQuestion.question} />
-                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[findQuestion.question_no] && formik.errors?.[findQuestion.question_no]} />
-                </div>
-            )
-        }
-        else if (findQuestion.question_no === 'IRQ-00011') {
-            return (
-
-                formik?.values?.['IRQ-00010'] === 'Obtained via call' || formik?.values?.['IRQ-00010'] === 'Obtained via email' ?
-                    <m.div {...fadeIn} className='w-[100%]'>
-                        <CustomFileInput label={findQuestion.question}
-                            required
-                            onChange={attachFile}
-                            value={fileName}
-                        />
-                    </m.div>
-                    : ''
-
-            )
-        }
-
-    }
 
     // loading questions
 
@@ -569,9 +311,153 @@ const RegistrationFirst = ({ setMainForm }) => {
 
     // set default fields
 
+
+    console.log("formik.values>>>>", formik.values)
+
     return (
         <>
+
             <form className='flex flex-col gap-[30px]' onSubmit={formik.handleSubmit} action="">
+                <div className='flex flex-wrap gap-[30px] justify-between 100%'>
+                    {InitialRegQ?.documents.map(Fields =>
+                        <>
+                            <div className='w-[48%]'>
+                                {Fields.type.toLowerCase() === 'text' || Fields.type.toLowerCase() === 'number' ?
+                                    <div className={`${evaluateCondition(formik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) ? 'block' : 'block'}`}>
+
+                                        <CustomInput required
+                                            {...formik.getFieldProps(Fields.question_no)}
+                                            name={Fields.question_no} label={Fields.question}
+
+                                        />
+                                        <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[Fields.question_no] && formik.errors?.[Fields.question_no]} />
+                                        <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={Fields.description} />
+                                    </div>
+                                    :
+                                    Fields.type.toLowerCase() === 'dropdown'
+                                        ?
+                                        <div className={`${evaluateCondition(formik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) ? 'block' : 'block'}`}>
+                                            <>
+                                                <CustomSelection required options={Fields?.options}
+                                                    {...formik.getFieldProps(Fields.question_no)}
+                                                    name={Fields.question_no} label={Fields.question}
+                                                />
+                                                <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[Fields.question_no] && formik.errors?.[Fields.question_no]} />
+                                                <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={Fields.description} />                                        </>
+                                        </div>
+                                        :
+                                        Fields.type.toLowerCase() === 'attach' ?
+                                            <div className={`${!evaluateCondition(formik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) || !formik?.values?.[Fields?.depend_question] ? 'hidden' : 'block'}`}>
+                                                <>
+                                                    <CustomFileInput required options={Fields?.options}
+                                                        onChange={attachFile}
+                                                        value={fileName}
+                                                        name={Fields.question_no} label={Fields.question}
+                                                    />
+                                                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={formik.values?.[Fields.question_no] && formik.errors?.[Fields.question_no]} />
+                                                    <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={Fields.description} />                                              </>
+                                            </div>
+                                            : ''
+
+                                }
+                            </div>
+                            {Fields.type.toLowerCase() === 'section' ?
+                                <>
+                                    <div className='w-[100%]'>
+                                        <div className='p-[20px] w-[100%] border-2 rounded-t-xl flex items-center justify-between'>
+                                            <HeaderCompo className='text-xl text-black mt-0 m-0' tagType='h3' text='Communication' />
+                                            <div className='flex gap-[20px]'>
+                                                {
+                                                    tableValues.find(ele => ele?.check) &&
+                                                    <m.div {...zoomIn}>
+                                                        <ButtonComp type='button' onClick={DeleteRows} text={<i class="fa-regular fa-trash-can text-white"></i>} className='px-[20px] h-[40px] text-white bg-[red] rounded-full py-[5px]' />
+                                                    </m.div>
+                                                }
+                                                <ButtonComp type='button' onClick={addRow} text='Add' className='px-[20px] h-[40px] text-white bg-[#004878] rounded-full py-[5px]' />
+                                            </div>
+                                        </div>
+                                        <table className='border-2 text-[#667085] rounded-t-2xl w-[100%]'>
+                                            <tr className='border-b-2 '>
+                                                <th className='p-[10px]'>
+                                                    {tableValues.length > 1 ?
+                                                        <m.div {...zoomIn} className='flex items-center'>
+                                                            <InputCompo checked={isCheckedAll} onClick={(e) => { CheckAllFields(e) }} className='w-[25px] h-[25px] rounded-lg mr-auto ml-auto mt-auto mb-auto' type={'checkbox'} />
+                                                        </m.div>
+                                                        :
+                                                        <>
+                                                            <div className='w-[25px]'> </div>
+                                                        </>
+                                                    }
+                                                </th>
+                                                <th className='p-[10px]'>
+                                                    No.
+                                                </th>
+                                                {Fields.sub_questions.map(subQ =>
+
+                                                    <>
+                                                        <th className='p-[10px]'>
+                                                            {subQ.question} {subQ.type === 'Dropdown' && <i class="fa-solid fa-arrow-down "></i>}
+                                                        </th>
+
+                                                    </>
+                                                )}
+                                            </tr>
+                                            {tableValues.map((values, index) =>
+                                                <tr key={index} className='border-b-2'>
+                                                    <td className='p-[10px] '>
+
+                                                        {tableValues?.length > 1 ?
+                                                            <m.div {...zoomIn} className='flex items-center'>
+                                                                <InputCompo checked={values?.check} onClick={(e) => CheckAllFields(e, index)} type='checkbox' className='w-[25px] h-[25px] mr-auto ml-auto mt-auto mb-auto' />
+                                                            </m.div>
+                                                            :
+                                                            <>
+                                                                <div className='w-[25px]'>
+                                                                </div>
+                                                            </>
+                                                        }
+
+                                                    </td>
+                                                    <td className='text-start p-[10px]'>
+                                                        {index + 1}
+                                                    </td>
+                                                    {Fields.sub_questions.map(subQ =>
+                                                        <>
+                                                            {subQ.type === 'Dropdown'
+                                                                ?
+                                                                <td className='p-[10px]'>
+                                                                    <CustomSelection mappingKey={subQ?.question === 'Country Code' ? 'phone' : ''} options={subQ?.question === 'Country Code' ? allCountries : subQ?.options} onChange={(e) => tableValuesUpdate(e, subQ.question_no, index)} value={values?.[subQ.question_no]} label="Select" />
+                                                                </td>
+                                                                :
+                                                                subQ.type === 'Text' || subQ.type === 'Number'
+                                                                    ?
+                                                                    <td className='p-[10px]'>
+                                                                        <CustomInput options={subQ?.options} type={subQ?.type?.toLowerCase()} onChange={(e) => tableValuesUpdate(e, subQ.question_no, index)} value={values?.[subQ.question_no]} label="Select" />
+                                                                    </td>
+                                                                    : ''
+                                                            }
+                                                        </>
+                                                    )}
+                                                </tr>
+                                            )}
+                                        </table >
+                                    </div>
+                                </>
+                                : ''
+                            }
+                        </>
+                    )}
+
+
+                </div >
+                <div className='flex justify-end'>
+                    <ButtonComp type={'submit'} className='px-[20px] py-[6px] h-[40px] text-white bg-[#004878] rounded-full ' text='Save & Next' />
+                </div>
+
+            </form >
+
+
+            {/* <form className='flex flex-col gap-[30px]' onSubmit={formik.handleSubmit} action="">
                 <div className='flex w-[100%] gap-[24pt]'>
                     {renderQuestions('IRQ-00001')}
                     {renderQuestions('IRQ-00004')}
@@ -617,7 +503,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                 <div className='flex justify-end'>
                     <ButtonComp type={'submit'} className='px-[20px] py-[6px] h-[40px] text-white bg-[#004878] rounded-full ' text='Save & Next' />
                 </div>
-            </form >
+            </form > */}
 
         </>
     )
