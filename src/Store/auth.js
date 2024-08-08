@@ -80,7 +80,7 @@ export const discoveryInitialQ = async (payload) => {
     try {
         const { data } = await actionHandler({
             url: initialDiscoverQ,
-            method: 'GEt',
+            method: 'GET',
         });
 
         return data;

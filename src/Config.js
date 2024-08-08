@@ -1,5 +1,5 @@
 
-const baseApi = "http://guidestarindia.momsuat.com"
+const baseApi = "https://guidestarindia.momsuat.com"
 
 
 
