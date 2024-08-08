@@ -8,8 +8,8 @@ import CustomInput from '../../../Components/InputCompo/CustomInput';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useQuery } from '@tanstack/react-query';
-import { discoveryInitialQ } from '../../../Store/auth';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { discoveryInitialQ } from '../../../Store/auth/register';
 
 const RegistrationSecond = () => {
     const [tableDropDowns, setTableDropDowns] = useState();
