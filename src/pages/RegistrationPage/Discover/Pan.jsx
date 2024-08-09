@@ -8,18 +8,14 @@ import CustomInput from '../../../Components/InputCompo/CustomInput';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useQuery } from '@tanstack/react-query';
-import { discoveryInitialQ } from '../../../Store/auth';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { discoveryInitialQ } from '../../../Store/auth/register';
 
 const RegistrationSecond = () => {
     const [tableDropDowns, setTableDropDowns] = useState();
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [file64, setFile64] = useState(
-        {}
-    );
-    const [fileName, setFileName] = useState({
-
-    });
+    const [file64, setFile64] = useState();
+    const [fileName, setFileName] = useState();
 
     const modelSchema = Yup.object().shape({
         'DRQ-00002': Yup.string()
@@ -59,21 +55,22 @@ const RegistrationSecond = () => {
         validationSchema: modelSchema,
         enableReinitialize: true,
         onSubmit: async (values, { setSubmitting }) => {
-            console.log('checkinggggg>>>>>')
             try {
-                const tempData = [];
-                const keys = [
-                    'DRQ-00001', 'DRQ-00002', 'DRQ-00003', 'DRQ-00004', 'DRQ-00005',
-                    'DRQ-00006', 'DRQ-00007', 'DRQ-00008', 'DRQ-00009', 'DRQ-00010',
-                    'DRQ-00011', 'DRQ-00012'
-                ];
-
-                for (const key of keys) {
-                    tempData.push({
-                        question_no: key,
-                        answer: values[key]
-                    });
-                }
+                const tempData = discoverInitalData?.documents?.map(fields => {
+                    if (fields.type.toLowerCase() === 'attach') {
+                        console.log("fields>>>", fields)
+                        return {
+                            question_no: fields?.question_no,
+                            attach_file: file64?.[fields?.question_no],
+                            file_name: fileName?.[fields?.question_no]
+                        };
+                    } else {
+                        return {
+                            question_no: fields?.question_no,
+                            answer: values[fields?.question_no]
+                        };  
+                    }
+                });
 
                 const structuredData = {
                     args: {
@@ -81,7 +78,7 @@ const RegistrationSecond = () => {
                         initial_registration_answers: tempData
                     }
                 };
-
+                console.log("structuredData>>>>>", structuredData)
                 await submitData(structuredData);
 
             } catch (error) {
@@ -97,18 +94,25 @@ const RegistrationSecond = () => {
         queryFn: () => discoveryInitialQ(),
     });
 
-    console.log("discoverInitalData>>>>", discoverInitalData);
 
     const submitData = async (formData) => {
-        console.log("formData>>>", formData);
     };
 
-    console.log(formik);
 
-    const FileManager = () => {
 
+    const FileHandler = (e) => {
+        const file = e?.target?.files[0];
+        const name = e?.target?.name;
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result.split(',')[1];
+                setFile64({ ...file64, [name]: base64String })
+                setFileName({ ...fileName, [name]: file.name })
+            };
+            reader.readAsDataURL(file);
+        }
     }
-
     return (
         <>
             <form className='flex gap-[30px] w-[100%] flex-col' onSubmit={formik.handleSubmit}>
@@ -116,7 +120,7 @@ const RegistrationSecond = () => {
                 {/* Upload pan section */}
                 <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
-                        <CustomFileInput onChange={FileManager} label='Upload PAN Card' />
+                        <CustomFileInput value={fileName?.['DRQ-00001']} onChange={FileHandler} name='DRQ-00001' label='Upload PAN Card' />
                         <ParagraphComp text='Income Tax Permanent Account Number(IT PAN) of the Non Profit' className='mt-[8px] text-black text-sm px-[8px]' />
                     </div>
                     <div className='w-[100%]'>
@@ -127,7 +131,7 @@ const RegistrationSecond = () => {
 
                 <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[50%] pe-[13pt]'>
-                        <CustomFileInput label='Upload New PAN Card' />
+                        <CustomFileInput onChange={FileHandler} value={fileName?.['DRQ-00003']} name='DRQ-00003' label='Upload New PAN Card' />
                     </div>
                 </div>
 

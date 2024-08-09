@@ -5,7 +5,6 @@ import { ParagraphComp } from '../../../Components/ParagraphComp/ParagraphComp'
 import HeaderCompo from '../../../Components/HeaderComp/HeaderCompo'
 import ButtonComp from '../../../Components/ButtonComp/ButtonComp'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { initialLoading, initialRegistration, initialSubRegistration } from '../../../Store/auth'
 import { InputCompo } from '../../../Components/InputCompo/InputCompo'
 import * as Yup from 'yup';
 import { useFormik } from 'formik'
@@ -14,6 +13,7 @@ import CustomFileInput from '../../../Components/InputCompo/CustomFileInput'
 import { m } from 'framer-motion'
 import { zoomIn } from '../../../Functions/GlobalAnimations'
 import { enqueueSnackbar } from 'notistack'
+import { initialLoading, initialRegistration, initialSubRegistration } from '../../../Store/auth/register'
 const RegistrationFirst = ({ setMainForm }) => {
     const [isCheckedAll, setIsCheckedAll] = useState(false)
     const [file64, setFile64] = useState()
@@ -26,10 +26,13 @@ const RegistrationFirst = ({ setMainForm }) => {
     });
 
     const modelSchema = Yup.object().shape({
+
         ...InitialRegQ?.documents?.reduce((schema, fields) => {
+
             if (fields.mandatory === 1 && fields.type.toLowerCase() !== 'section') {
+
                 schema[fields?.question_no] = Yup.string().required(`${fields.question} is required`);
-                // Add any other validation specific to the fields in InitialRegQ.documents
+
                 if (fields.validation.toLowerCase() === 'email') {
                     schema[fields?.question_no] = Yup.string()
                         .email('Invalid email address')
@@ -38,8 +41,22 @@ const RegistrationFirst = ({ setMainForm }) => {
                     schema[fields?.question_no] = Yup.string()
                         .required(`${fields.question} is required`).matches(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "Invalid PAN Number. It should be in the format: ABCDE1234F.");
                 } else if (fields.validation.toLowerCase() === 'darpan') {
+
                     schema[fields?.question_no] = Yup.string()
-                        .required(`${fields.question} is required`).matches(/^([A-Z]{2}\/\d{4}\/\d{7})$/, "Invalid PAN Number. It should be in the format: ABCDE1234F.");
+
+                        .required(`${fields.question} is required`)
+
+                        .test(
+                            'is-valid-darpan',
+
+                            'Invalid PAN Number. It should be in the format: ABCDE1234F.',
+                            (value) => {
+                                if (value?.toUpperCase() === 'NA') {
+                                    return true;
+                                }
+                                return /^([A-Z]{2}\/\d{4}\/\d{7})$/.test(value);
+                            }
+                        );
                 }
             }
 
@@ -48,7 +65,7 @@ const RegistrationFirst = ({ setMainForm }) => {
     });
 
     const formik = useFormik({
-        initialValues: InitialRegQ?.documents?.reduce((values, fields) => {
+        initialValues: InitialRegQ?.documents?.reduce((values, fields,) => {
             values[fields?.question_no] = '';  // Initializing values for each field dynamically
             return values;
         }, {}),
@@ -56,17 +73,17 @@ const RegistrationFirst = ({ setMainForm }) => {
         enableReinitialize: true,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const tempData = Object.keys(values).map(key => {
-                    if ((values['IRQ-00010'] === "Obtained via email" || values['IRQ-00010'] === "Obtained via call") && key === 'IRQ-00011') {
+                const tempData = InitialRegQ?.documents?.map(fields => {
+                    if (evaluateCondition(formik?.values?.[fields?.depend_question], fields.condition, fields.value)) {
                         return {
-                            question_no: key,
+                            question_no: fields?.question_no,
                             attach_file: file64,
                             file_name: fileName
                         };
                     } else {
                         return {
-                            question_no: key,
-                            answer: values[key]
+                            question_no: fields?.question_no,
+                            answer: values[fields?.question_no]
                         };
                     }
                 });
@@ -78,7 +95,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                     }
                 };
                 console.log(structuredData)
-                // await submitData(structuredData);
+                await submitData(structuredData);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -100,15 +117,24 @@ const RegistrationFirst = ({ setMainForm }) => {
     }
 
     console.log(tableValues)
+
     // Add table rows 
 
-    const addRow = () => {
-        const nullValues =
-            tableValues[tableValues.length - 1]?.['SQ-00001'] ||
-            tableValues[tableValues.length - 1]?.['SQ-00002'] ||
-            tableValues[tableValues.length - 1]?.['SQ-00003'] ||
-            tableValues[tableValues.length - 1]?.['SQ-00004']
-        if (nullValues) {
+    const addRow = (Qnm) => {
+
+        const findTable = InitialRegQ?.documents?.find(ele => ele.question_no === Qnm)
+
+
+        const nullValues = findTable.sub_questions.map(ele => {
+            if (tableValues[tableValues.length - 1]?.[ele.question_no]) {
+                return tableValues[tableValues.length - 1]?.[ele.question_no]
+            } else {
+                return null
+            }
+        }
+        ).filter(value => value !== null)
+        console.log("nullValues>>>>>>", nullValues)
+        if (nullValues.length > 0) {
             setTableValues([...tableValues, {}])
         } else {
             enqueueSnackbar('Please ensure that at least one field is filled out', { variant: 'warning' });
@@ -228,10 +254,11 @@ const RegistrationFirst = ({ setMainForm }) => {
     const submitTable = async (reg_name) => {
         if (reg_name) {
             try {
+                const main_question_no = InitialRegQ?.documents?.find(ele => ele.type.toLowerCase() === 'section')
                 let passedValues = {
                     args: {
                         reg_name: reg_name,
-                        main_question_no: 'IRQ-00006',
+                        main_question_no: main_question_no?.question_no,
                         question_answers: []
                     }
                 };
@@ -373,7 +400,7 @@ const RegistrationFirst = ({ setMainForm }) => {
                                                         <ButtonComp type='button' onClick={DeleteRows} text={<i class="fa-regular fa-trash-can text-white"></i>} className='px-[20px] h-[40px] text-white bg-[red] rounded-full py-[5px]' />
                                                     </m.div>
                                                 }
-                                                <ButtonComp type='button' onClick={addRow} text='Add' className='px-[20px] h-[40px] text-white bg-[#004878] rounded-full py-[5px]' />
+                                                <ButtonComp type='button' onClick={() => addRow(Fields.question_no)} text='Add' className='px-[20px] h-[40px] text-white bg-[#004878] rounded-full py-[5px]' />
                                             </div>
                                         </div>
                                         <table className='border-2 text-[#667085] rounded-t-2xl w-[100%]'>
@@ -456,54 +483,6 @@ const RegistrationFirst = ({ setMainForm }) => {
 
             </form >
 
-
-            {/* <form className='flex flex-col gap-[30px]' onSubmit={formik.handleSubmit} action="">
-                <div className='flex w-[100%] gap-[24pt]'>
-                    {renderQuestions('IRQ-00001')}
-                    {renderQuestions('IRQ-00004')}
-                </div>
-                <div className='flex w-[100%] gap-[24pt]'>
-                    {renderQuestions('IRQ-00002')}
-                    {renderQuestions('IRQ-00005')}
-                </div>
-                <div className='flex w-[100%] gap-[24pt]'>
-                    {renderQuestions('IRQ-00003')}
-                </div>
-                <div>
-                    <div className='p-[20px] border-2 rounded-t-xl flex items-center justify-between'>
-                        <HeaderCompo className='text-xl text-black mt-0 m-0' tagType='h3' text='Communication' />
-                        <div className='flex gap-[20px]'>
-                            {
-                                tableValues.find(ele => ele?.check) &&
-                                <m.div {...zoomIn}>
-                                    <ButtonComp type='button' onClick={DeleteRows} text={<i class="fa-regular fa-trash-can text-white"></i>} className='px-[20px] h-[40px] text-white bg-[red] rounded-full py-[5px]' />
-                                </m.div>
-                            }
-                            <ButtonComp type='button' onClick={addRow} text='Add' className='px-[20px] h-[40px] text-white bg-[#004878] rounded-full py-[5px]' />
-                        </div>
-                    </div>
-                    {renderQuestions('IRQ-00006')}
-                </div>
-
-                <div className='w-[100%] '>
-                    <div className='w-[100%] flex gap-[24pt]'>
-                        <div className='w-[100%]  flex gap-[30px] flex-col'>
-                            {renderQuestions('IRQ-00007')}
-                            {renderQuestions('IRQ-00009')}
-                            {renderQuestions('IRQ-00008')}
-                        </div>
-                        <div className=' w-[100%] h-auto '>
-                            <div className='w-[100%] flex flex-col gap-[30px] h-[100%]'>
-                                {renderQuestions('IRQ-00010')}
-                                {renderQuestions('IRQ-00011')}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='flex justify-end'>
-                    <ButtonComp type={'submit'} className='px-[20px] py-[6px] h-[40px] text-white bg-[#004878] rounded-full ' text='Save & Next' />
-                </div>
-            </form > */}
 
         </>
     )
