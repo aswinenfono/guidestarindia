@@ -25,7 +25,7 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
     },
 }));
 
-const CustomFileInput = ({ value, onChange, label }) => {
+const CustomFileInput = ({ value, onChange, label, name }) => {
     const fileInputRef = React.createRef();
     const handleIconClick = () => {
         fileInputRef.current.click();
@@ -50,6 +50,7 @@ const CustomFileInput = ({ value, onChange, label }) => {
                 type="file"
                 style={{ display: 'none' }}
                 onChange={onChange}
+                name={name}
 
             />
             <CustomTextField
