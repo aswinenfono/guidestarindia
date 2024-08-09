@@ -46,7 +46,6 @@ axios.interceptors.response.use(undefined, (err) => {
             localStorage.clear();
             window.location.pathname = '/auth/sign-in';
         }
-
         throw err;
     });
 });
