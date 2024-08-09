@@ -124,7 +124,6 @@ const RegistrationMainPage = () => {
         }
     }
 
-    console.log("mainForm>>>>", mainForm)
     return (
 
         <>

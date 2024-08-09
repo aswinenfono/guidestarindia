@@ -14,8 +14,12 @@ import MyLocationIcon from '@mui/icons-material/MyLocation';
 const RegistrationSecond = () => {
     const [tableDropDowns, setTableDropDowns] = useState();
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [file64, setFile64] = useState();
-    const [fileName, setFileName] = useState();
+    const [file64, setFile64] = useState(
+        {}
+    );
+    const [fileName, setFileName] = useState({
+
+    });
 
     const modelSchema = Yup.object().shape({
         'DRQ-00002': Yup.string()
@@ -101,6 +105,10 @@ const RegistrationSecond = () => {
 
     console.log(formik);
 
+    const FileManager = () => {
+
+    }
+
     return (
         <>
             <form className='flex gap-[30px] w-[100%] flex-col' onSubmit={formik.handleSubmit}>
@@ -108,7 +116,7 @@ const RegistrationSecond = () => {
                 {/* Upload pan section */}
                 <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
-                        <CustomFileInput label='Upload PAN Card' />
+                        <CustomFileInput onChange={FileManager} label='Upload PAN Card' />
                         <ParagraphComp text='Income Tax Permanent Account Number(IT PAN) of the Non Profit' className='mt-[8px] text-black text-sm px-[8px]' />
                     </div>
                     <div className='w-[100%]'>
