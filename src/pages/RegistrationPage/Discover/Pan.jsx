@@ -7,19 +7,21 @@ import { ParagraphComp } from '../../../Components/ParagraphComp/ParagraphComp';
 import CustomInput from '../../../Components/InputCompo/CustomInput';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
-import { discoveryInitialQ } from '../../../Store/auth/register';
+import { discoverPanRegCall, discoveryInitialQ } from '../../../Store/auth/register';
+import { enqueueSnackbar } from 'notistack';
 
 const RegistrationSecond = () => {
-    const [tableDropDowns, setTableDropDowns] = useState();
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [file64, setFile64] = useState();
-    const [fileName, setFileName] = useState();
+    const application_no = localStorage.getItem('RegKey')
 
     const modelSchema = Yup.object().shape({
+        'DRQ-00001': Yup.mixed()
+            .required("File is required"),
         'DRQ-00002': Yup.string()
             .required("PAN Legacy Has your IT PAN changed?"),
+        'DRQ-00003': Yup.mixed()
+            .required("File is required"),
         'DRQ-00004': Yup.string()
             .required("PAN Legacy Has your IT PAN changed?"),
         'DRQ-00005': Yup.string()
@@ -42,7 +44,9 @@ const RegistrationSecond = () => {
 
     const formik = useFormik({
         initialValues: {
+            'DRQ-00001': '',
             'DRQ-00002': '',
+            'DRQ-00003': '',
             'DRQ-00004': '',
             'DRQ-00005': '',
             'DRQ-00006': '',
@@ -56,31 +60,30 @@ const RegistrationSecond = () => {
         enableReinitialize: true,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const tempData = discoverInitalData?.documents?.map(fields => {
+                console.log(values)
+                const tempData = discoverInitialData?.documents?.map(fields => {
                     if (fields.type.toLowerCase() === 'attach') {
-                        console.log("fields>>>", fields)
                         return {
                             question_no: fields?.question_no,
-                            attach_file: file64?.[fields?.question_no],
-                            file_name: fileName?.[fields?.question_no]
+                            attach_file: values?.[fields?.question_no].file64,
+                            file_name: values?.[fields?.question_no].fileName,
                         };
                     } else {
                         return {
                             question_no: fields?.question_no,
                             answer: values[fields?.question_no]
-                        };  
+                        };
                     }
                 });
 
                 const structuredData = {
                     args: {
-                        name: '',
-                        initial_registration_answers: tempData
+                        name: application_no,
+                        discover_registration_section_1: tempData
                     }
                 };
                 console.log("structuredData>>>>>", structuredData)
-                await submitData(structuredData);
-
+                await discoverPanReg(structuredData)
             } catch (error) {
                 console.error(error);
             } finally {
@@ -89,30 +92,60 @@ const RegistrationSecond = () => {
         },
     });
 
-    const { isLoading: fieldLoading, data: discoverInitalData } = useQuery({
+    const { isLoading: fieldLoading, data: discoverInitialData } = useQuery({
         queryKey: 'DiscoverQuestions',
         queryFn: () => discoveryInitialQ(),
     });
 
 
-    const submitData = async (formData) => {
-    };
 
-
-
-    const FileHandler = (e) => {
+    const fileHandler = (e) => {
         const file = e?.target?.files[0];
         const name = e?.target?.name;
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 const base64String = reader.result.split(',')[1];
-                setFile64({ ...file64, [name]: base64String })
-                setFileName({ ...fileName, [name]: file.name })
+                formik.setFieldValue(name, { file64: base64String, fileName: file.name });
             };
             reader.readAsDataURL(file);
         }
     }
+
+
+    const handleCreateSuccess = () => {
+        enqueueSnackbar('success!', { variant: 'success' });
+    };
+
+    const handleCreateError = (error) => {
+        if (error?.response?.data.status_code >= 500) {
+            enqueueSnackbar(error?.response?.data?.status_message, { variant: 'error' });
+        } else {
+            enqueueSnackbar(error?.response?.data?.message || error?.message, { variant: 'error' });
+
+        }
+    };
+
+    const createFarmerMutationOptions = {
+        onSuccess: handleCreateSuccess,
+        onError: handleCreateError,
+    };
+
+
+
+
+    const {
+        mutate: discoverPanReg,
+        isPending: PendingDiscoverPan
+    } = useMutation({
+        mutationFn: discoverPanRegCall,
+        ...createFarmerMutationOptions,
+    });
+
+    if (PendingDiscoverPan || fieldLoading) return (<><h5>Loading...</h5></>)
+
+    console.log("application_no>>>>", application_no)
+
     return (
         <>
             <form className='flex gap-[30px] w-[100%] flex-col' onSubmit={formik.handleSubmit}>
@@ -120,18 +153,18 @@ const RegistrationSecond = () => {
                 {/* Upload pan section */}
                 <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
-                        <CustomFileInput value={fileName?.['DRQ-00001']} onChange={FileHandler} name='DRQ-00001' label='Upload PAN Card' />
+                        <CustomFileInput required={true} value={formik.values['DRQ-00001']?.fileName} onChange={fileHandler} name='DRQ-00001' label='Upload PAN Card' />
                         <ParagraphComp text='Income Tax Permanent Account Number(IT PAN) of the Non Profit' className='mt-[8px] text-black text-sm px-[8px]' />
                     </div>
                     <div className='w-[100%]'>
-                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00002')} options={discoverInitalData?.documents.find(ele => ele.question_no === 'DRQ-00002').options} label="Has you IT PAN changed ?" />
+                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00002')} options={discoverInitialData?.documents.find(ele => ele.question_no === 'DRQ-00002')?.options} label="Has you IT PAN changed ?" />
                         <ParagraphComp text='Income Tax Permanent Account Number(IT PAN) of the Non Profit' className='mt-[8px] text-black text-sm px-[8px]' />
                     </div>
                 </div>
 
                 <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[50%] pe-[13pt]'>
-                        <CustomFileInput onChange={FileHandler} value={fileName?.['DRQ-00003']} name='DRQ-00003' label='Upload New PAN Card' />
+                        <CustomFileInput required={true} onChange={fileHandler} value={formik.values['DRQ-00003']?.fileName} name='DRQ-00003' label='Upload New PAN Card' />
                     </div>
                 </div>
 
@@ -144,10 +177,10 @@ const RegistrationSecond = () => {
 
                 <div className='w-[100%] flex  gap-[24pt] '>
                     <div className='w-[100%]'>
-                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00004')} options={discoverInitalData?.documents.find(ele => ele.question_no === 'DRQ-00004').options} label='Address Type' />
+                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00004')} options={discoverInitialData?.documents.find(ele => ele.question_no === 'DRQ-00004')?.options} label='Address Type' />
                     </div>
                     <div className='w-[100%]'>
-                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00008')} options={discoverInitalData?.documents.find(ele => ele.question_no === 'DRQ-00008').options} label="State" />
+                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00008')} options={discoverInitialData?.documents.find(ele => ele.question_no === 'DRQ-00008')?.options} label="State" />
                     </div>
                 </div>
 
@@ -156,7 +189,7 @@ const RegistrationSecond = () => {
                         <CustomInput required={true} {...formik.getFieldProps('DRQ-00005')} label='Unit No./ Room No./ Building name' />
                     </div>
                     <div className='w-[100%]'>
-                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00009')} options={discoverInitalData?.documents.find(ele => ele.question_no === 'DRQ-00009').options} label="District" />
+                        <CustomSelection required={true} {...formik.getFieldProps('DRQ-00009')} options={discoverInitialData?.documents.find(ele => ele.question_no === 'DRQ-00009')?.options} label="District" />
                     </div>
                 </div>
                 <div className='w-[100%] flex  gap-[24pt] '>

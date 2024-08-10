@@ -215,6 +215,7 @@ const RegistrationFirst = ({ setMainForm }) => {
 
     useEffect(() => {
         if (regFinalData?.application_no) {
+            localStorage.setItem('RegKey', regFinalData?.application_no)
             submitTable(regFinalData?.application_no)
         }
     }, [regFinalData?.application_no])
@@ -291,6 +292,7 @@ const RegistrationFirst = ({ setMainForm }) => {
     const {
         mutate: submitSubReg,
         isPending: subLoading,
+
     } = useMutation({
         mutationFn: initialSubRegistration,
         ...createFarmerMutationOptions,
@@ -339,13 +341,12 @@ const RegistrationFirst = ({ setMainForm }) => {
     // set default fields
 
 
-    console.log("formik.values>>>>", formik.values)
 
     return (
         <>
 
             <form className='flex flex-col gap-[30px]' onSubmit={formik.handleSubmit} action="">
-                <div className='flex flex-wrap gap-[30px] justify-between 100%'>
+                <div className='flex flex-wrap gap-[30px] justify-between w-[100%]'>
                     {InitialRegQ?.documents.map(Fields =>
                         <>
                             <div className='w-[48%]'>
