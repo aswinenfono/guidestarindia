@@ -25,7 +25,7 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
     },
 }));
 
-const CustomFileInput = ({ value, onChange, label, name }) => {
+const CustomFileInput = ({ value, onChange, label, name, required, ...props }) => {
     const fileInputRef = React.createRef();
     const handleIconClick = () => {
         fileInputRef.current.click();
@@ -35,32 +35,28 @@ const CustomFileInput = ({ value, onChange, label, name }) => {
 
 
     return (
-        <Box
-            component="form"
-            sx={{
-                '& > :not(style)': {
-                    width: '100%',
-                },
-            }}
-            noValidate
-            autoComplete="off"
-        >
+        <>
+
             <input
                 ref={fileInputRef}
                 type="file"
                 style={{ display: 'none' }}
                 onChange={onChange}
                 name={name}
-
+                required={required}
+                {...props}
             />
             <CustomTextField
+                className='w-[100%] cursor-pointer'
                 label={label}
+                required={required}
+                {...props}
                 InputProps={{
                     style: {
                         borderColor: 'gray',
                         cursor: 'pointer',
                     },
-                    readOnly: true,
+                    // readOnly: true,
                     endAdornment: (
                         <InputAdornment position="end" onClick={handleIconClick} style={{ cursor: 'pointer' }}>
                             <AttachFileIcon className='text-3xl text-[#004878]' />
@@ -72,7 +68,8 @@ const CustomFileInput = ({ value, onChange, label, name }) => {
                 value={value ? value : ''}
                 onClick={handleIconClick}
             />
-        </Box>
+        </>
+
     );
 };
 

@@ -9,6 +9,9 @@ import MyLocationIcon from '@mui/icons-material/MyLocation';
 import CustomFileInput from '../../../Components/InputCompo/CustomFileInput'
 import ModalComp from '../../../Components/ModalComp'
 import HeaderCompo from '../../../Components/HeaderComp/HeaderCompo'
+import * as Yup from 'yup';
+import { useQuery } from '@tanstack/react-query'
+import { discoveryLegalQ } from '../../../Store/auth/register'
 const LegalRegistration = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const openModal = (e) => {
@@ -18,6 +21,68 @@ const LegalRegistration = () => {
     const closeModal = () => {
         setModalIsOpen(false)
     }
+    const { isLoading: fieldLoading, data: discoverLegalData } = useQuery({
+        queryKey: 'DiscoverQuestions',
+        queryFn: () => discoveryLegalQ(),
+    });
+
+
+    const entrySchema = Yup.object().shape({
+        ...discoverLegalData?.documents?.find(ele => ele.type.toLowerCase() === "section")?.sub_questions?.reduce((schema, fields) => {
+            if (fields.mandatory === 1 && fields.type.toLowerCase() !== 'section') {
+                schema[fields?.question_no] = Yup.string().required(`${fields.question} is required`);
+                if (fields.validation.toLowerCase() === 'email') {
+                    schema[fields?.question_no] = Yup.string()
+                        .email('Invalid email address')
+                        .required(`${fields.question} is required`);
+                }
+            }
+            return schema;
+        }, {}),
+    });
+
+
+
+
+    console.log("entrySchema>>>>", entrySchema)
+
+    const evaluateCondition = (value1, condition, value2) => {
+        switch (condition) {
+            case '===':
+                return value1 === value2;
+            case '!==':
+                return value1 !== value2;
+            case '>':
+                return value1 > value2;
+            case '<':
+                return value1 < value2;
+            case '>=':
+                return value1 >= value2;
+            case '<=':
+                return value1 <= value2;
+            // Add more cases as needed
+            default:
+                return false;
+        }
+    };
+
+
+
+
+    const attachFile = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result.split(',')[1];
+
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    const TempFormik = ''
+
+    if (fieldLoading) return (<><h5>Loading...</h5></>)
 
     return (
         <>
@@ -208,54 +273,55 @@ const LegalRegistration = () => {
             <ModalComp modalIsOpen={modalIsOpen} closeModal={closeModal} width={"50%"} >
                 <div >
                     <HeaderCompo tagType='h4' className='text-xl text-black' text='Add Entry' />
-                    <div className='w-[100%] flex flex-col gap-[30px]'>
-                        <div className='w-[100%] flex  gap-[24pt]'>
-                            <div className='w-[100%]'>
-                                <CustomSelection label={'Registration as '} />
-                                <ParagraphComp text='Has your IT PAN changed? if yes,kindly indicate the same' className='mt-[8px] text-black text-sm px-[8px]' />
-                            </div>
-                            <div className='w-[100%]'>
-                                <CustomSelection label={'State of registration of Non Profit entry *'} />
-                            </div>
-                        </div>
-                        <div className='w-[100%] flex   gap-[24pt]'>
-                            <div className='w-[100%]'>
-                                <CustomInput type={'date'} label={'Registration Date as a Non Profit Entry *'} />
-                            </div>
-                            <div className='w-[100%]'>
-                                <CustomInput label={'Registration number of non profit entry *'} />
-                                <ParagraphComp text='If you do not have a number please write NA' className='mt-[8px] text-black text-sm px-[8px]' />
+                    <div className='w-[100%] flex flex-wrap gap-[30px]'>
+                        {discoverLegalData?.documents?.find(ele => ele.type.toLowerCase() === "section")?.sub_questions.map(Fields =>
+                            <>
+                                <div className='w-[48%]'>
+                                    {Fields.type.toLowerCase() === 'text' || Fields.type.toLowerCase() === 'number' || Fields.type.toLowerCase() === 'date' ?
+                                        <div className={`${evaluateCondition(TempFormik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) ? 'block' : 'block'}`}>
 
-                            </div>
+                                            <CustomInput required
+                                                // {...TempFormik?.getFieldProps(Fields.question_no)}
+                                                name={Fields.question_no} label={Fields.question}
+                                                type={Fields?.type.toLowerCase()}
 
-                        </div>
-                        <div className='w-[100%] flex   gap-[24pt]'>
-                            <div className='w-[100%]'>
-                                <CustomSelection label={'Registration Status as a Non Profit Entry *'} />
-                            </div>
-                            <div className='w-[100%]'>
-                                <CustomInput type={'date'} label={'Registration Valid Till'} />
-                            </div>
-                        </div>
-                        <div className='w-[100%] flex  gap-[24pt]'>
-                            <div className='w-[100%]'>
-                                <CustomSelection label={'Registration Authority *'} />
-                            </div>
-                            <div className='w-[100%]'>
-                                <CustomInput label={'Registration Act *'} />
-                            </div>
-                        </div>
-                        <div className='w-[100%] flex gap-[24pt]'>
-                            <div className='w-[100%]'>
-                                <CustomSelection label={'Registration Legacy'} />
-                            </div>
-                            <div className='w-[100%]'>
-                                <CustomFileInput label={'Upload Document'} />
-                            </div>
-                        </div>
+                                            />
+                                            <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={TempFormik?.values?.[Fields.question_no] && TempFormik?.errors?.[Fields.question_no]} />
+                                            <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={Fields.description} />
+                                        </div>
+                                        :
+                                        Fields.type.toLowerCase() === 'dropdown'
+                                            ?
+                                            <div className={`${evaluateCondition(TempFormik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) ? 'block' : 'block'}`}>
+                                                <>
+                                                    <CustomSelection required options={Fields?.options}
+                                                        // {...TempFormik?.getFieldProps(Fields?.question_no)}
+                                                        name={Fields.question_no} label={Fields.question}
+                                                    />
+                                                    <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={TempFormik?.values?.[Fields.question_no] && TempFormik?.errors?.[Fields.question_no]} />
+                                                    <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={Fields.description} />                                        </>
+                                            </div>
+                                            :
+                                            Fields.type.toLowerCase() === 'attach' ?
+                                                <div className={`${!evaluateCondition(TempFormik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) || !TempFormik?.values?.[Fields?.depend_question] ? 'hidden' : 'block'}`}>
+                                                    <>
+                                                        <CustomFileInput required options={Fields?.options}
+                                                            onChange={attachFile}
+                                                            // value={fileName}
+                                                            name={Fields.question_no} label={Fields.question}
+                                                        />
+                                                        <ParagraphComp className='text-[red] text-[10px] px-[8px] mt-1' text={TempFormik?.values?.[Fields.question_no] && TempFormik?.errors?.[Fields.question_no]} />
+                                                        <ParagraphComp className='mt-[8px] text-[#5A5A5A] text-sm px-[8px]' text={Fields.description} />                                              </>
+                                                </div>
+                                                : ''
+
+                                    }
+                                </div>
+
+                            </>
+                        )}
 
                     </div>
-                    <div className='border-b-2' />
 
                     <div className='w-[100%] justify-between flex mt-4'>
                         <div>
