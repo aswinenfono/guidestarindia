@@ -97,7 +97,7 @@ const RegistrationMainPage = () => {
     const [open, setOpen] = React.useState(true);
     const [mainForm, setMainForm] = React.useState()
     const [subTabs, setSubTabs] = React.useState({
-        'Page 1': true
+        'Legal Registrations': true
     }
     );
     const [tabs, setTabs] = React.useState({
@@ -131,7 +131,7 @@ const RegistrationMainPage = () => {
                 <CssBaseline />
 
                 <Drawer className='z-[12] ' variant="permanent" open={open}>
-                    <DrawerHeader className='flex flex-col   gap-2 justify-start items-start'>
+                    <DrawerHeader className='flex flex-col gap-2 justify-start items-start'>
                         {open &&
                             <>
                                 <div className='w-[100%] pl-[10px] flex justify-start'>

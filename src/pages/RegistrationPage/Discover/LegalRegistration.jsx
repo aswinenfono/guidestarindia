@@ -269,11 +269,12 @@ const LegalRegistration = () => {
 
             </form>
 
-
+            {/* modal section */}
             <ModalComp modalIsOpen={modalIsOpen} closeModal={closeModal} width={"50%"} >
+                <form action="" ></form>
                 <div >
                     <HeaderCompo tagType='h4' className='text-xl text-black' text='Add Entry' />
-                    <div className='w-[100%] flex flex-wrap gap-[30px]'>
+                    <div className='w-[100%] flex flex-wrap gap-[24px]'>
                         {discoverLegalData?.documents?.find(ele => ele.type.toLowerCase() === "section")?.sub_questions.map(Fields =>
                             <>
                                 <div className='w-[48%]'>
@@ -303,7 +304,7 @@ const LegalRegistration = () => {
                                             </div>
                                             :
                                             Fields.type.toLowerCase() === 'attach' ?
-                                                <div className={`${!evaluateCondition(TempFormik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) || !TempFormik?.values?.[Fields?.depend_question] ? 'hidden' : 'block'}`}>
+                                                <div className={`${!evaluateCondition(TempFormik?.values?.[Fields?.depend_question], Fields.condition, Fields.value) || !TempFormik?.values?.[Fields?.depend_question] ? 'block' : 'block'}`}>
                                                     <>
                                                         <CustomFileInput required options={Fields?.options}
                                                             onChange={attachFile}
